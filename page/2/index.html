@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<script src="/js/src/click.js"></script>
+
+<html  lang="zh">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>一颗小陨石</title>
+
+
+    <meta property="og:type" content="website">
+<meta property="og:title" content="一颗小陨石">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:site_name" content="一颗小陨石">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/images/og_image.png">
+<meta property="article:author" content="一颗小陨石">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    <script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.png" alt="一颗小陨石" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">主页</a>
+                
+                <a class="navbar-item"
+                href="/archives">文章</a>
+                
+                <a class="navbar-item"
+                href="/categories">分类</a>
+                
+                <a class="navbar-item"
+                href="/tags">标签</a>
+                
+                <a class="navbar-item"
+                href="/about">关于</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    <a class="navbar-item" target="_blank" rel="noopener" title="My CSDN" href="https://blog.csdn.net/weixin_43696529">
+                        
+                        <i class="fab fa-telegram"></i>
+                        
+                    </a>
+                    
+                    <a class="navbar-item" target="_blank" rel="noopener" title="My Github" href="https://github.com/804434940/804434940.github.io">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-01-06T12:46:00.000Z">2020-01-06</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/linux/">linux</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    15 分钟 读完 (大约 2189 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/01/06/Linux%E5%91%BD%E4%BB%A4%E6%95%B4%E7%90%86-------------%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86%E7%9B%B8%E5%85%B3(%E4%B8%80)/">Linux命令整理-------------文件管理相关(一)</a>
+            
+        </h1>
+        <div class="content">
+            <ul>
+<li><h2 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h2><pre><code>说明：用来显示文本内容(小文件)，对于大文件推荐使用more命令
+格式： cat +选项+指定文件</code></pre><p>   选项：</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; -n 或 --number：显示行号；</span><br><span class="line">&gt; -b 或 --number-nonblank：编号时忽略空白行</span><br><span class="line">&gt; -A：显示不可打印字符，行尾显示“$”；</span><br></pre></td></tr></table></figure>
+
+<p>如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> xxx&gt;<span class="built_in">test</span> 若<span class="built_in">test</span>不存在，则自动创建<span class="built_in">test</span>并写入xxx，否则直接写入</span><br><span class="line">cat 123.txt        屏幕显示123.txt内容</span><br><span class="line">cat 文本1  文本2 ...  显示多个文本内容</span><br><span class="line">cat 文本1 文本2 &gt; 文本3  将文本1和2的内容合并到文本3中</span><br><span class="line">cat 文本1 &gt; 文本2   将文本1内容拷贝到文本2</span><br><span class="line">cat /dev/null &gt; 文本1  清空文本1的内容</span><br><span class="line">cat &gt;test1.txt &lt;&lt;stop   向test1.txt写入内容，输入stop结束</span><br></pre></td></tr></table></figure>
+<p><strong>注意：每次合并时，文本3的内容会被重新覆盖</strong></p>
+<ul>
+<li><h2 id="more"><a href="#more" class="headerlink" title="more"></a>more</h2><p>全屏幕显示文本文件内容</p>
+<pre><code>选项：</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-数字：每屏显示指定行</span><br><span class="line">-c：不进行滚屏操作。每次刷新这个屏幕；</span><br><span class="line">-s：将多个空行压缩成一行显示；</span><br><span class="line">-u：禁止下划线；</span><br><span class="line">+数字：从指定数字的行开始显示。</span><br></pre></td></tr></table></figure>
+<p>查看时可用命令：</p>
+<pre><code>Space键：显示文本的下一屏内容。
+Enter键：每次刷新一行
+H键：显示相关的帮助信息
+B键：查看上一屏
+q键：退出</code></pre></li>
+</ul>
+<p>​<br>​             </p>
+<ul>
+<li><h2 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h2><pre><code>1.cd   :             进入目录
+ 2.cd ~:  进入用户目录
+ 3.cd - :  进入历史上一级目录，即进此目录之前的那个目录
+ 4.cd .. ：返回上级目录    cd ../../  有几个.../就返回上几级目录</code></pre></li>
+</ul>
+<ul>
+<li><h2 id="ls"><a href="#ls" class="headerlink" title="ls"></a>ls</h2>  显示目标列表<br> 选项</li>
+</ul>
+<pre><code>    -a 显示所有文件（在linux中以.开头的文件为隐藏文件）
+    -l  显示文本的详情包括(权限、拥有者、文件大小、最后修改时间等)
+    -r 将文件反序显示(默认按照英文字母顺序)
+    -t 按照创建时间列出
+    -A 同 -a ，但不列出 &quot;.&quot; (目前目录) 及 &quot;..&quot; (父目录)
+    -F 在文件名称后加一个符号：
+        *：代表可执行档
+        /： 代表目录
+    -R 有文件的目录，也会将其子文件列出
+
+
+​    </code></pre><p>-R举例：<br>    <img src="https://img-blog.csdnimg.cn/20191028230339579.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzY5NjUyOQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>    -F举例：<br><img src="https://img-blog.csdnimg.cn/20191028230356760.png" alt="在这里插入图片描述"><br>test2是一个目录。所以在后边显示了一个/</p>
+<ul>
+<li><h2 id="pwd"><a href="#pwd" class="headerlink" title="pwd"></a>pwd</h2><p> 显示当前工作目录（绝对路径）</p>
+</li>
+<li><h2 id="head"><a href="#head" class="headerlink" title="head"></a>head</h2><p> 显示指定文件前N行<br> 选项：</p>
+<pre><code>-n：指定显示前n行
+-v：显示文件名的头信息；
+-q：不显示文件名的头信息。</code></pre></li>
+<li><h2 id="tail"><a href="#tail" class="headerlink" title="tail"></a>tail</h2><p> 显示指定文件的末尾N行，默认10行</p>
+<p> 选项：</p>
+<p> <strong>-c<N>,–bytes=<N></strong>：显示文件尾部的N（N为整数）个字节内<br> <strong>-f&lt;name/descriptor&gt;</strong>：动态显示文件尾部内容，如某个动态更新的日志，可以使用-f查看最新的内容<br> <strong>-n<N></strong>：输出文件的尾部N（N位数字）行内容。<br> <strong>–pid=&lt;进程号&gt;</strong>：与“-f”选项连用，当指定的进程号的进程终止时退出该命令<br><strong>-q,–quiet,–silent</strong>：当有多个文件参数时，不输出各个文件名；<br> <strong>-s&lt;秒数&gt;,–sleep-interal=&lt;秒数&gt;</strong>：与“-f”连用，指定文件变化时间隔(s)<br> <strong>-v,–verbose</strong>：当有多个文件参数时，总是输出各个文件名；<br> <strong>–help</strong>：帮助信息<br> <strong>–version</strong>：指令版本</p>
+<p> <strong>举例：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tail <span class="built_in">test</span>  不指定行数默认显示文件<span class="built_in">test</span>的最后10行</span><br><span class="line">tail -n +10 <span class="built_in">test</span>                 从第10行到最后</span><br><span class="line">tail -c 10 <span class="built_in">test</span>			  显示该文件的最后10个字符</span><br><span class="line">tail -25 nginx.log 		显示最后的 25 行</span><br><span class="line">tail -f nginx.log       动态刷新该文件最后的内容</span><br></pre></td></tr></table></figure>
+</li>
+<li><h2 id="chmod"><a href="#chmod" class="headerlink" title="chmod"></a>chmod</h2><p>修改文件或目录的权限</p>
+<p> <strong>权限范围：</strong><br>u:  –&gt; User    ，当前文件/目录的拥有者<br>g:  –&gt;  Group  ， 所属组<br>o:  –&gt;  Other  ，  除User和所属群组之外的所有用户<br>a: –&gt;     All  ，   所有用户<br>r: –&gt;  读权限，数字 4<br>w:–&gt; 写权限，数字  2<br>x: 执行/切换权限，数字 1<br>- 无权限，数字 0</p>
+<p> <strong>语法：</strong><br> chmod [options][参数]<br> <strong>选项：</strong></p>
+   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">+  添加某些权限</span><br><span class="line">-   取消某些权限</span><br><span class="line">=  指定文件权限</span><br><span class="line">r   读权限</span><br><span class="line">w  写权限</span><br><span class="line">x   可执行权限</span><br><span class="line">-   无权限</span><br><span class="line">X   给可执行文件设置可执行权限</span><br><span class="line">t   只有目录或文件的所有者才可以删除目录下的文件</span><br><span class="line">-c ,--changes     效果类似“-v”参数，但仅回报更改的部分，如果文件权限已经改变，显示其操作信息；</span><br><span class="line">-f , --quiet, --silent  操作过程中不显示任何错误信息；</span><br><span class="line">-R, --recursive     以递归更改其本身及子目录</span><br><span class="line">-v, --verbose     显示详情信息</span><br><span class="line">--reference=&lt;参考文件或目录&gt;  指定参考文件，非自定义权限</span><br><span class="line"></span><br><span class="line">--<span class="built_in">help</span>     显示帮助信息</span><br><span class="line">--version  显示版本信息</span><br></pre></td></tr></table></figure>
+
+<p> 权限结构：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-rwxr--r--   1 user  staff   651 Nov 11 11:02 .ignore</span><br></pre></td></tr></table></figure>
+
+<p> 第一个 -: 代表是普通文件，若是 d，则代表目录<br>  第一组rwx：即上边的rw-,表示u属组<br>  第二组rwx:  即上边中间的r–，表示g属组<br>  第三组rwx:  即上边最后的r–， 表示其他人的权限</p>
+<p> r:读    4<br> w：写 2<br> x：执行 1</p>
+<p> 举例:</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">chmod u+w,g+r test1　 为test1设置当前用户可写，组可读的权限</span><br><span class="line">chmod u=rwx,g=rw,o=r test1 当前用户可读写执行，组可读写，其他用户只能读</span><br><span class="line">chmod 764 test1   当前用户读写执行，组读写，其他只可读</span><br><span class="line">chmod a+r test1　　     所有用户都只可读test1</span><br><span class="line">chmod ugo-r test1 所有用户减掉可读权限 </span><br><span class="line">chmod -R  755 /usr/<span class="built_in">local</span>/<span class="built_in">test</span>/  递归修改<span class="built_in">test</span>目录下的子文件的权限为 755,7即4+2+1，5即4+1</span><br><span class="line">chown john:student test1　　 把test1给John，添加到student组</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h2 id="chown"><a href="#chown" class="headerlink" title="chown"></a>chown</h2><p> 改变文件或目录的拥有者或所属群组<br> 可以给某个用户授权，使该用户变成指定文件的所有者或者改变文件所属的组。</p>
+<p> <strong>语法：</strong><br> chown [options][参数]</p>
+<p> 选项：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-c，--changes：显示修改的部分；</span><br><span class="line">-f ：不显示错误信息；</span><br><span class="line">-h：只对符号连接的文件作修改，而不更改其他任何相关文件；</span><br><span class="line">-R：递归处理指定目录下的所有文件及子目录</span><br><span class="line">-v：显示指令执行过程信息</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>    <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chown -R wml:mygroup /usr/<span class="built_in">local</span>/test1  </span><br><span class="line">将/usr/<span class="built_in">local</span>/<span class="built_in">test</span>下面的所有文件以及子目录的文件拥有者改为wml,</span><br><span class="line">群组为mygroup</span><br></pre></td></tr></table></figure>
+
+ - ## cmp
+         比较两个二进制文件是否有差异，若无差异则不显示任何信息，若有差异则显示第一个不同的地方的字符和列数
+
+     **语法：**
+     cmp [options][参数]
+**选项：**
+
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-l：对于每处不同，显示十进制的字节数和八进制的不同字节。；</span><br><span class="line">-s，--quit，--silent：不显示错误信息；</span><br></pre></td></tr></table></figure>
+    **举例:**
+    123.txt ：
+         我是123
+        222
+    222.txt:
+        我是222
+        222
+
+    <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmp 123.txt 222.txt  --结果--&gt;123.txt 222.txt differ: byte 1, line 1</span><br></pre></td></tr></table></figure>
+
+ - ## diff
+    比较两个文件的不同，该命令是采取逐行比较的方式，
+
+    **选项：**
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">-&lt;行数&gt;：指定显示多少行的文本</span><br><span class="line">-a，--text：将文件当做文本文件处理</span><br><span class="line">-b：忽略空格字符造成的不同；</span><br><span class="line">-B，--ignore-blank-lines：忽略空白行；</span><br><span class="line">-c：显示两个文件的全部内容，并标出不同之处</span><br><span class="line">-H，--speed-large-files：加速大文件检索</span><br><span class="line">-i，--ignore-case：忽略大小写不同</span><br><span class="line">-l或——paginate：分页</span><br><span class="line">-q或--brief：仅显示有无差异，不显示详细的信息</span><br><span class="line">	有不同的结果:Files 123.txt and 222.txt differ</span><br><span class="line">-r，--recursive：比较子目录中的文件</span><br><span class="line">-T：每行对齐输出</span><br><span class="line">-y：并列打印</span><br></pre></td></tr></table></figure>
+    举例：
+    ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191028231857879.png)
+
+ - ## file
+ 检测目标文件类型
+**选项：**
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-b：不显示文件名称L</span><br><span class="line">-L：直接显示符号连接所指向的文件类别；</span><br><span class="line">-v：显示版本信息；</span><br><span class="line">-z：尝试去解读压缩文件的内容。</span><br></pre></td></tr></table></figure>
+**举例：**
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[admin@ <span class="built_in">test</span>]$ file 123.txt 222.txt</span><br><span class="line">123.txt: UTF-8 Unicode text</span><br><span class="line">222.txt: UTF-8 Unicode text</span><br></pre></td></tr></table></figure></code></pre><ul>
+<li><h2 id="find"><a href="#find" class="headerlink" title="find"></a>find</h2><pre><code>查询指定目录下的文件</code></pre><p><strong>选项：</strong></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">-depth：从指定目录的最深层的子目录开始查找</span><br><span class="line">-maxdepth&lt;目录深度&gt;：最大目录深度</span><br><span class="line">-mindepth&lt;目录深度&gt;：最小目录层级；</span><br><span class="line"></span><br><span class="line">-empty：查找大小为0 的文件或空目录</span><br><span class="line">-exec&lt;要执行的指令&gt;：若find指令返回True，就执行目标指令(如找到空的就执行rm删除目标文件)</span><br><span class="line">-fstype&lt;文件系统类型&gt;：只寻找该文件系统类型下的文件或目录；</span><br><span class="line">-ls：将文件或目录名称列出到标准输出(权限信息，所属用户、组，时间信息等)</span><br><span class="line">-name&lt;inputname&gt;，-iname：查询名称符合inputname的文件，-iname忽略大小写</span><br><span class="line"></span><br><span class="line">-anewer test : 比文件 file 更晚被读取过的文件</span><br><span class="line">-path&lt;testPath&gt;，-ipath&lt;testPath&gt;：路径符合testPath的文件,-ipath 忽略大小写</span><br><span class="line">-perm&lt;权限值&gt;：查找符合指定的权限数值的文件</span><br><span class="line"></span><br><span class="line">-print：将文件或目录名称列出到标准输出。格式为每列一个名称，每个名称前皆有“.&#x2F;”字符串；</span><br><span class="line">-printf&lt;输出格式&gt;：自定义格式输出</span><br><span class="line"></span><br><span class="line">-size&lt;文件大小&gt;：查找符合指定大小的文件</span><br><span class="line">-type&lt;文件类型&gt;：指定的文件类型的文件</span><br><span class="line"></span><br><span class="line">-user&lt;拥有者名称&gt;：指定用户拥有的文件</span><br></pre></td></tr></table></figure>
+<p> <strong>举例：</strong></p>
+<p> <strong>1.find.</strong> 列出当前目录的所有文件及其子文件</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> find .</span><br><span class="line"> 结果：</span><br><span class="line">.</span><br><span class="line">./333.txt</span><br><span class="line">./222.txt</span><br><span class="line">./test2</span><br><span class="line">./test2/123.txt</span><br><span class="line">./123.txt</span><br><span class="line">./empty.txt</span><br></pre></td></tr></table></figure>
+<p> <strong>2.find /usr/test -name “*.txt”</strong>：查找test目录下后缀名为txt的文件</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">find /usr/<span class="built_in">test</span> -name <span class="string">"*.txt"</span></span><br><span class="line">结果：</span><br><span class="line">/usr/<span class="built_in">test</span>/333.txt</span><br><span class="line">/usr/<span class="built_in">test</span>/222.txt</span><br><span class="line">/usr/<span class="built_in">test</span>/test2/123.txt</span><br><span class="line">/usr/<span class="built_in">test</span>/123.txt</span><br><span class="line">/usr/<span class="built_in">test</span>/empty.txt</span><br></pre></td></tr></table></figure>
+<p> <strong>3.find /usr/test ! -name “*.txt”</strong>：查找test目录下后缀名不是txt的文件<br> <strong>4.根据文件类型查找 -type</strong>:</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -<span class="built_in">type</span> 参数</span><br></pre></td></tr></table></figure>
+<p> 类型参数：</p>
+<pre><code>f ：普通文件
+l ：符号连接
+d ：目录
+c ：字符设备
+b ：块设备
+s ：套接字
+p ：Fifo</code></pre><p> <strong>5.查找小于3k的文件</strong></p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -size -3k</span><br></pre></td></tr></table></figure>
+<p> 结果：</p>
+<pre><code>./333.txt
+./222.txt
+./test2/123.txt
+./123.txt
+./empty.txt</code></pre><p> <strong>6.查找大小为0的文件</strong></p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@ <span class="built_in">test</span>] find -empty</span><br><span class="line">./empty.txt</span><br></pre></td></tr></table></figure>
+<p> <strong>7.查找指定权限的文件</strong></p>
+<p> 首先给123.txt赋予77权限：</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 777 123.txt</span><br></pre></td></tr></table></figure>
+<p> 查看下结果：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-rwxrwxrwx 1  777 root   21 Oct 28 23:08 123.txt</span><br><span class="line">-rw-r--r-- 1 root root   15 Oct 28 22:57 222.txt</span><br><span class="line">-rw-r--r-- 1 root root   23 Oct 27 22:46 333.txt</span><br><span class="line">-rw-r--r-- 1 root root    0 Oct 29 15:20 empty.txt</span><br><span class="line">drwxr-xr-x 2 root root 4096 Oct 27 19:52 test2</span><br></pre></td></tr></table></figure>
+<p> 只有123.txt的权限为777,<br> 执行查找：</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find -perm 777</span><br></pre></td></tr></table></figure>
+<p> 结果：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;123.txt</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<p>​    </p>
+<p><strong>持续更新………</strong></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-01-06T11:45:00.000Z">2020-01-06</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/docker/">docker</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    1 分钟 读完 (大约 162 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/01/06/docker%E5%AE%89%E8%A3%85ES/">docker安装ES</a>
+            
+        </h1>
+        <div class="content">
+            <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">docker pull elasticsearch:6.4.0 //再低就是5.x了</span><br><span class="line"></span><br><span class="line">1.vim /etc/security/limits.d/90-nproc.conf </span><br><span class="line">     添加：soft nproc 4096</span><br><span class="line"></span><br><span class="line">2. vim /etc/sysctl.conf</span><br><span class="line">    添加vm.max_map_count=655360</span><br><span class="line">   执行sysctl -p刷新配置</span><br><span class="line"></span><br><span class="line">//根据自己的内存大小适当调整，太大会启动失败</span><br><span class="line">3.docker run -e ES_JAVA_OPTS=<span class="string">"-Xms512m -Xmx512m"</span> -d -p 9200:9200 -p 9300:9300 --name=myES 容器id</span><br><span class="line"></span><br><span class="line">4.docker <span class="built_in">exec</span> -it 容器名 /bin/bash 进入容器命令行</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">5.vim config/elasticsearch.yml  地址改为0.0.0.0</span><br><span class="line">可能会vim不可用 </span><br><span class="line"> 执行 yum update</span><br><span class="line">        yum install -y vim</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">6.安装ik分词器</span><br><span class="line">先上传到宿主机，再使用以下命令copy到容器中</span><br><span class="line">docker cp 宿主机ik分词器地址  容器名:/usr/share/elasticsearch/plugins/ik</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-01-06T11:45:00.000Z">2020-01-06</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/springboot/">springboot</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 分钟 读完 (大约 506 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/01/06/mavon-editor+springboot+fdfs%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/">mavon-editor+springboot+fdfs上传文件</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="一、安装mavon"><a href="#一、安装mavon" class="headerlink" title="一、安装mavon"></a>一、安装mavon</h2><pre><code>直接npm install下就可以了，然后在main.js引入：</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> mavonEditor <span class="keyword">from</span> <span class="string">'mavon-editor'</span></span><br><span class="line">Vue.use(mavonEditor)</span><br></pre></td></tr></table></figure>
+<h2 id="二、页面使用"><a href="#二、页面使用" class="headerlink" title="二、页面使用"></a>二、页面使用</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">mavon-editor</span></span><br><span class="line">      v-show="!articleModal"</span><br><span class="line">      id="editor"</span><br><span class="line">      v-model="value"</span><br><span class="line">      fontSize="16px"</span><br><span class="line">      ref="md"</span><br><span class="line">      <span class="keyword">@imgAdd</span>="$imgAdd"</span><br><span class="line">      @imgDel=<span class="string">"$imgDel"</span></span><br><span class="line">      @change=<span class="string">"handleChange"</span></span><br><span class="line">      @fullScreen=<span class="string">"handleFullScreen"</span></span><br><span class="line">    /&gt;</span><br></pre></td></tr></table></figure>
+<p>这里只需要关注@imgAdd，为添加图片的事件</p>
+<h2 id="三、上传文件"><a href="#三、上传文件" class="headerlink" title="三、上传文件"></a>三、上传文件</h2><p>这里使用的是批量上传，所以每触发一次@imgAdd就向文件集合添加一次</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 添加文件到文件集合中</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    $imgAdd(pos, $file) &#123;</span><br><span class="line">      <span class="comment">// 缓存图片信息</span></span><br><span class="line">      <span class="keyword">this</span>.img_file[pos] = $file;</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+<p>data中定义如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">img_file: &#123;&#125;, <span class="comment">//文件集合</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>上传文件方法：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 上传文件</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   uploadimg($e) &#123;</span><br><span class="line">     <span class="keyword">var</span> formdata = <span class="keyword">new</span> FormData();</span><br><span class="line">     <span class="keyword">for</span> (<span class="keyword">var</span> _img <span class="keyword">in</span> <span class="keyword">this</span>.img_file) &#123;</span><br><span class="line">       formdata.append(<span class="string">"files"</span>, <span class="keyword">this</span>.img_file[_img]);</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     uploadApi.uploadFileList(formdata).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">       <span class="built_in">console</span>.log(res);</span><br><span class="line">       <span class="keyword">const</span> resData = res.data.data;</span><br><span class="line">       <span class="comment">/**</span></span><br><span class="line"><span class="comment">        * 例如：返回数据为 res = [[pos, url], [pos, url]...]</span></span><br><span class="line"><span class="comment">        * pos 为原图片标志（0）</span></span><br><span class="line"><span class="comment">        * url 为上传后图片的url地址</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">       <span class="comment">// 第二步.将返回的url替换到文本原位置![...](0) -&gt; ![...](url)</span></span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; resData.length; i++) &#123;</span><br><span class="line">        </span><br><span class="line">         <span class="keyword">this</span>.$refs.md.$img2Url(i + <span class="number">1</span>, resData[i]);</span><br><span class="line">       &#125;</span><br><span class="line">     &#125;);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后在需要上传的时候调用一下这个方法就可以啦</p>
+<h2 id="四、后台进行上传"><a href="#四、后台进行上传" class="headerlink" title="四、后台进行上传"></a>四、后台进行上传</h2><h3 id="4-1Controller"><a href="#4-1Controller" class="headerlink" title="4.1Controller"></a>4.1Controller</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 文章多文件上传</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> files</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@return</span> 返回图片地址</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="meta">@PostMapping</span>(value = <span class="string">"/files"</span>,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)</span><br><span class="line">  <span class="function"><span class="keyword">public</span> Result <span class="title">uploadMultiFiles</span><span class="params">(@RequestParam(<span class="string">"files"</span>)</span> MultipartFile[] files)</span>&#123;</span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">          List&lt;String&gt; resultList = uploadService.uploadMultiFiles(files);</span><br><span class="line">          <span class="keyword">return</span> <span class="keyword">new</span> Result(<span class="keyword">true</span>,StatusCode.OK,<span class="string">"上传成功"</span>,resultList);</span><br><span class="line">      &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="keyword">new</span> Result(<span class="keyword">false</span>,StatusCode.ERROR,<span class="string">"啊哦~图片上传出现了点小错误，请稍后再上传"</span>);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4-2、Service"><a href="#4-2、Service" class="headerlink" title="4.2、Service"></a>4.2、Service</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 批量上传</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> files</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">uploadMultiFiles</span><span class="params">(MultipartFile[] files)</span> </span>&#123;</span><br><span class="line">       List&lt;String&gt; resultList=<span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">       <span class="keyword">for</span> (MultipartFile file : files) &#123;</span><br><span class="line">           <span class="keyword">try</span> &#123;</span><br><span class="line">               <span class="comment">//校验文件内容</span></span><br><span class="line">               BufferedImage image = ImageIO.read(file.getInputStream());</span><br><span class="line">               <span class="keyword">if</span> (image == <span class="keyword">null</span>) &#123;</span><br><span class="line">                   <span class="keyword">throw</span> <span class="keyword">new</span> MyException(ExceptionEnum.INVALID_FILE_TYPE);</span><br><span class="line">               &#125;</span><br><span class="line"></span><br><span class="line">               <span class="comment">//获取拓展名</span></span><br><span class="line">               String extension = StringUtils.substringAfterLast(file.getOriginalFilename(), <span class="string">"."</span>);</span><br><span class="line">               <span class="comment">//上传到FastDFS</span></span><br><span class="line">               StorePath storePath = storageClient.uploadFile(file.getInputStream(), file.getSize(), extension, <span class="keyword">null</span>);</span><br><span class="line"></span><br><span class="line">               <span class="comment">//不加http://前端无法显示</span></span><br><span class="line">               resultList.add(<span class="string">"http://"</span>+uploadProperties.getBaseUrl() + storePath.getFullPath());</span><br><span class="line">               <span class="comment">//返回路径</span></span><br><span class="line"></span><br><span class="line">           &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line"></span><br><span class="line">               <span class="comment">//上传失败</span></span><br><span class="line">               LOGGER.error(<span class="string">"[文件上传]文件"</span>+file.getOriginalFilename()+<span class="string">"上传失败!"</span>, e);</span><br><span class="line">               <span class="keyword">throw</span> <span class="keyword">new</span> MyException(ExceptionEnum.UPLOAD_FILE_ERROR);</span><br><span class="line"></span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> resultList;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>Fdfs的相关配置在这篇文章写啦(不好意思比较懒)：<a href="https://blog.csdn.net/weixin_43696529/article/details/102727220">https://blog.csdn.net/weixin_43696529/article/details/102727220</a></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-01-06T10:12:00.000Z">2020-01-06</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/docker/">docker</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    5 分钟 读完 (大约 728 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/01/06/jib%E6%89%93%E5%8C%85Springboot%E9%A1%B9%E7%9B%AE%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F/">jib打包项目到阿里镜像</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="一、在pom文件中引入jib插件"><a href="#一、在pom文件中引入jib插件" class="headerlink" title="一、在pom文件中引入jib插件"></a>一、在pom文件中引入jib插件</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&lt;build&gt;</span><br><span class="line">       &lt;plugins&gt;</span><br><span class="line">           &lt;plugin&gt;</span><br><span class="line">               &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">               &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">           &lt;/plugin&gt;</span><br><span class="line">           &lt;plugin&gt;</span><br><span class="line">               &lt;groupId&gt;com.google.cloud.tools&lt;/groupId&gt;</span><br><span class="line">               &lt;artifactId&gt;jib-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">               &lt;version&gt;1.7.0&lt;/version&gt;</span><br><span class="line">               &lt;configuration&gt;</span><br><span class="line">               &lt;!--拉取的镜像的配置，默认为gcr.io/distroless/java--&gt;</span><br><span class="line">                   &lt;from&gt;</span><br><span class="line">                       &lt;image&gt;基础镜像地址&lt;/image&gt;</span><br><span class="line">                       &lt;auth&gt;</span><br><span class="line">                           &lt;username&gt;阿里云用户名&lt;/username&gt;</span><br><span class="line">                           &lt;password&gt;阿里云密码&lt;/password&gt;</span><br><span class="line">                       &lt;/auth&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                   &lt;/from&gt;</span><br><span class="line">                   &lt;to&gt;</span><br><span class="line">                       &lt;image&gt;基础镜像地址&lt;/image&gt;</span><br><span class="line">                       &lt;auth&gt;</span><br><span class="line">                           &lt;username&gt;阿里云用户名&lt;/username&gt;</span><br><span class="line">                           &lt;password&gt;阿里云密码&lt;/password&gt;</span><br><span class="line">                       &lt;/auth&gt;</span><br><span class="line">                       &lt;tags&gt;</span><br><span class="line">                           &lt;tag&gt;版本号&lt;/tag&gt;</span><br><span class="line">                       &lt;/tags&gt;</span><br><span class="line">                   &lt;/to&gt;</span><br><span class="line">                   &lt;allowInsecureRegistries&gt;true&lt;/allowInsecureRegistries&gt;</span><br><span class="line">               &lt;/configuration&gt;</span><br><span class="line">               &lt;executions&gt;</span><br><span class="line">                   &lt;execution&gt;</span><br><span class="line">                       &lt;phase&gt;package&lt;/phase&gt;</span><br><span class="line">                       &lt;goals&gt;</span><br><span class="line">                           &lt;goal&gt;build&lt;/goal&gt;</span><br><span class="line">                       &lt;/goals&gt;</span><br><span class="line">                   &lt;/execution&gt;</span><br><span class="line">               &lt;/executions&gt;</span><br><span class="line">           &lt;/plugin&gt;</span><br><span class="line">       &lt;/plugins&gt;</span><br><span class="line">   &lt;/build&gt;</span><br></pre></td></tr></table></figure>
+<p>版本号这里一开始指定的自定义版本，但是使用jib:build时报错，说找不到latest版本，不知道是不是默认拉取latest，但是网上其他博主好像并没有这个情况，这里就只好将tag设为latest了</p>
+<h3 id="二、github创建仓库添加Dockerfile文件"><a href="#二、github创建仓库添加Dockerfile文件" class="headerlink" title="二、github创建仓库添加Dockerfile文件"></a>二、github创建仓库添加Dockerfile文件</h3><p><img src="https://img-blog.csdnimg.cn/20200104005554764.png" alt="在这里插入图片描述"></p>
+<h3 id="三、阿里云创建镜像仓库"><a href="#三、阿里云创建镜像仓库" class="headerlink" title="三、阿里云创建镜像仓库"></a>三、阿里云创建镜像仓库</h3><p>3.1 创建仓库<br><img src="https://img-blog.csdnimg.cn/20200104005715622.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzY5NjUyOQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200104005748539.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzY5NjUyOQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>点击下一步，根据提示选择Dockerfile所在仓库<br><img src="https://img-blog.csdnimg.cn/20200104005856110.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzY5NjUyOQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>进入新创建的仓库，点击添加规则<br><img src="https://img-blog.csdnimg.cn/20200104005944651.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzY5NjUyOQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/2020010401001667.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzY5NjUyOQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这里版本起名latest，原因上面解释了，有知道的伙伴还请告知 感谢~</p>
+<p><img src="https://img-blog.csdnimg.cn/20200104010147987.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzY5NjUyOQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>点击构建，等待一会，下方日志中会显示构建的镜像和状态</p>
+<p>最后返回基本信息，复制公网地址，放在from和to的image中，一定要填写username和password<br><img src="https://img-blog.csdnimg.cn/20200104010251676.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzY5NjUyOQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>最后执行  jib:build即可成功</p>
+<p><img src="https://img-blog.csdnimg.cn/20200104010422472.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzY5NjUyOQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200104010519896.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzY5NjUyOQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>成功!</p>
+<p>最后在docker中拉取就可以了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name testjib-p 8081:8081 刚刚复制的公网地址:latest(对应的镜像版本号)</span><br></pre></td></tr></table></figure>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+    
+<div class="card card-transparent">
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        <div class="pagination-previous">
+            <a class="is-flex-grow has-text-black-ter" href="/">上一页</a>
+        </div>
+        <div class="pagination-next is-invisible is-hidden-mobile">
+            <a class="is-flex-grow has-text-black-ter" href="/page/3/">下一页</a>
+        </div>
+        <ul class="pagination-list is-hidden-mobile">
+            
+            <li><a class="pagination-link has-text-black-ter" href="/">1</a></li>
+            
+            <li><a class="pagination-link is-current" href="/page/2/">2</a></li>
+            
+        </ul>
+    </nav>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="" src="/images/avatar.jpeg" alt="一颗小陨石">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        一颗小陨石
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Student
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>China,JiangSu</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            14
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            7
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            12
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://blog.csdn.net/weixin_43696529" target="_blank" rel="noopener">
+                关注我</a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Github" href="https://github.com/804434940/804434940.github.io">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="CSDN" href="https://blog.csdn.net/weixin_43696529">
+                
+                <i class="fab fa-telegram"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://blog.csdn.net/weixin_43696529" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">CSDN</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">blog.csdn.net</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/docker/">
+            <span class="level-start">
+                <span class="level-item">docker</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/linux/">
+            <span class="level-start">
+                <span class="level-item">linux</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/springboot/">
+            <span class="level-start">
+                <span class="level-item">springboot</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+            <span class="level-start">
+                <span class="level-item">操作系统</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+            <span class="level-start">
+                <span class="level-item">数据结构</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">8</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E5%8F%89%E6%A0%91/">
+            <span class="level-start">
+                <span class="level-item">二叉树</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">
+            <span class="level-start">
+                <span class="level-item">排序</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">7</span>
+            </span>
+        </a></li></ul></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/centos7/" style="font-size: 10px;">centos7</a> <a href="/tags/docker/" style="font-size: 15px;">docker</a> <a href="/tags/elasticsearch/" style="font-size: 10px;">elasticsearch</a> <a href="/tags/fdfs/" style="font-size: 10px;">fdfs</a> <a href="/tags/firewall/" style="font-size: 10px;">firewall</a> <a href="/tags/jib/" style="font-size: 10px;">jib</a> <a href="/tags/linux/" style="font-size: 15px;">linux</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" style="font-size: 10px;">二叉树</a> <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 20px;">排序</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 10px;">文件上传</a> <a href="/tags/%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/" style="font-size: 10px;">调度算法</a>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/01/07/%EF%BC%88%E5%A4%8D%E4%B9%A0%EF%BC%89%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%89%E7%A7%8D%E9%81%8D%E5%8E%86%E6%96%B9%E5%BC%8F%E3%80%81%E6%9F%A5%E6%89%BE%E5%92%8C%E5%88%A0%E9%99%A4-Java%E5%AE%9E%E7%8E%B0/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="（复习）二叉树的三种遍历方式、查找和删除----------Java实现">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T05:44:57.000Z">2020-01-07</time></div>
+                    <a href="/2020/01/07/%EF%BC%88%E5%A4%8D%E4%B9%A0%EF%BC%89%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%89%E7%A7%8D%E9%81%8D%E5%8E%86%E6%96%B9%E5%BC%8F%E3%80%81%E6%9F%A5%E6%89%BE%E5%92%8C%E5%88%A0%E9%99%A4-Java%E5%AE%9E%E7%8E%B0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">（复习）二叉树的三种遍历方式、查找和删除----------Java实现</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E5%8F%89%E6%A0%91/">二叉树</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/07/%E6%A8%A1%E6%8B%9F%E5%85%88%E6%9D%A5%E5%85%88%E6%9C%8D%E5%8A%A1%E3%80%81%E7%9F%AD%E4%BD%9C%E4%B8%9A%E4%BC%98%E5%85%88%E3%80%81%E6%97%B6%E9%97%B4%E7%89%87%E8%BD%AE%E8%BD%AC%E4%BB%A5%E5%8F%8A%E6%9C%80%E9%AB%98%E5%93%8D%E5%BA%94%E6%AF%94%E4%BC%98%E5%85%88%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%E7%9A%84JAVA%E5%AE%9E%E7%8E%B0/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="模拟先来先服务、短作业优先、时间片轮转以及最高响应比优先调度算法的JAVA实现">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T05:42:48.000Z">2020-01-07</time></div>
+                    <a href="/2020/01/07/%E6%A8%A1%E6%8B%9F%E5%85%88%E6%9D%A5%E5%85%88%E6%9C%8D%E5%8A%A1%E3%80%81%E7%9F%AD%E4%BD%9C%E4%B8%9A%E4%BC%98%E5%85%88%E3%80%81%E6%97%B6%E9%97%B4%E7%89%87%E8%BD%AE%E8%BD%AC%E4%BB%A5%E5%8F%8A%E6%9C%80%E9%AB%98%E5%93%8D%E5%BA%94%E6%AF%94%E4%BC%98%E5%85%88%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%E7%9A%84JAVA%E5%AE%9E%E7%8E%B0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">模拟先来先服务、短作业优先、时间片轮转以及最高响应比优先调度算法的JAVA实现</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/07/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="基数排序-------------java实现">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T05:42:02.000Z">2020-01-07</time></div>
+                    <a href="/2020/01/07/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">基数排序-------------java实现</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/07/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="归并排序-------------java实现">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T05:41:10.000Z">2020-01-07</time></div>
+                    <a href="/2020/01/07/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">归并排序-------------java实现</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/07/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="快速排序-------------java实现">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T05:40:22.000Z">2020-01-07</time></div>
+                    <a href="/2020/01/07/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">快速排序-------------java实现</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">14</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/centos7/">
+                        <span class="tag">centos7</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/docker/">
+                        <span class="tag">docker</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/elasticsearch/">
+                        <span class="tag">elasticsearch</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/fdfs/">
+                        <span class="tag">fdfs</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/firewall/">
+                        <span class="tag">firewall</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/jib/">
+                        <span class="tag">jib</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/linux/">
+                        <span class="tag">linux</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/">
+                        <span class="tag">二叉树</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%8E%92%E5%BA%8F/">
+                        <span class="tag">排序</span>
+                        <span class="tag is-grey">7</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                        <span class="tag">数据结构</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">
+                        <span class="tag">文件上传</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/">
+                        <span class="tag">调度算法</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/01/07/%EF%BC%88%E5%A4%8D%E4%B9%A0%EF%BC%89%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%89%E7%A7%8D%E9%81%8D%E5%8E%86%E6%96%B9%E5%BC%8F%E3%80%81%E6%9F%A5%E6%89%BE%E5%92%8C%E5%88%A0%E9%99%A4-Java%E5%AE%9E%E7%8E%B0/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="（复习）二叉树的三种遍历方式、查找和删除----------Java实现">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T05:44:57.000Z">2020-01-07</time></div>
+                    <a href="/2020/01/07/%EF%BC%88%E5%A4%8D%E4%B9%A0%EF%BC%89%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%89%E7%A7%8D%E9%81%8D%E5%8E%86%E6%96%B9%E5%BC%8F%E3%80%81%E6%9F%A5%E6%89%BE%E5%92%8C%E5%88%A0%E9%99%A4-Java%E5%AE%9E%E7%8E%B0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">（复习）二叉树的三种遍历方式、查找和删除----------Java实现</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E5%8F%89%E6%A0%91/">二叉树</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/07/%E6%A8%A1%E6%8B%9F%E5%85%88%E6%9D%A5%E5%85%88%E6%9C%8D%E5%8A%A1%E3%80%81%E7%9F%AD%E4%BD%9C%E4%B8%9A%E4%BC%98%E5%85%88%E3%80%81%E6%97%B6%E9%97%B4%E7%89%87%E8%BD%AE%E8%BD%AC%E4%BB%A5%E5%8F%8A%E6%9C%80%E9%AB%98%E5%93%8D%E5%BA%94%E6%AF%94%E4%BC%98%E5%85%88%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%E7%9A%84JAVA%E5%AE%9E%E7%8E%B0/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="模拟先来先服务、短作业优先、时间片轮转以及最高响应比优先调度算法的JAVA实现">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T05:42:48.000Z">2020-01-07</time></div>
+                    <a href="/2020/01/07/%E6%A8%A1%E6%8B%9F%E5%85%88%E6%9D%A5%E5%85%88%E6%9C%8D%E5%8A%A1%E3%80%81%E7%9F%AD%E4%BD%9C%E4%B8%9A%E4%BC%98%E5%85%88%E3%80%81%E6%97%B6%E9%97%B4%E7%89%87%E8%BD%AE%E8%BD%AC%E4%BB%A5%E5%8F%8A%E6%9C%80%E9%AB%98%E5%93%8D%E5%BA%94%E6%AF%94%E4%BC%98%E5%85%88%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%E7%9A%84JAVA%E5%AE%9E%E7%8E%B0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">模拟先来先服务、短作业优先、时间片轮转以及最高响应比优先调度算法的JAVA实现</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/07/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="基数排序-------------java实现">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T05:42:02.000Z">2020-01-07</time></div>
+                    <a href="/2020/01/07/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">基数排序-------------java实现</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/07/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="归并排序-------------java实现">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T05:41:10.000Z">2020-01-07</time></div>
+                    <a href="/2020/01/07/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">归并排序-------------java实现</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/07/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="快速排序-------------java实现">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T05:40:22.000Z">2020-01-07</time></div>
+                    <a href="/2020/01/07/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">快速排序-------------java实现</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">14</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/centos7/">
+                        <span class="tag">centos7</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/docker/">
+                        <span class="tag">docker</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/elasticsearch/">
+                        <span class="tag">elasticsearch</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/fdfs/">
+                        <span class="tag">fdfs</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/firewall/">
+                        <span class="tag">firewall</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/jib/">
+                        <span class="tag">jib</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/linux/">
+                        <span class="tag">linux</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/">
+                        <span class="tag">二叉树</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%8E%92%E5%BA%8F/">
+                        <span class="tag">排序</span>
+                        <span class="tag is-grey">7</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                        <span class="tag">数据结构</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">
+                        <span class="tag">文件上传</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/">
+                        <span class="tag">调度算法</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container" >
+        <div class="level" style="text-align:center">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.png" alt="一颗小陨石" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 一颗小陨石&nbsp;
+                
+                
+                <br>
+                <span id="busuanzi_container_site_uv">
+                共<span id="busuanzi_value_site_uv">0</span>个访客
+                </span>
+                
+                </p>
+            </div>
+			
+
+            <div class="level-end">
+            
+            </div>
+			
+
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'http://yoursite.com',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+	<!-- 雪花特效 -->
+    <script type="text/javascript">
+      var windowWidth = $(window).width();
+      if (windowWidth > 480) {
+        document.write('<script type="text/javascript" src="/js/src/snow.js"><\/script>');
+      }
+    </script>
+	<!-- 样式一（鼠标点击更换样式） -->
+<script src="//g.joyinshare.com/hc/ribbon.min.js" type="text/javascript"></script>
+
+
+
+</body>
+</html>
