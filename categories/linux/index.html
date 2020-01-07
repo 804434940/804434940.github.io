@@ -162,7 +162,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    1 分钟 读完 (大约 196 个字)
+                    1 分钟 读完 (大约 197 个字)
                 </span>
                 
                 
@@ -179,38 +179,16 @@
 <li>查看某个端口是否开放</li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --query-port=22122/tcp</span><br></pre></td></tr></table></figure>
-
-<p>yes/no  开放/未开放<br> 2. 开放指定端口</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --add-port=22122/tcp --permanent</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>firewall-cmd –zone=public –add-port=80/tcp –permanent<br>-zone #作用域<br>-permanent 没有该参数重启后失效</p>
-</blockquote>
-<p>重新加载端口：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
-<p> 3.关闭某个端口</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --permanent --remove-port=22122/tcp</span><br></pre></td></tr></table></figure>
-<p>重新加载<br> 4. 查看防火墙状态</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --state</span><br><span class="line">或者:</span><br><span class="line">systemctl status firewalld</span><br></pre></td></tr></table></figure>
-<ol start="5">
-<li>打开/关闭防火墙</li>
-</ol>
-<blockquote>
-<p>启动：systemctl start firewalld<br>关闭： systemctl stop firewalld<br>开机启用 ： systemctl enable firewalld<br>禁止firewall开机启动 ：systemctl disable firewalld.service<br>启动服务：systemctl start firewalld.service<br>关闭服务：systemctl stop firewalld.service<br>重启服务：systemctl restart firewalld.service</p>
-</blockquote>
-<ol start="6">
-<li>查看端口占用情况</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -anp</span><br></pre></td></tr></table></figure>
-
-<ol start="7">
-<li>查看防火墙已开放的端口</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --list-ports</span><br></pre></td></tr></table></figure>
-
-
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2020/01/07/centos7%E6%9F%A5%E7%9C%8B%E9%98%B2%E7%81%AB%E5%A2%99%E4%BB%A5%E5%8F%8A%E5%BC%80%E6%94%BE%E5%92%8C%E5%85%B3%E9%97%AD%E7%AB%AF%E5%8F%A3/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
@@ -240,7 +218,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    15 分钟 读完 (大约 2189 个字)
+                    15 分钟 读完 (大约 2191 个字)
                 </span>
                 
                 
@@ -255,161 +233,17 @@
         <div class="content">
             <ul>
 <li><h2 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h2><pre><code>说明：用来显示文本内容(小文件)，对于大文件推荐使用more命令
-格式： cat +选项+指定文件</code></pre><p>   选项：</p>
-</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; -n 或 --number：显示行号；</span><br><span class="line">&gt; -b 或 --number-nonblank：编号时忽略空白行</span><br><span class="line">&gt; -A：显示不可打印字符，行尾显示“$”；</span><br></pre></td></tr></table></figure>
-
-<p>如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> xxx&gt;<span class="built_in">test</span> 若<span class="built_in">test</span>不存在，则自动创建<span class="built_in">test</span>并写入xxx，否则直接写入</span><br><span class="line">cat 123.txt        屏幕显示123.txt内容</span><br><span class="line">cat 文本1  文本2 ...  显示多个文本内容</span><br><span class="line">cat 文本1 文本2 &gt; 文本3  将文本1和2的内容合并到文本3中</span><br><span class="line">cat 文本1 &gt; 文本2   将文本1内容拷贝到文本2</span><br><span class="line">cat /dev/null &gt; 文本1  清空文本1的内容</span><br><span class="line">cat &gt;test1.txt &lt;&lt;stop   向test1.txt写入内容，输入stop结束</span><br></pre></td></tr></table></figure>
-<p><strong>注意：每次合并时，文本3的内容会被重新覆盖</strong></p>
-<ul>
-<li><h2 id="more"><a href="#more" class="headerlink" title="more"></a>more</h2><p>全屏幕显示文本文件内容</p>
-<pre><code>选项：</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-数字：每屏显示指定行</span><br><span class="line">-c：不进行滚屏操作。每次刷新这个屏幕；</span><br><span class="line">-s：将多个空行压缩成一行显示；</span><br><span class="line">-u：禁止下划线；</span><br><span class="line">+数字：从指定数字的行开始显示。</span><br></pre></td></tr></table></figure>
-<p>查看时可用命令：</p>
-<pre><code>Space键：显示文本的下一屏内容。
-Enter键：每次刷新一行
-H键：显示相关的帮助信息
-B键：查看上一屏
-q键：退出</code></pre></li>
-</ul>
-<p>​<br>​             </p>
-<ul>
-<li><h2 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h2><pre><code>1.cd   :             进入目录
- 2.cd ~:  进入用户目录
- 3.cd - :  进入历史上一级目录，即进此目录之前的那个目录
- 4.cd .. ：返回上级目录    cd ../../  有几个.../就返回上几级目录</code></pre></li>
-</ul>
-<ul>
-<li><h2 id="ls"><a href="#ls" class="headerlink" title="ls"></a>ls</h2>  显示目标列表<br> 选项</li>
-</ul>
-<pre><code>    -a 显示所有文件（在linux中以.开头的文件为隐藏文件）
-    -l  显示文本的详情包括(权限、拥有者、文件大小、最后修改时间等)
-    -r 将文件反序显示(默认按照英文字母顺序)
-    -t 按照创建时间列出
-    -A 同 -a ，但不列出 &quot;.&quot; (目前目录) 及 &quot;..&quot; (父目录)
-    -F 在文件名称后加一个符号：
-        *：代表可执行档
-        /： 代表目录
-    -R 有文件的目录，也会将其子文件列出
-
-
-​    </code></pre><p>-R举例：<br>    <img src="https://img-blog.csdnimg.cn/20191028230339579.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzY5NjUyOQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>    -F举例：<br><img src="https://img-blog.csdnimg.cn/20191028230356760.png" alt="在这里插入图片描述"><br>test2是一个目录。所以在后边显示了一个/</p>
-<ul>
-<li><h2 id="pwd"><a href="#pwd" class="headerlink" title="pwd"></a>pwd</h2><p> 显示当前工作目录（绝对路径）</p>
-</li>
-<li><h2 id="head"><a href="#head" class="headerlink" title="head"></a>head</h2><p> 显示指定文件前N行<br> 选项：</p>
-<pre><code>-n：指定显示前n行
--v：显示文件名的头信息；
--q：不显示文件名的头信息。</code></pre></li>
-<li><h2 id="tail"><a href="#tail" class="headerlink" title="tail"></a>tail</h2><p> 显示指定文件的末尾N行，默认10行</p>
-<p> 选项：</p>
-<p> <strong>-c<N>,–bytes=<N></strong>：显示文件尾部的N（N为整数）个字节内<br> <strong>-f&lt;name/descriptor&gt;</strong>：动态显示文件尾部内容，如某个动态更新的日志，可以使用-f查看最新的内容<br> <strong>-n<N></strong>：输出文件的尾部N（N位数字）行内容。<br> <strong>–pid=&lt;进程号&gt;</strong>：与“-f”选项连用，当指定的进程号的进程终止时退出该命令<br><strong>-q,–quiet,–silent</strong>：当有多个文件参数时，不输出各个文件名；<br> <strong>-s&lt;秒数&gt;,–sleep-interal=&lt;秒数&gt;</strong>：与“-f”连用，指定文件变化时间隔(s)<br> <strong>-v,–verbose</strong>：当有多个文件参数时，总是输出各个文件名；<br> <strong>–help</strong>：帮助信息<br> <strong>–version</strong>：指令版本</p>
-<p> <strong>举例：</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tail <span class="built_in">test</span>  不指定行数默认显示文件<span class="built_in">test</span>的最后10行</span><br><span class="line">tail -n +10 <span class="built_in">test</span>                 从第10行到最后</span><br><span class="line">tail -c 10 <span class="built_in">test</span>			  显示该文件的最后10个字符</span><br><span class="line">tail -25 nginx.log 		显示最后的 25 行</span><br><span class="line">tail -f nginx.log       动态刷新该文件最后的内容</span><br></pre></td></tr></table></figure>
-</li>
-<li><h2 id="chmod"><a href="#chmod" class="headerlink" title="chmod"></a>chmod</h2><p>修改文件或目录的权限</p>
-<p> <strong>权限范围：</strong><br>u:  –&gt; User    ，当前文件/目录的拥有者<br>g:  –&gt;  Group  ， 所属组<br>o:  –&gt;  Other  ，  除User和所属群组之外的所有用户<br>a: –&gt;     All  ，   所有用户<br>r: –&gt;  读权限，数字 4<br>w:–&gt; 写权限，数字  2<br>x: 执行/切换权限，数字 1<br>- 无权限，数字 0</p>
-<p> <strong>语法：</strong><br> chmod [options][参数]<br> <strong>选项：</strong></p>
-   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">+  添加某些权限</span><br><span class="line">-   取消某些权限</span><br><span class="line">=  指定文件权限</span><br><span class="line">r   读权限</span><br><span class="line">w  写权限</span><br><span class="line">x   可执行权限</span><br><span class="line">-   无权限</span><br><span class="line">X   给可执行文件设置可执行权限</span><br><span class="line">t   只有目录或文件的所有者才可以删除目录下的文件</span><br><span class="line">-c ,--changes     效果类似“-v”参数，但仅回报更改的部分，如果文件权限已经改变，显示其操作信息；</span><br><span class="line">-f , --quiet, --silent  操作过程中不显示任何错误信息；</span><br><span class="line">-R, --recursive     以递归更改其本身及子目录</span><br><span class="line">-v, --verbose     显示详情信息</span><br><span class="line">--reference=&lt;参考文件或目录&gt;  指定参考文件，非自定义权限</span><br><span class="line"></span><br><span class="line">--<span class="built_in">help</span>     显示帮助信息</span><br><span class="line">--version  显示版本信息</span><br></pre></td></tr></table></figure>
-
-<p> 权限结构：</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-rwxr--r--   1 user  staff   651 Nov 11 11:02 .ignore</span><br></pre></td></tr></table></figure>
-
-<p> 第一个 -: 代表是普通文件，若是 d，则代表目录<br>  第一组rwx：即上边的rw-,表示u属组<br>  第二组rwx:  即上边中间的r–，表示g属组<br>  第三组rwx:  即上边最后的r–， 表示其他人的权限</p>
-<p> r:读    4<br> w：写 2<br> x：执行 1</p>
-<p> 举例:</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">chmod u+w,g+r test1　 为test1设置当前用户可写，组可读的权限</span><br><span class="line">chmod u=rwx,g=rw,o=r test1 当前用户可读写执行，组可读写，其他用户只能读</span><br><span class="line">chmod 764 test1   当前用户读写执行，组读写，其他只可读</span><br><span class="line">chmod a+r test1　　     所有用户都只可读test1</span><br><span class="line">chmod ugo-r test1 所有用户减掉可读权限 </span><br><span class="line">chmod -R  755 /usr/<span class="built_in">local</span>/<span class="built_in">test</span>/  递归修改<span class="built_in">test</span>目录下的子文件的权限为 755,7即4+2+1，5即4+1</span><br><span class="line">chown john:student test1　　 把test1给John，添加到student组</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><h2 id="chown"><a href="#chown" class="headerlink" title="chown"></a>chown</h2><p> 改变文件或目录的拥有者或所属群组<br> 可以给某个用户授权，使该用户变成指定文件的所有者或者改变文件所属的组。</p>
-<p> <strong>语法：</strong><br> chown [options][参数]</p>
-<p> 选项：</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-c，--changes：显示修改的部分；</span><br><span class="line">-f ：不显示错误信息；</span><br><span class="line">-h：只对符号连接的文件作修改，而不更改其他任何相关文件；</span><br><span class="line">-R：递归处理指定目录下的所有文件及子目录</span><br><span class="line">-v：显示指令执行过程信息</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ul>
-</li>
-</ul>
-<pre><code>    <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chown -R wml:mygroup /usr/<span class="built_in">local</span>/test1  </span><br><span class="line">将/usr/<span class="built_in">local</span>/<span class="built_in">test</span>下面的所有文件以及子目录的文件拥有者改为wml,</span><br><span class="line">群组为mygroup</span><br></pre></td></tr></table></figure>
-
- - ## cmp
-         比较两个二进制文件是否有差异，若无差异则不显示任何信息，若有差异则显示第一个不同的地方的字符和列数
-
-     **语法：**
-     cmp [options][参数]
-**选项：**
-
-    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-l：对于每处不同，显示十进制的字节数和八进制的不同字节。；</span><br><span class="line">-s，--quit，--silent：不显示错误信息；</span><br></pre></td></tr></table></figure>
-    **举例:**
-    123.txt ：
-         我是123
-        222
-    222.txt:
-        我是222
-        222
-
-    <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmp 123.txt 222.txt  --结果--&gt;123.txt 222.txt differ: byte 1, line 1</span><br></pre></td></tr></table></figure>
-
- - ## diff
-    比较两个文件的不同，该命令是采取逐行比较的方式，
-
-    **选项：**
-    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">-&lt;行数&gt;：指定显示多少行的文本</span><br><span class="line">-a，--text：将文件当做文本文件处理</span><br><span class="line">-b：忽略空格字符造成的不同；</span><br><span class="line">-B，--ignore-blank-lines：忽略空白行；</span><br><span class="line">-c：显示两个文件的全部内容，并标出不同之处</span><br><span class="line">-H，--speed-large-files：加速大文件检索</span><br><span class="line">-i，--ignore-case：忽略大小写不同</span><br><span class="line">-l或——paginate：分页</span><br><span class="line">-q或--brief：仅显示有无差异，不显示详细的信息</span><br><span class="line">	有不同的结果:Files 123.txt and 222.txt differ</span><br><span class="line">-r，--recursive：比较子目录中的文件</span><br><span class="line">-T：每行对齐输出</span><br><span class="line">-y：并列打印</span><br></pre></td></tr></table></figure>
-    举例：
-    ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191028231857879.png)
-
- - ## file
- 检测目标文件类型
-**选项：**
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-b：不显示文件名称L</span><br><span class="line">-L：直接显示符号连接所指向的文件类别；</span><br><span class="line">-v：显示版本信息；</span><br><span class="line">-z：尝试去解读压缩文件的内容。</span><br></pre></td></tr></table></figure>
-**举例：**
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[admin@ <span class="built_in">test</span>]$ file 123.txt 222.txt</span><br><span class="line">123.txt: UTF-8 Unicode text</span><br><span class="line">222.txt: UTF-8 Unicode text</span><br></pre></td></tr></table></figure></code></pre><ul>
-<li><h2 id="find"><a href="#find" class="headerlink" title="find"></a>find</h2><pre><code>查询指定目录下的文件</code></pre><p><strong>选项：</strong></p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">-depth：从指定目录的最深层的子目录开始查找</span><br><span class="line">-maxdepth&lt;目录深度&gt;：最大目录深度</span><br><span class="line">-mindepth&lt;目录深度&gt;：最小目录层级；</span><br><span class="line"></span><br><span class="line">-empty：查找大小为0 的文件或空目录</span><br><span class="line">-exec&lt;要执行的指令&gt;：若find指令返回True，就执行目标指令(如找到空的就执行rm删除目标文件)</span><br><span class="line">-fstype&lt;文件系统类型&gt;：只寻找该文件系统类型下的文件或目录；</span><br><span class="line">-ls：将文件或目录名称列出到标准输出(权限信息，所属用户、组，时间信息等)</span><br><span class="line">-name&lt;inputname&gt;，-iname：查询名称符合inputname的文件，-iname忽略大小写</span><br><span class="line"></span><br><span class="line">-anewer test : 比文件 file 更晚被读取过的文件</span><br><span class="line">-path&lt;testPath&gt;，-ipath&lt;testPath&gt;：路径符合testPath的文件,-ipath 忽略大小写</span><br><span class="line">-perm&lt;权限值&gt;：查找符合指定的权限数值的文件</span><br><span class="line"></span><br><span class="line">-print：将文件或目录名称列出到标准输出。格式为每列一个名称，每个名称前皆有“.&#x2F;”字符串；</span><br><span class="line">-printf&lt;输出格式&gt;：自定义格式输出</span><br><span class="line"></span><br><span class="line">-size&lt;文件大小&gt;：查找符合指定大小的文件</span><br><span class="line">-type&lt;文件类型&gt;：指定的文件类型的文件</span><br><span class="line"></span><br><span class="line">-user&lt;拥有者名称&gt;：指定用户拥有的文件</span><br></pre></td></tr></table></figure>
-<p> <strong>举例：</strong></p>
-<p> <strong>1.find.</strong> 列出当前目录的所有文件及其子文件</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> find .</span><br><span class="line"> 结果：</span><br><span class="line">.</span><br><span class="line">./333.txt</span><br><span class="line">./222.txt</span><br><span class="line">./test2</span><br><span class="line">./test2/123.txt</span><br><span class="line">./123.txt</span><br><span class="line">./empty.txt</span><br></pre></td></tr></table></figure>
-<p> <strong>2.find /usr/test -name “*.txt”</strong>：查找test目录下后缀名为txt的文件</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">find /usr/<span class="built_in">test</span> -name <span class="string">"*.txt"</span></span><br><span class="line">结果：</span><br><span class="line">/usr/<span class="built_in">test</span>/333.txt</span><br><span class="line">/usr/<span class="built_in">test</span>/222.txt</span><br><span class="line">/usr/<span class="built_in">test</span>/test2/123.txt</span><br><span class="line">/usr/<span class="built_in">test</span>/123.txt</span><br><span class="line">/usr/<span class="built_in">test</span>/empty.txt</span><br></pre></td></tr></table></figure>
-<p> <strong>3.find /usr/test ! -name “*.txt”</strong>：查找test目录下后缀名不是txt的文件<br> <strong>4.根据文件类型查找 -type</strong>:</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -<span class="built_in">type</span> 参数</span><br></pre></td></tr></table></figure>
-<p> 类型参数：</p>
-<pre><code>f ：普通文件
-l ：符号连接
-d ：目录
-c ：字符设备
-b ：块设备
-s ：套接字
-p ：Fifo</code></pre><p> <strong>5.查找小于3k的文件</strong></p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -size -3k</span><br></pre></td></tr></table></figure>
-<p> 结果：</p>
-<pre><code>./333.txt
-./222.txt
-./test2/123.txt
-./123.txt
-./empty.txt</code></pre><p> <strong>6.查找大小为0的文件</strong></p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@ <span class="built_in">test</span>] find -empty</span><br><span class="line">./empty.txt</span><br></pre></td></tr></table></figure>
-<p> <strong>7.查找指定权限的文件</strong></p>
-<p> 首先给123.txt赋予77权限：</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 777 123.txt</span><br></pre></td></tr></table></figure>
-<p> 查看下结果：</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-rwxrwxrwx 1  777 root   21 Oct 28 23:08 123.txt</span><br><span class="line">-rw-r--r-- 1 root root   15 Oct 28 22:57 222.txt</span><br><span class="line">-rw-r--r-- 1 root root   23 Oct 27 22:46 333.txt</span><br><span class="line">-rw-r--r-- 1 root root    0 Oct 29 15:20 empty.txt</span><br><span class="line">drwxr-xr-x 2 root root 4096 Oct 27 19:52 test2</span><br></pre></td></tr></table></figure>
-<p> 只有123.txt的权限为777,<br> 执行查找：</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find -perm 777</span><br></pre></td></tr></table></figure>
-<p> 结果：</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;123.txt</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ul>
-<p>​    </p>
-<p><strong>持续更新………</strong></p>
-
+格式： cat +选项+指定文件</code></pre><p> ​
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2020/01/06/Linux%E5%91%BD%E4%BB%A4%E6%95%B4%E7%90%86-------------%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86%E7%9B%B8%E5%85%B3(%E4%B8%80)/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>

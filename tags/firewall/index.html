@@ -161,7 +161,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    1 分钟 读完 (大约 196 个字)
+                    1 分钟 读完 (大约 197 个字)
                 </span>
                 
                 
@@ -178,38 +178,16 @@
 <li>查看某个端口是否开放</li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --query-port=22122/tcp</span><br></pre></td></tr></table></figure>
-
-<p>yes/no  开放/未开放<br> 2. 开放指定端口</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --add-port=22122/tcp --permanent</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>firewall-cmd –zone=public –add-port=80/tcp –permanent<br>-zone #作用域<br>-permanent 没有该参数重启后失效</p>
-</blockquote>
-<p>重新加载端口：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
-<p> 3.关闭某个端口</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --permanent --remove-port=22122/tcp</span><br></pre></td></tr></table></figure>
-<p>重新加载<br> 4. 查看防火墙状态</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --state</span><br><span class="line">或者:</span><br><span class="line">systemctl status firewalld</span><br></pre></td></tr></table></figure>
-<ol start="5">
-<li>打开/关闭防火墙</li>
-</ol>
-<blockquote>
-<p>启动：systemctl start firewalld<br>关闭： systemctl stop firewalld<br>开机启用 ： systemctl enable firewalld<br>禁止firewall开机启动 ：systemctl disable firewalld.service<br>启动服务：systemctl start firewalld.service<br>关闭服务：systemctl stop firewalld.service<br>重启服务：systemctl restart firewalld.service</p>
-</blockquote>
-<ol start="6">
-<li>查看端口占用情况</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -anp</span><br></pre></td></tr></table></figure>
-
-<ol start="7">
-<li>查看防火墙已开放的端口</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --list-ports</span><br></pre></td></tr></table></figure>
-
-
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2020/01/07/centos7%E6%9F%A5%E7%9C%8B%E9%98%B2%E7%81%AB%E5%A2%99%E4%BB%A5%E5%8F%8A%E5%BC%80%E6%94%BE%E5%92%8C%E5%85%B3%E9%97%AD%E7%AB%AF%E5%8F%A3/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>

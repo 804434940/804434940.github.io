@@ -12,16 +12,16 @@
 <title>centos7查看防火墙以及开放和关闭端口 - 一颗小陨石</title>
 
 
-    <meta name="description" content="查看某个端口是否开放  1firewall-cmd --query-port&#x3D;22122&#x2F;tcp  yes&#x2F;no  开放&#x2F;未开放 2. 开放指定端口 1firewall-cmd --add-port&#x3D;22122&#x2F;tcp --permanent   firewall-cmd –zone&#x3D;public –add-port&#x3D;80&#x2F;tcp –permanent-zone #作用域-permanent 没">
+    <meta name="description" content="查看某个端口是否开放  1firewall-cmd --query-port&#x3D;22122&#x2F;tcp">
 <meta property="og:type" content="article">
 <meta property="og:title" content="centos7查看防火墙以及开放和关闭端口">
 <meta property="og:url" content="http://yoursite.com/2020/01/07/centos7%E6%9F%A5%E7%9C%8B%E9%98%B2%E7%81%AB%E5%A2%99%E4%BB%A5%E5%8F%8A%E5%BC%80%E6%94%BE%E5%92%8C%E5%85%B3%E9%97%AD%E7%AB%AF%E5%8F%A3/index.html">
 <meta property="og:site_name" content="一颗小陨石">
-<meta property="og:description" content="查看某个端口是否开放  1firewall-cmd --query-port&#x3D;22122&#x2F;tcp  yes&#x2F;no  开放&#x2F;未开放 2. 开放指定端口 1firewall-cmd --add-port&#x3D;22122&#x2F;tcp --permanent   firewall-cmd –zone&#x3D;public –add-port&#x3D;80&#x2F;tcp –permanent-zone #作用域-permanent 没">
+<meta property="og:description" content="查看某个端口是否开放  1firewall-cmd --query-port&#x3D;22122&#x2F;tcp">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
 <meta property="article:published_time" content="2020-01-07T05:31:44.000Z">
-<meta property="article:modified_time" content="2020-01-07T05:32:56.952Z">
+<meta property="article:modified_time" content="2020-01-07T06:10:32.698Z">
 <meta property="article:author" content="一颗小陨石">
 <meta property="article:tag" content="linux">
 <meta property="article:tag" content="centos7">
@@ -157,7 +157,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    1 分钟 读完 (大约 196 个字)
+                    1 分钟 读完 (大约 197 个字)
                 </span>
                 
                 
@@ -180,9 +180,14 @@
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --query-port=22122/tcp</span><br></pre></td></tr></table></figure>
 
-<p>yes/no  开放/未开放<br> 2. 开放指定端口</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --add-port=22122/tcp --permanent</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 
+<p>yes/no  开放/未开放</p>
+<ol start="2">
+<li>开放指定端口<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --add-port=22122/tcp --permanent</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
 <blockquote>
 <p>firewall-cmd –zone=public –add-port=80/tcp –permanent<br>-zone #作用域<br>-permanent 没有该参数重启后失效</p>
 </blockquote>

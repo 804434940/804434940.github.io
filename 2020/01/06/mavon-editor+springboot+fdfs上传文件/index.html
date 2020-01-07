@@ -12,16 +12,16 @@
 <title>mavon-editor+springboot+fdfs上传文件 - 一颗小陨石</title>
 
 
-    <meta name="description" content="一、安装mavon直接npm install下就可以了，然后在main.js引入：12import mavonEditor from &#39;mavon-editor&#39;Vue.use(mavonEditor) 二、页面使用1234567891011&lt;mavon-editor      v-show&#x3D;&quot;!articleModal&quot;      id&#x3D;&quot;editor&quot;      v-model&#x3D;&quot;val">
+    <meta name="description" content="一、安装mavon直接npm install下就可以了，然后在main.js引入：12import mavonEditor from &#39;mavon-editor&#39;Vue.use(mavonEditor)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mavon-editor+springboot+fdfs上传文件">
 <meta property="og:url" content="http://yoursite.com/2020/01/06/mavon-editor+springboot+fdfs%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/index.html">
 <meta property="og:site_name" content="一颗小陨石">
-<meta property="og:description" content="一、安装mavon直接npm install下就可以了，然后在main.js引入：12import mavonEditor from &#39;mavon-editor&#39;Vue.use(mavonEditor) 二、页面使用1234567891011&lt;mavon-editor      v-show&#x3D;&quot;!articleModal&quot;      id&#x3D;&quot;editor&quot;      v-model&#x3D;&quot;val">
+<meta property="og:description" content="一、安装mavon直接npm install下就可以了，然后在main.js引入：12import mavonEditor from &#39;mavon-editor&#39;Vue.use(mavonEditor)">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
 <meta property="article:published_time" content="2020-01-06T11:45:00.000Z">
-<meta property="article:modified_time" content="2020-01-06T11:49:07.183Z">
+<meta property="article:modified_time" content="2020-01-07T06:12:43.460Z">
 <meta property="article:author" content="一颗小陨石">
 <meta property="article:tag" content="文件上传">
 <meta property="article:tag" content="fdfs">
@@ -156,7 +156,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    3 分钟 读完 (大约 506 个字)
+                    3 分钟 读完 (大约 507 个字)
                 </span>
                 
                 
@@ -175,6 +175,8 @@
         </h1>
         <div class="content">
             <h2 id="一、安装mavon"><a href="#一、安装mavon" class="headerlink" title="一、安装mavon"></a>一、安装mavon</h2><pre><code>直接npm install下就可以了，然后在main.js引入：</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> mavonEditor <span class="keyword">from</span> <span class="string">'mavon-editor'</span></span><br><span class="line">Vue.use(mavonEditor)</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+
 <h2 id="二、页面使用"><a href="#二、页面使用" class="headerlink" title="二、页面使用"></a>二、页面使用</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">mavon-editor</span></span><br><span class="line">      v-show="!articleModal"</span><br><span class="line">      id="editor"</span><br><span class="line">      v-model="value"</span><br><span class="line">      fontSize="16px"</span><br><span class="line">      ref="md"</span><br><span class="line">      <span class="keyword">@imgAdd</span>="$imgAdd"</span><br><span class="line">      @imgDel=<span class="string">"$imgDel"</span></span><br><span class="line">      @change=<span class="string">"handleChange"</span></span><br><span class="line">      @fullScreen=<span class="string">"handleFullScreen"</span></span><br><span class="line">    /&gt;</span><br></pre></td></tr></table></figure>
 <p>这里只需要关注@imgAdd，为添加图片的事件</p>
 <h2 id="三、上传文件"><a href="#三、上传文件" class="headerlink" title="三、上传文件"></a>三、上传文件</h2><p>这里使用的是批量上传，所以每触发一次@imgAdd就向文件集合添加一次</p>

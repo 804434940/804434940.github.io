@@ -12,16 +12,16 @@
 <title>希尔排序-----------java实现 - 一颗小陨石</title>
 
 
-    <meta name="description" content="首先看一下之前使用简单插入排序存在的问题： 当存在一个数组，其最后一个数据为最小值，如：arr&#x3D;{5,6,16,34,33,2} 这样的话需要循环到最后一次，也就是第6次的时候，才可以将2排到前边，效率非常低 但是希尔排序可以很好的解决这个问题，其是简单插入排序改进后的一个效率较高的排序方式 ，也叫缩小增量排序 复杂度： 平均时间： O（nlogn） 最差:  O(n²) 最优: O(n^1&#x2F;3)">
+    <meta name="description" content="首先看一下之前使用简单插入排序存在的问题： 当存在一个数组，其最后一个数据为最小值，如：arr&#x3D;{5,6,16,34,33,2} 这样的话需要循环到最后一次，也就是第6次的时候，才可以将2排到前边，效率非常低 但是希尔排序可以很好的解决这个问题，其是简单插入排序改进后的一个效率较高的排序方式，也叫缩小增量排序">
 <meta property="og:type" content="article">
 <meta property="og:title" content="希尔排序-----------java实现">
 <meta property="og:url" content="http://yoursite.com/2020/01/07/%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/index.html">
 <meta property="og:site_name" content="一颗小陨石">
-<meta property="og:description" content="首先看一下之前使用简单插入排序存在的问题： 当存在一个数组，其最后一个数据为最小值，如：arr&#x3D;{5,6,16,34,33,2} 这样的话需要循环到最后一次，也就是第6次的时候，才可以将2排到前边，效率非常低 但是希尔排序可以很好的解决这个问题，其是简单插入排序改进后的一个效率较高的排序方式 ，也叫缩小增量排序 复杂度： 平均时间： O（nlogn） 最差:  O(n²) 最优: O(n^1&#x2F;3)">
+<meta property="og:description" content="首先看一下之前使用简单插入排序存在的问题： 当存在一个数组，其最后一个数据为最小值，如：arr&#x3D;{5,6,16,34,33,2} 这样的话需要循环到最后一次，也就是第6次的时候，才可以将2排到前边，效率非常低 但是希尔排序可以很好的解决这个问题，其是简单插入排序改进后的一个效率较高的排序方式，也叫缩小增量排序">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
 <meta property="article:published_time" content="2020-01-07T05:39:24.000Z">
-<meta property="article:modified_time" content="2020-01-07T05:39:58.456Z">
+<meta property="article:modified_time" content="2020-01-07T06:16:40.403Z">
 <meta property="article:author" content="一颗小陨石">
 <meta property="article:tag" content="排序">
 <meta name="twitter:card" content="summary">
@@ -155,7 +155,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    6 分钟 读完 (大约 934 个字)
+                    6 分钟 读完 (大约 935 个字)
                 </span>
                 
                 
@@ -176,8 +176,9 @@
             <p><strong>首先看一下之前使用简单插入排序存在的问题：</strong></p>
 <p>当存在一个数组，其最后一个数据为最小值，如：arr={5,6,16,34,33,2}</p>
 <p>这样的话需要循环到最后一次，也就是第6次的时候，才可以将2排到前边，效率非常低</p>
-<p>但是希尔排序可以很好的解决这个问题，其是简单插入排序改进后的一个效率较高的排序方式</p>
-<p>，也叫<strong>缩小增量排序</strong></p>
+<p>但是希尔排序可以很好的解决这个问题，其是简单插入排序改进后的一个效率较高的排序方式，也叫<strong>缩小增量排序</strong></p>
+<a id="more"></a>
+
 <p><strong>复杂度：</strong></p>
 <p><strong>平均时间： O（nlogn）</strong></p>
 <p><strong>最差:  O(n²)</strong></p>
