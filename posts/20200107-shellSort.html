@@ -15,13 +15,13 @@
     <meta name="description" content="首先看一下之前使用简单插入排序存在的问题： 当存在一个数组，其最后一个数据为最小值，如：arr&#x3D;{5,6,16,34,33,2} 这样的话需要循环到最后一次，也就是第6次的时候，才可以将2排到前边，效率非常低 但是希尔排序可以很好的解决这个问题，其是简单插入排序改进后的一个效率较高的排序方式，也叫缩小增量排序">
 <meta property="og:type" content="article">
 <meta property="og:title" content="希尔排序-----------java实现">
-<meta property="og:url" content="https://wbml.top/2020/01/07/%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/index.html">
+<meta property="og:url" content="https://wbml.top/posts/20200107-shellSort.html">
 <meta property="og:site_name" content="一颗小陨石">
 <meta property="og:description" content="首先看一下之前使用简单插入排序存在的问题： 当存在一个数组，其最后一个数据为最小值，如：arr&#x3D;{5,6,16,34,33,2} 这样的话需要循环到最后一次，也就是第6次的时候，才可以将2排到前边，效率非常低 但是希尔排序可以很好的解决这个问题，其是简单插入排序改进后的一个效率较高的排序方式，也叫缩小增量排序">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://wbml.top/images/og_image.png">
 <meta property="article:published_time" content="2020-01-07T05:39:24.000Z">
-<meta property="article:modified_time" content="2020-01-07T06:16:40.403Z">
+<meta property="article:modified_time" content="2020-01-07T16:23:21.845Z">
 <meta property="article:author" content="一颗小陨石">
 <meta property="article:tag" content="排序">
 <meta name="twitter:card" content="summary">
@@ -76,6 +76,7 @@
 
 
 <link rel="stylesheet" href="/css/style.css">
+	<meta name="baidu-site-verification" content="HWPg36A4P2" />
 <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
 <script src="https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget/autoload.js"></script>
@@ -277,7 +278,7 @@
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/01/07/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/posts/20200107-quickSort.html">
                 <i class="level-item fas fa-chevron-left"></i>
                 <span class="level-item">快速排序-------------java实现</span>
             </a>
@@ -285,7 +286,7 @@
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2020/01/07/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/">
+            <a class="level level-item has-link-grey  article-nav-next" href="/posts/20200107-insertSort.html">
                 <span class="level-item">插入排序-----------java实现</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
@@ -544,7 +545,7 @@
         
         <article class="media">
             
-            <a href="/2020/01/07/%EF%BC%88%E5%A4%8D%E4%B9%A0%EF%BC%89%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%89%E7%A7%8D%E9%81%8D%E5%8E%86%E6%96%B9%E5%BC%8F%E3%80%81%E6%9F%A5%E6%89%BE%E5%92%8C%E5%88%A0%E9%99%A4-Java%E5%AE%9E%E7%8E%B0/" class="media-left">
+            <a href="/posts/20200107-binarytree.html" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="（复习）二叉树的三种遍历方式、查找和删除----------Java实现">
                 </p>
@@ -553,7 +554,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T05:44:57.000Z">2020-01-07</time></div>
-                    <a href="/2020/01/07/%EF%BC%88%E5%A4%8D%E4%B9%A0%EF%BC%89%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%89%E7%A7%8D%E9%81%8D%E5%8E%86%E6%96%B9%E5%BC%8F%E3%80%81%E6%9F%A5%E6%89%BE%E5%92%8C%E5%88%A0%E9%99%A4-Java%E5%AE%9E%E7%8E%B0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">（复习）二叉树的三种遍历方式、查找和删除----------Java实现</a>
+                    <a href="/posts/20200107-binarytree.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">（复习）二叉树的三种遍历方式、查找和删除----------Java实现</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E5%8F%89%E6%A0%91/">二叉树</a>
                     </p>
@@ -563,7 +564,7 @@
         
         <article class="media">
             
-            <a href="/2020/01/07/%E6%A8%A1%E6%8B%9F%E5%85%88%E6%9D%A5%E5%85%88%E6%9C%8D%E5%8A%A1%E3%80%81%E7%9F%AD%E4%BD%9C%E4%B8%9A%E4%BC%98%E5%85%88%E3%80%81%E6%97%B6%E9%97%B4%E7%89%87%E8%BD%AE%E8%BD%AC%E4%BB%A5%E5%8F%8A%E6%9C%80%E9%AB%98%E5%93%8D%E5%BA%94%E6%AF%94%E4%BC%98%E5%85%88%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%E7%9A%84JAVA%E5%AE%9E%E7%8E%B0/" class="media-left">
+            <a href="/posts/20200107-OS_dispatch.html" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="模拟先来先服务、短作业优先、时间片轮转以及最高响应比优先调度算法的JAVA实现">
                 </p>
@@ -572,7 +573,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T05:42:48.000Z">2020-01-07</time></div>
-                    <a href="/2020/01/07/%E6%A8%A1%E6%8B%9F%E5%85%88%E6%9D%A5%E5%85%88%E6%9C%8D%E5%8A%A1%E3%80%81%E7%9F%AD%E4%BD%9C%E4%B8%9A%E4%BC%98%E5%85%88%E3%80%81%E6%97%B6%E9%97%B4%E7%89%87%E8%BD%AE%E8%BD%AC%E4%BB%A5%E5%8F%8A%E6%9C%80%E9%AB%98%E5%93%8D%E5%BA%94%E6%AF%94%E4%BC%98%E5%85%88%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%E7%9A%84JAVA%E5%AE%9E%E7%8E%B0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">模拟先来先服务、短作业优先、时间片轮转以及最高响应比优先调度算法的JAVA实现</a>
+                    <a href="/posts/20200107-OS_dispatch.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">模拟先来先服务、短作业优先、时间片轮转以及最高响应比优先调度算法的JAVA实现</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
                     </p>
@@ -582,7 +583,7 @@
         
         <article class="media">
             
-            <a href="/2020/01/07/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/" class="media-left">
+            <a href="/posts/20200107-jishuSort.html" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="基数排序-------------java实现">
                 </p>
@@ -591,7 +592,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T05:42:02.000Z">2020-01-07</time></div>
-                    <a href="/2020/01/07/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">基数排序-------------java实现</a>
+                    <a href="/posts/20200107-jishuSort.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">基数排序-------------java实现</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a>
                     </p>
@@ -601,7 +602,7 @@
         
         <article class="media">
             
-            <a href="/2020/01/07/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/" class="media-left">
+            <a href="/posts/20200107-guibingSort.html" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="归并排序-------------java实现">
                 </p>
@@ -610,7 +611,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T05:41:10.000Z">2020-01-07</time></div>
-                    <a href="/2020/01/07/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">归并排序-------------java实现</a>
+                    <a href="/posts/20200107-guibingSort.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">归并排序-------------java实现</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a>
                     </p>
@@ -620,7 +621,7 @@
         
         <article class="media">
             
-            <a href="/2020/01/07/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/" class="media-left">
+            <a href="/posts/20200107-quickSort.html" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="快速排序-------------java实现">
                 </p>
@@ -629,7 +630,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T05:40:22.000Z">2020-01-07</time></div>
-                    <a href="/2020/01/07/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">快速排序-------------java实现</a>
+                    <a href="/posts/20200107-quickSort.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">快速排序-------------java实现</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a>
                     </p>
@@ -780,7 +781,7 @@
         
         <article class="media">
             
-            <a href="/2020/01/07/%EF%BC%88%E5%A4%8D%E4%B9%A0%EF%BC%89%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%89%E7%A7%8D%E9%81%8D%E5%8E%86%E6%96%B9%E5%BC%8F%E3%80%81%E6%9F%A5%E6%89%BE%E5%92%8C%E5%88%A0%E9%99%A4-Java%E5%AE%9E%E7%8E%B0/" class="media-left">
+            <a href="/posts/20200107-binarytree.html" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="（复习）二叉树的三种遍历方式、查找和删除----------Java实现">
                 </p>
@@ -789,7 +790,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T05:44:57.000Z">2020-01-07</time></div>
-                    <a href="/2020/01/07/%EF%BC%88%E5%A4%8D%E4%B9%A0%EF%BC%89%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%89%E7%A7%8D%E9%81%8D%E5%8E%86%E6%96%B9%E5%BC%8F%E3%80%81%E6%9F%A5%E6%89%BE%E5%92%8C%E5%88%A0%E9%99%A4-Java%E5%AE%9E%E7%8E%B0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">（复习）二叉树的三种遍历方式、查找和删除----------Java实现</a>
+                    <a href="/posts/20200107-binarytree.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">（复习）二叉树的三种遍历方式、查找和删除----------Java实现</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E5%8F%89%E6%A0%91/">二叉树</a>
                     </p>
@@ -799,7 +800,7 @@
         
         <article class="media">
             
-            <a href="/2020/01/07/%E6%A8%A1%E6%8B%9F%E5%85%88%E6%9D%A5%E5%85%88%E6%9C%8D%E5%8A%A1%E3%80%81%E7%9F%AD%E4%BD%9C%E4%B8%9A%E4%BC%98%E5%85%88%E3%80%81%E6%97%B6%E9%97%B4%E7%89%87%E8%BD%AE%E8%BD%AC%E4%BB%A5%E5%8F%8A%E6%9C%80%E9%AB%98%E5%93%8D%E5%BA%94%E6%AF%94%E4%BC%98%E5%85%88%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%E7%9A%84JAVA%E5%AE%9E%E7%8E%B0/" class="media-left">
+            <a href="/posts/20200107-OS_dispatch.html" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="模拟先来先服务、短作业优先、时间片轮转以及最高响应比优先调度算法的JAVA实现">
                 </p>
@@ -808,7 +809,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T05:42:48.000Z">2020-01-07</time></div>
-                    <a href="/2020/01/07/%E6%A8%A1%E6%8B%9F%E5%85%88%E6%9D%A5%E5%85%88%E6%9C%8D%E5%8A%A1%E3%80%81%E7%9F%AD%E4%BD%9C%E4%B8%9A%E4%BC%98%E5%85%88%E3%80%81%E6%97%B6%E9%97%B4%E7%89%87%E8%BD%AE%E8%BD%AC%E4%BB%A5%E5%8F%8A%E6%9C%80%E9%AB%98%E5%93%8D%E5%BA%94%E6%AF%94%E4%BC%98%E5%85%88%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%E7%9A%84JAVA%E5%AE%9E%E7%8E%B0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">模拟先来先服务、短作业优先、时间片轮转以及最高响应比优先调度算法的JAVA实现</a>
+                    <a href="/posts/20200107-OS_dispatch.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">模拟先来先服务、短作业优先、时间片轮转以及最高响应比优先调度算法的JAVA实现</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
                     </p>
@@ -818,7 +819,7 @@
         
         <article class="media">
             
-            <a href="/2020/01/07/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/" class="media-left">
+            <a href="/posts/20200107-jishuSort.html" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="基数排序-------------java实现">
                 </p>
@@ -827,7 +828,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T05:42:02.000Z">2020-01-07</time></div>
-                    <a href="/2020/01/07/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">基数排序-------------java实现</a>
+                    <a href="/posts/20200107-jishuSort.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">基数排序-------------java实现</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a>
                     </p>
@@ -837,7 +838,7 @@
         
         <article class="media">
             
-            <a href="/2020/01/07/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/" class="media-left">
+            <a href="/posts/20200107-guibingSort.html" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="归并排序-------------java实现">
                 </p>
@@ -846,7 +847,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T05:41:10.000Z">2020-01-07</time></div>
-                    <a href="/2020/01/07/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">归并排序-------------java实现</a>
+                    <a href="/posts/20200107-guibingSort.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">归并排序-------------java实现</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a>
                     </p>
@@ -856,7 +857,7 @@
         
         <article class="media">
             
-            <a href="/2020/01/07/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/" class="media-left">
+            <a href="/posts/20200107-quickSort.html" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="快速排序-------------java实现">
                 </p>
@@ -865,7 +866,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T05:40:22.000Z">2020-01-07</time></div>
-                    <a href="/2020/01/07/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">快速排序-------------java实现</a>
+                    <a href="/posts/20200107-quickSort.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">快速排序-------------java实现</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a>
                     </p>

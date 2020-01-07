@@ -9,19 +9,19 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>快速排序-------------java实现 - 一颗小陨石</title>
+<title>选择排序  ------java实现 - 一颗小陨石</title>
 
 
-    <meta name="description" content="一、基本思想选择一个基准数，通过一趟排序将待排序数据分成两个独立的部分，其中一部分的所有数都比基准数小，另一部分都比基准数大，然后再使用此方法递归对两部分数据进行快排，最终实现整个数据的有序。">
+    <meta name="description" content="一、选择排序的思想第一次从arr[0]~arr[n-1]中选取最小值与arr[0]交换，第二次从arr[1]到arr[n-1]中选取最小值与arr[1]交换，第三次从arr[2]到arr[n-1]中选取最小值与arr[2]交换，以此类推，总共循环n-1次，得到一个从小到大的有序序列。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="快速排序-------------java实现">
-<meta property="og:url" content="https://wbml.top/2020/01/07/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/index.html">
+<meta property="og:title" content="选择排序  ------java实现">
+<meta property="og:url" content="https://wbml.top/posts/20200107-selectSort.html">
 <meta property="og:site_name" content="一颗小陨石">
-<meta property="og:description" content="一、基本思想选择一个基准数，通过一趟排序将待排序数据分成两个独立的部分，其中一部分的所有数都比基准数小，另一部分都比基准数大，然后再使用此方法递归对两部分数据进行快排，最终实现整个数据的有序。">
+<meta property="og:description" content="一、选择排序的思想第一次从arr[0]~arr[n-1]中选取最小值与arr[0]交换，第二次从arr[1]到arr[n-1]中选取最小值与arr[1]交换，第三次从arr[2]到arr[n-1]中选取最小值与arr[2]交换，以此类推，总共循环n-1次，得到一个从小到大的有序序列。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://wbml.top/images/og_image.png">
-<meta property="article:published_time" content="2020-01-07T05:40:22.000Z">
-<meta property="article:modified_time" content="2020-01-07T06:05:45.426Z">
+<meta property="article:published_time" content="2020-01-07T05:35:53.000Z">
+<meta property="article:modified_time" content="2020-01-07T16:23:32.611Z">
 <meta property="article:author" content="一颗小陨石">
 <meta property="article:tag" content="排序">
 <meta name="twitter:card" content="summary">
@@ -76,6 +76,7 @@
 
 
 <link rel="stylesheet" href="/css/style.css">
+	<meta name="baidu-site-verification" content="HWPg36A4P2" />
 <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
 <script src="https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget/autoload.js"></script>
@@ -88,7 +89,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.png" alt="快速排序-------------java实现" height="28">
+                <img src="/images/logo.png" alt="选择排序  ------java实现" height="28">
             
             </a>
         </div>
@@ -150,7 +151,7 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-01-07T05:40:22.000Z">2020-01-07</time>
+                <time class="level-item has-text-grey" datetime="2020-01-07T05:35:53.000Z">2020-01-07</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a>
@@ -160,7 +161,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    6 分钟 读完 (大约 954 个字)
+                    4 分钟 读完 (大约 576 个字)
                 </span>
                 
                 
@@ -174,63 +175,28 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                快速排序-------------java实现
+                选择排序  ------java实现
             
         </h1>
         <div class="content">
-            <h1 id="一、基本思想"><a href="#一、基本思想" class="headerlink" title="一、基本思想"></a>一、基本思想</h1><p>选择一个基准数，通过一趟排序将待排序数据分成两个独立的部分，其中一部分的所有数都比基准数小，另一部分都比基准数大，然后再使用此方法递归对两部分数据进行快排，最终实现整个数据的有序。</p>
+            <h1 id="一、选择排序的思想"><a href="#一、选择排序的思想" class="headerlink" title="一、选择排序的思想"></a>一、选择排序的思想</h1><p>第一次从arr[0]~arr[n-1]中选取最小值与arr[0]交换，第二次从arr[1]到arr[n-1]中选取最小值与arr[1]交换，第三次从arr[2]到arr[n-1]中选取最小值与arr[2]交换，以此类推，总共循环n-1次，得到一个从小到大的有序序列。</p>
 <a id="more"></a>
 
-<h1 id="二、详解排序过程"><a href="#二、详解排序过程" class="headerlink" title="二、详解排序过程"></a>二、详解排序过程</h1><p>现有待排序数据：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;-21, 312, 44, 11, -23, 2, 10&#125;;</span><br></pre></td></tr></table></figure>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
-<p><strong>蓝色为左哨兵，记为left，黄色为右哨兵记为right，红色为基数</strong></p>
-<p><strong>基数=(左哨兵坐标+右坐标)/2</strong></p>
-<p><strong>第一轮排序：</strong></p>
-<p>​      <strong>↓</strong>                                                     <strong>↓</strong>     </p>
-<p>​     <strong>-21， 312， 44， 11， -23， 2， 10</strong></p>
-<p>​     左哨兵找到第一个比基数11大的数停止，即在312停止，此时left=1</p>
-<p>​     右哨兵找到第一个比基数小的数停止，即在10停止，此时right=6</p>
-<p>​    此时两个哨兵尚未相遇，交换 312 和 10</p>
-<p><strong>交换后：</strong></p>
-<p>​                <strong>↓</strong>                                         <strong>↓</strong>     </p>
-<p>​     <strong>-21， 10， 44， 11， -23， 2， 312</strong></p>
-<p>  <strong>左哨兵继续移动，到比11大的44时停止，此时left=2</strong></p>
-<p>  <strong>右哨兵继续移动，到比11小的2处停止，此时right=5</strong></p>
-<p>  <strong>两个哨兵仍然未相遇 ，不需要break；交换 44 和 2</strong> </p>
-<p><strong>交换后：</strong></p>
-<p>​                        <strong>↓</strong>                       <strong>↓</strong>     </p>
-<p>​     <strong>-21， 10， 2， 11， -23， 44， 312</strong></p>
-<p>  左哨兵继续移动，到基数11停止，因为左边已经没有比11小的数了，此时left=3</p>
-<p> 右哨兵继续移动，到比 11小的 -23处停止，此时right = 4</p>
-<p>  交换11 和-23</p>
-<p>交换后：</p>
-<p>​                                <strong>↓</strong>        <strong>↓</strong>     </p>
-<p>​     <strong>-21， 10， 2， -23， 11， 44， 312</strong></p>
-<p> <strong>此时再继续移动，两个哨兵相遇，一轮结束</strong></p>
-<p>当哨兵相遇时，让right–，left++，分别指向-23 和44</p>
-<p>此时左半部分为：-21, 10, 2, -23   left为-21，right为-23</p>
-<p>右半部分为： 44， 312 left为44，right为312</p>
-<p>两边继续按上述步骤递归排序</p>
-<h1 id="三、代码实现："><a href="#三、代码实现：" class="headerlink" title="三、代码实现："></a>三、代码实现：</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 快速排序</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2019/10/2917:06</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QuickSort</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">      </span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span>[] arr=&#123;-<span class="number">21</span>,<span class="number">312</span>,<span class="number">44</span>,<span class="number">11</span>,-<span class="number">23</span>,<span class="number">2</span>,<span class="number">10</span>&#125;;</span><br><span class="line">        quickSort(arr,<span class="number">0</span>,arr.length-<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">           System.out.println(Arrays.toString(arr));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">quickSort</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> l = left;</span><br><span class="line">        <span class="keyword">int</span> r = right;</span><br><span class="line">        <span class="comment">//基准数</span></span><br><span class="line">        <span class="keyword">int</span> pivot = arr[(left + right) / <span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> temp=<span class="number">0</span>;<span class="comment">//临时变量</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//让比基数小的放在左边，比基数大的放在右边</span></span><br><span class="line">        <span class="keyword">while</span> (l &lt; r)&#123;</span><br><span class="line">            <span class="comment">//在基数左边找到大于等于基数的值才退出</span></span><br><span class="line">            <span class="keyword">while</span> (arr[l] &lt; pivot)&#123;</span><br><span class="line">                l += <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//在基数右边找到小于等于基数的值才退出</span></span><br><span class="line">            <span class="keyword">while</span> (arr[r] &gt; pivot)&#123;</span><br><span class="line">                r -=<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//左右两个哨兵相遇，即说明基数左边的数已经全部小于基数，右边的数已经全部大于基数</span></span><br><span class="line">            <span class="keyword">if</span>( l &gt;= r)&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//否则进行交换</span></span><br><span class="line">            temp = arr[l];</span><br><span class="line">            arr[l] = arr[r];</span><br><span class="line">            arr[r] = temp;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//如果交换完后，发现arr[l] == 基数，r向左移</span></span><br><span class="line">            <span class="keyword">if</span> (arr[l] == pivot)&#123;</span><br><span class="line">                r -= <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//如果交换完后，发现arr[r] == 基数，l向右移</span></span><br><span class="line">            <span class="keyword">if</span> (arr[r] == pivot)&#123;</span><br><span class="line">                l += <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (l == r)&#123;</span><br><span class="line">            l +=<span class="number">1</span>;</span><br><span class="line">            r -=<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//向左递归</span></span><br><span class="line">        <span class="keyword">if</span> (left&lt;r)&#123;</span><br><span class="line">            quickSort(arr,left,r);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//向右递归</span></span><br><span class="line">        <span class="keyword">if</span> (right &gt; l)&#123;</span><br><span class="line">            quickSort(arr,l,right);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
-<p><strong>结果：</strong></p>
-<p>[-23, -21, 2, 10, 11, 44, 312]</p>
-<h1 id="四、测试10W条数据耗时"><a href="#四、测试10W条数据耗时" class="headerlink" title="四、测试10W条数据耗时"></a>四、测试10W条数据耗时</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] arr =<span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">100000</span>];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">100000</span>;i++)&#123;</span><br><span class="line">    arr[i]=(<span class="keyword">int</span>)(Math.random()*<span class="number">100000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> begintime=System.currentTimeMillis();</span><br><span class="line">System.out.println(<span class="string">"开始时间"</span>+begintime);</span><br><span class="line">quickSort(arr,<span class="number">0</span>,arr.length-<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> endtime=System.currentTimeMillis();</span><br><span class="line">System.out.println(<span class="string">"结束时间"</span>+endtime);</span><br><span class="line">System.out.println(<span class="string">"用时："</span>+(endtime-begintime)+<span class="string">"ms"</span>);</span><br></pre></td></tr></table></figure>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<h1 id="二、思路详解"><a href="#二、思路详解" class="headerlink" title="二、思路详解"></a>二、思路详解</h1><p>待排序元素：       [34]            54     123 55 11 22</p>
+<p>第一次排序：      [11,34]       54     123 55 22<br>第二次排序 :       [11,22,34]   54     123 55<br>第三次排序：     [11,22,34,54]       123 55<br>第四次排序：     [11,22,34,54,55]  123</p>
+<p><strong>说明(这里按从小到大)：</strong></p>
+<p>1.选择排序共进行数组大小-1次排序<br>2.每次排序中，先设当前的数是最小值，然后依次和后面的数进行比较，如果发现有比这个数小的，就让最小的数为这个数，得到最小值下标，遍历一个循环后，得到最小值和下标<br>3.如果该小标与一开始的不一样，说明存在比开始设定的最小的数还小的数，将二者交换，进行下一次循环</p>
+<h1 id="三、代码实现"><a href="#三、代码实现" class="headerlink" title="三、代码实现"></a>三、代码实现</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">selectSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;arr.length-<span class="number">1</span>;i++)&#123;</span><br><span class="line">           <span class="keyword">int</span> minIndex=i;</span><br><span class="line">           <span class="keyword">int</span> min=arr[i];</span><br><span class="line">           <span class="keyword">for</span> (<span class="keyword">int</span> j=i+<span class="number">1</span>;j&lt;arr.length;j++)&#123;</span><br><span class="line">               <span class="keyword">if</span> (min&gt;arr[j])&#123;</span><br><span class="line">                   min=arr[j];</span><br><span class="line">                   minIndex=j;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">           <span class="comment">//将最小值放在arr[0]。即交换</span></span><br><span class="line">           <span class="keyword">if</span> (minIndex!=i)&#123;</span><br><span class="line">               arr[minIndex]=arr[i];</span><br><span class="line">               arr[i]=min;</span><br><span class="line">           &#125;</span><br><span class="line">           System.out.println(<span class="string">"第"</span>+(i+<span class="number">1</span>)+<span class="string">"轮后结果"</span>);</span><br><span class="line">           System.out.println(Arrays.toString(arr));</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span>[] array=&#123;<span class="number">101</span>,<span class="number">222</span>,<span class="number">119</span>,<span class="number">1</span>&#125;;</span><br><span class="line">       SelectSort.selectSort(array);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 <p>结果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">开始时间1572344644967</span><br><span class="line">结束时间1572344645031</span><br><span class="line">用时：64ms</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">第1轮后结果</span><br><span class="line">[1, 222, 119, 101]</span><br><span class="line">第2轮后结果</span><br><span class="line">[1, 101, 119, 222]</span><br><span class="line">第3轮后结果</span><br><span class="line">[1, 101, 119, 222]</span><br></pre></td></tr></table></figure>
 
-<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
-<p>此时与希尔排序看不出很大的差距，将数据增加到80W条测试结果：</p>
-<p><strong>希尔：</strong></p>
-<p>开始时间1572344777821<br>结束时间1572344778134<br>用时：313ms</p>
-<p><strong>快速：</strong></p>
-<p>开始时间1572344758536<br>结束时间1572344758711<br>用时：175ms</p>
-<p>经过多次测试，偶尔会有希尔排序比快速快的情况，但是多数情况下还是快速比希尔快</p>
+<p>测试100000条数据执行时间：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.wml.sort;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 选择排序</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> MaoLin Wang</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2019/10/2811:24</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SelectSort</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//int[] array=&#123;101,222,119,1&#125;;</span></span><br><span class="line">        <span class="keyword">int</span>[] array =<span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">100000</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">100000</span>;i++)&#123;</span><br><span class="line">            array[i]=(<span class="keyword">int</span>)(Math.random()*<span class="number">100000</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">long</span> begintime=System.currentTimeMillis();</span><br><span class="line">        System.out.println(<span class="string">"开始时间"</span>+begintime);</span><br><span class="line"></span><br><span class="line">        SelectSort.selectSort(array);</span><br><span class="line">        <span class="keyword">long</span> endtime=System.currentTimeMillis();</span><br><span class="line">        System.out.println(<span class="string">"结束时间"</span>+endtime);</span><br><span class="line">        System.out.println(<span class="string">"用时："</span>+(endtime-begintime)+<span class="string">"ms"</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">selectSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;arr.length-<span class="number">1</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> minIndex=i;</span><br><span class="line">            <span class="keyword">int</span> min=arr[i];</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j=i+<span class="number">1</span>;j&lt;arr.length;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span> (min&gt;arr[j])&#123;</span><br><span class="line">                    min=arr[j];</span><br><span class="line">                    minIndex=j;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//将最小值放在arr[0]。即交换</span></span><br><span class="line">            <span class="keyword">if</span> (minIndex!=i)&#123;</span><br><span class="line">                arr[minIndex]=arr[i];</span><br><span class="line">                arr[i]=min;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//System.out.println("第"+(i+1)+"轮后结果");</span></span><br><span class="line">            <span class="comment">//System.out.println(Arrays.toString(arr));</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果：<br>用时：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">开始时间<span class="number">1572251978745</span></span><br><span class="line">结束时间<span class="number">1572251984556</span></span><br><span class="line">用时：<span class="number">5811</span>ms</span><br></pre></td></tr></table></figure>
+
+<p>相比上一篇冒泡排序的22113ms快了许多</p>
+<p>平均时间： O(n²)<br>最差：   O（n²）<br>是否稳定： 不稳定<br>空间复杂度： O（1）<br>备注： n小时较好</p>
 
         </div>
         
@@ -289,16 +255,16 @@
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/01/07/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/posts/20200107-insertSort.html">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">归并排序-------------java实现</span>
+                <span class="level-item">插入排序-----------java实现</span>
             </a>
         </div>
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2020/01/07/%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/">
-                <span class="level-item">希尔排序-----------java实现</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/posts/20200107-bubbleSort.html">
+                <span class="level-item">冒泡排序---------java实现</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -556,7 +522,7 @@
         
         <article class="media">
             
-            <a href="/2020/01/07/%EF%BC%88%E5%A4%8D%E4%B9%A0%EF%BC%89%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%89%E7%A7%8D%E9%81%8D%E5%8E%86%E6%96%B9%E5%BC%8F%E3%80%81%E6%9F%A5%E6%89%BE%E5%92%8C%E5%88%A0%E9%99%A4-Java%E5%AE%9E%E7%8E%B0/" class="media-left">
+            <a href="/posts/20200107-binarytree.html" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="（复习）二叉树的三种遍历方式、查找和删除----------Java实现">
                 </p>
@@ -565,7 +531,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T05:44:57.000Z">2020-01-07</time></div>
-                    <a href="/2020/01/07/%EF%BC%88%E5%A4%8D%E4%B9%A0%EF%BC%89%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%89%E7%A7%8D%E9%81%8D%E5%8E%86%E6%96%B9%E5%BC%8F%E3%80%81%E6%9F%A5%E6%89%BE%E5%92%8C%E5%88%A0%E9%99%A4-Java%E5%AE%9E%E7%8E%B0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">（复习）二叉树的三种遍历方式、查找和删除----------Java实现</a>
+                    <a href="/posts/20200107-binarytree.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">（复习）二叉树的三种遍历方式、查找和删除----------Java实现</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E5%8F%89%E6%A0%91/">二叉树</a>
                     </p>
@@ -575,7 +541,7 @@
         
         <article class="media">
             
-            <a href="/2020/01/07/%E6%A8%A1%E6%8B%9F%E5%85%88%E6%9D%A5%E5%85%88%E6%9C%8D%E5%8A%A1%E3%80%81%E7%9F%AD%E4%BD%9C%E4%B8%9A%E4%BC%98%E5%85%88%E3%80%81%E6%97%B6%E9%97%B4%E7%89%87%E8%BD%AE%E8%BD%AC%E4%BB%A5%E5%8F%8A%E6%9C%80%E9%AB%98%E5%93%8D%E5%BA%94%E6%AF%94%E4%BC%98%E5%85%88%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%E7%9A%84JAVA%E5%AE%9E%E7%8E%B0/" class="media-left">
+            <a href="/posts/20200107-OS_dispatch.html" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="模拟先来先服务、短作业优先、时间片轮转以及最高响应比优先调度算法的JAVA实现">
                 </p>
@@ -584,7 +550,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T05:42:48.000Z">2020-01-07</time></div>
-                    <a href="/2020/01/07/%E6%A8%A1%E6%8B%9F%E5%85%88%E6%9D%A5%E5%85%88%E6%9C%8D%E5%8A%A1%E3%80%81%E7%9F%AD%E4%BD%9C%E4%B8%9A%E4%BC%98%E5%85%88%E3%80%81%E6%97%B6%E9%97%B4%E7%89%87%E8%BD%AE%E8%BD%AC%E4%BB%A5%E5%8F%8A%E6%9C%80%E9%AB%98%E5%93%8D%E5%BA%94%E6%AF%94%E4%BC%98%E5%85%88%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%E7%9A%84JAVA%E5%AE%9E%E7%8E%B0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">模拟先来先服务、短作业优先、时间片轮转以及最高响应比优先调度算法的JAVA实现</a>
+                    <a href="/posts/20200107-OS_dispatch.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">模拟先来先服务、短作业优先、时间片轮转以及最高响应比优先调度算法的JAVA实现</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
                     </p>
@@ -594,7 +560,7 @@
         
         <article class="media">
             
-            <a href="/2020/01/07/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/" class="media-left">
+            <a href="/posts/20200107-jishuSort.html" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="基数排序-------------java实现">
                 </p>
@@ -603,7 +569,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T05:42:02.000Z">2020-01-07</time></div>
-                    <a href="/2020/01/07/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">基数排序-------------java实现</a>
+                    <a href="/posts/20200107-jishuSort.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">基数排序-------------java实现</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a>
                     </p>
@@ -613,7 +579,7 @@
         
         <article class="media">
             
-            <a href="/2020/01/07/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/" class="media-left">
+            <a href="/posts/20200107-guibingSort.html" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="归并排序-------------java实现">
                 </p>
@@ -622,7 +588,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T05:41:10.000Z">2020-01-07</time></div>
-                    <a href="/2020/01/07/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">归并排序-------------java实现</a>
+                    <a href="/posts/20200107-guibingSort.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">归并排序-------------java实现</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a>
                     </p>
@@ -632,7 +598,7 @@
         
         <article class="media">
             
-            <a href="/2020/01/07/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/" class="media-left">
+            <a href="/posts/20200107-quickSort.html" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="快速排序-------------java实现">
                 </p>
@@ -641,7 +607,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T05:40:22.000Z">2020-01-07</time></div>
-                    <a href="/2020/01/07/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">快速排序-------------java实现</a>
+                    <a href="/posts/20200107-quickSort.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">快速排序-------------java实现</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a>
                     </p>
@@ -792,7 +758,7 @@
         
         <article class="media">
             
-            <a href="/2020/01/07/%EF%BC%88%E5%A4%8D%E4%B9%A0%EF%BC%89%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%89%E7%A7%8D%E9%81%8D%E5%8E%86%E6%96%B9%E5%BC%8F%E3%80%81%E6%9F%A5%E6%89%BE%E5%92%8C%E5%88%A0%E9%99%A4-Java%E5%AE%9E%E7%8E%B0/" class="media-left">
+            <a href="/posts/20200107-binarytree.html" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="（复习）二叉树的三种遍历方式、查找和删除----------Java实现">
                 </p>
@@ -801,7 +767,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T05:44:57.000Z">2020-01-07</time></div>
-                    <a href="/2020/01/07/%EF%BC%88%E5%A4%8D%E4%B9%A0%EF%BC%89%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%89%E7%A7%8D%E9%81%8D%E5%8E%86%E6%96%B9%E5%BC%8F%E3%80%81%E6%9F%A5%E6%89%BE%E5%92%8C%E5%88%A0%E9%99%A4-Java%E5%AE%9E%E7%8E%B0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">（复习）二叉树的三种遍历方式、查找和删除----------Java实现</a>
+                    <a href="/posts/20200107-binarytree.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">（复习）二叉树的三种遍历方式、查找和删除----------Java实现</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E5%8F%89%E6%A0%91/">二叉树</a>
                     </p>
@@ -811,7 +777,7 @@
         
         <article class="media">
             
-            <a href="/2020/01/07/%E6%A8%A1%E6%8B%9F%E5%85%88%E6%9D%A5%E5%85%88%E6%9C%8D%E5%8A%A1%E3%80%81%E7%9F%AD%E4%BD%9C%E4%B8%9A%E4%BC%98%E5%85%88%E3%80%81%E6%97%B6%E9%97%B4%E7%89%87%E8%BD%AE%E8%BD%AC%E4%BB%A5%E5%8F%8A%E6%9C%80%E9%AB%98%E5%93%8D%E5%BA%94%E6%AF%94%E4%BC%98%E5%85%88%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%E7%9A%84JAVA%E5%AE%9E%E7%8E%B0/" class="media-left">
+            <a href="/posts/20200107-OS_dispatch.html" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="模拟先来先服务、短作业优先、时间片轮转以及最高响应比优先调度算法的JAVA实现">
                 </p>
@@ -820,7 +786,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T05:42:48.000Z">2020-01-07</time></div>
-                    <a href="/2020/01/07/%E6%A8%A1%E6%8B%9F%E5%85%88%E6%9D%A5%E5%85%88%E6%9C%8D%E5%8A%A1%E3%80%81%E7%9F%AD%E4%BD%9C%E4%B8%9A%E4%BC%98%E5%85%88%E3%80%81%E6%97%B6%E9%97%B4%E7%89%87%E8%BD%AE%E8%BD%AC%E4%BB%A5%E5%8F%8A%E6%9C%80%E9%AB%98%E5%93%8D%E5%BA%94%E6%AF%94%E4%BC%98%E5%85%88%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%E7%9A%84JAVA%E5%AE%9E%E7%8E%B0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">模拟先来先服务、短作业优先、时间片轮转以及最高响应比优先调度算法的JAVA实现</a>
+                    <a href="/posts/20200107-OS_dispatch.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">模拟先来先服务、短作业优先、时间片轮转以及最高响应比优先调度算法的JAVA实现</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
                     </p>
@@ -830,7 +796,7 @@
         
         <article class="media">
             
-            <a href="/2020/01/07/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/" class="media-left">
+            <a href="/posts/20200107-jishuSort.html" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="基数排序-------------java实现">
                 </p>
@@ -839,7 +805,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T05:42:02.000Z">2020-01-07</time></div>
-                    <a href="/2020/01/07/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">基数排序-------------java实现</a>
+                    <a href="/posts/20200107-jishuSort.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">基数排序-------------java实现</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a>
                     </p>
@@ -849,7 +815,7 @@
         
         <article class="media">
             
-            <a href="/2020/01/07/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/" class="media-left">
+            <a href="/posts/20200107-guibingSort.html" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="归并排序-------------java实现">
                 </p>
@@ -858,7 +824,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T05:41:10.000Z">2020-01-07</time></div>
-                    <a href="/2020/01/07/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">归并排序-------------java实现</a>
+                    <a href="/posts/20200107-guibingSort.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">归并排序-------------java实现</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a>
                     </p>
@@ -868,7 +834,7 @@
         
         <article class="media">
             
-            <a href="/2020/01/07/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/" class="media-left">
+            <a href="/posts/20200107-quickSort.html" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="快速排序-------------java实现">
                 </p>
@@ -877,7 +843,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T05:40:22.000Z">2020-01-07</time></div>
-                    <a href="/2020/01/07/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-java%E5%AE%9E%E7%8E%B0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">快速排序-------------java实现</a>
+                    <a href="/posts/20200107-quickSort.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">快速排序-------------java实现</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a>
                     </p>
@@ -1022,7 +988,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.png" alt="快速排序-------------java实现" height="28">
+                    <img src="/images/logo.png" alt="选择排序  ------java实现" height="28">
                 
                 </a>
                 <p class="is-size-7">
