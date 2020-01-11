@@ -1,4 +1,1176 @@
-<!DOCTYPE html><script src=/js/src/click.js></script><html lang=zh><head><meta charset=utf-8><meta name=generator content="Hexo 4.2.0"><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1"><title>分类: 数据结构 - 一颗小陨石</title><meta property=og:type content=website><meta property=og:title content=一颗小陨石><meta property=og:url content=https://wbml.top/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.html><meta property=og:site_name content=一颗小陨石><meta property=og:locale content=zh_CN><meta property=og:image content=https://wbml.top/images/og_image.png><meta property=article:author content="MaoLin Wang"><meta property=article:tag content=docker><meta property=article:tag content=springboot><meta property=article:tag content=java><meta property=article:tag content=数据结构><meta name=twitter:card content=summary><meta name=twitter:image content=https://wbml.top/images/og_image.png><link rel=icon href=/images/favicon.svg><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.4.1/css/all.css><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro"><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css><link rel=stylesheet href=/css/back-to-top.css><link rel=stylesheet href=/css/progressbar.css><script src=https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js></script><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><link rel=stylesheet href=/css/style.css><meta name=sogou_site_verification content=YLG0ofTESs><meta name=360-site-verification content=a44f3f715e55a4a2e4589897cc3ebd60><meta name=baidu-site-verification content=HWPg36A4P2><meta name=google-site-verification content=V5LVp6ybWL3boDnSNAlThRETW3_r0vTUReVaxHKA5ac><script src=https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css><script src=https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget/autoload.js></script></head><body class=is-2-column><nav class="navbar navbar-main"><div class=container><div class="navbar-brand is-flex-center"><a class="navbar-item navbar-logo" href="/"><img src=/images/logo.png alt=一颗小陨石 height=28></a></div><div class=navbar-menu><div class=navbar-start><a class=navbar-item href="/">主页</a> <a class=navbar-item href=/archives>文章</a> <a class=navbar-item href=/categories>分类</a> <a class=navbar-item href=/tags>标签</a> <a class=navbar-item href=/gallery>相册</a></div><div class=navbar-end><a class=navbar-item target=_blank rel=noopener title="My CSDN" href=https://blog.csdn.net/weixin_43696529><i class="fab fa-telegram"></i></a> <a class=navbar-item target=_blank rel=noopener title="My Github" href=https://github.com/804434940/804434940.github.io><i class="fab fa-github"></i></a> <a class="navbar-item search" title=搜索 href=javascript:;><i class="fas fa-search"></i></a></div></div></div></nav><section class=section><div class=container><div class=columns><div class="column is-8-tablet is-9-desktop is-9-widescreen has-order-2 column-main"><div class=card><div class=card-content><nav class=breadcrumb aria-label=breadcrumbs><ul><li><a href=/categories>分类</a></li><li class=is-active><a href=# aria-current=page>数据结构</a></li></ul></nav></div></div><div class=card><div class=card-image><a href=/posts/20200107-binarytree.html class="image is-7by1"><img class=thumbnail src=/gallery/thumbnail/01.jpeg alt=（复习）二叉树的三种遍历方式、查找和删除----------Java实现></a></div><div class="card-content article"><div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto"><div class=level-left><time class="level-item has-text-grey" datetime=2020-01-07T05:44:57.000Z>2020-01-07</time><div class=level-item><a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E5%8F%89%E6%A0%91/">二叉树</a></div><span class="level-item has-text-grey">13 分钟 读完 (大约 2012 个字)</span></div></div><h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal"><a class=has-link-black-ter href=/posts/20200107-binarytree.html>（复习）二叉树的三种遍历方式、查找和删除----------Java实现</a></h1><div class=content><h2 id=一、概念：><a href=#一、概念： class=headerlink title=一、概念：></a>一、概念：</h2><h3 id=二叉树><a href=#二叉树 class=headerlink title=二叉树></a>二叉树</h3><p>二叉树的每个节点最多只能由两个子节点</p><h4 id=性质：><a href=#性质： class=headerlink title=性质：></a>性质：</h4><ol><li>二叉树的第 i 层最多有 2 ^ (i-1) 个节点</li><li>深度为 k （ k≥0 ）的二叉树最少有 k 个节点(一层一个)，最多有 （2^k ）-1 个节点 （空树k=0，只有一个根节点k=1）</li><li>对于任意一个非空二叉树，若其 叶子节点数为 n，度为2的非叶子节点数为 m，则 ==n=m+1==，（度 即节点所拥有的子树的个数）</li><li>如果节点总数为 2^n-1 且所有叶子节点都在最后一层，则该树为==满二叉树==</li><li>如果该二叉树的所有叶子节点都在最后一层或者倒数第二层，而且最后一层的叶子节点在左边连续，倒数第二层的叶子节点在右边连续，则称为==完全二叉树==。<br>如下：<br><img src="https://img-blog.csdnimg.cn/20191105214059994.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzY5NjUyOQ==,size_16,color_FFFFFF,t_70" alt=在这里插入图片描述></li></ol></div><div class="level is-mobile"><div class=level-start><div class=level-item><a class="button is-size-7 is-light" href=/posts/20200107-binarytree.html#more>阅读更多</a></div></div></div></div></div><div class=card><div class=card-image><a href=/posts/20200107-jishuSort.html class="image is-7by1"><img class=thumbnail src=/gallery/thumbnail/03.jpeg alt=基数排序-------------java实现></a></div><div class="card-content article"><div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto"><div class=level-left><time class="level-item has-text-grey" datetime=2020-01-07T05:42:02.000Z>2020-01-07</time><div class=level-item><a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a></div><span class="level-item has-text-grey">6 分钟 读完 (大约 887 个字)</span></div></div><h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal"><a class=has-link-black-ter href=/posts/20200107-jishuSort.html>基数排序-------------java实现</a></h1><div class=content><h2 id=一、基本思想><a href=#一、基本思想 class=headerlink title=一、基本思想></a>一、基本思想</h2><p>1.基数排序(Radix Sort)属于分配式排序（distribution sort），又称”桶子法”(Bucket Sort或Bin Sort)，它是通过键值的各个位的值，将要排序的元素分配至某些“桶”中，达到排序的作用。<br>2.基数排序属于稳定的排序，基数排序法的是效率高的稳定性排序法</p><p>3.基数排序(Radix Sort)是桶排序的扩展<br>4.将所有待比较数值统一为同样的数位长度，数位较短的数前面补零。然后，从最低位开始，依次进行一次排序。这样从最低位排序一直到最高位排序完成以后, 数列就变成一个有序序列。</p><ul><li><p>平均时间复杂度： O(n+k)</p></li><li><p>最优情况： O(n+k)</p></li><li><p>最坏情况： O(n²)</p></li><li><p>空间复杂度: O(n+k)</p></li><li><p>稳定性： 稳定</p></li></ul></div><div class="level is-mobile"><div class=level-start><div class=level-item><a class="button is-size-7 is-light" href=/posts/20200107-jishuSort.html#more>阅读更多</a></div></div></div></div></div><div class=card><div class=card-image><a href=/posts/20200107-guibingSort.html class="image is-7by1"><img class=thumbnail src=/gallery/thumbnail/02.jpeg alt=归并排序-------------java实现></a></div><div class="card-content article"><div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto"><div class=level-left><time class="level-item has-text-grey" datetime=2020-01-07T05:41:10.000Z>2020-01-07</time><div class=level-item><a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a></div><span class="level-item has-text-grey">5 分钟 读完 (大约 802 个字)</span></div></div><h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal"><a class=has-link-black-ter href=/posts/20200107-guibingSort.html>归并排序-------------java实现</a></h1><div class=content><p>归并排序采用分治策略实现</p><ul><li>平均时间复杂度 : O（nlogn）</li><li>最差时间复杂度: O(nlogn)</li><li>稳定性： 稳定</li><li>空间复杂度：O(n)</li></ul><p>归并排序时以空间换时间的排序方法，空间消耗很大，一般内部排序使用快速排序较多</p><p>假设有这样一组数据：[10,4,8,7,1,3,2,9]</p></div><div class="level is-mobile"><div class=level-start><div class=level-item><a class="button is-size-7 is-light" href=/posts/20200107-guibingSort.html#more>阅读更多</a></div></div></div></div></div><div class=card><div class=card-image><a href=/posts/20200107-quickSort.html class="image is-7by1"><img class=thumbnail src=/gallery/thumbnail/04.jpeg alt=快速排序-------------java实现></a></div><div class="card-content article"><div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto"><div class=level-left><time class="level-item has-text-grey" datetime=2020-01-07T05:40:22.000Z>2020-01-07</time><div class=level-item><a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a></div><span class="level-item has-text-grey">6 分钟 读完 (大约 954 个字)</span></div></div><h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal"><a class=has-link-black-ter href=/posts/20200107-quickSort.html>快速排序-------------java实现</a></h1><div class=content><h1 id=一、基本思想><a href=#一、基本思想 class=headerlink title=一、基本思想></a>一、基本思想</h1><p>选择一个基准数，通过一趟排序将待排序数据分成两个独立的部分，其中一部分的所有数都比基准数小，另一部分都比基准数大，然后再使用此方法递归对两部分数据进行快排，最终实现整个数据的有序。</p></div><div class="level is-mobile"><div class=level-start><div class=level-item><a class="button is-size-7 is-light" href=/posts/20200107-quickSort.html#more>阅读更多</a></div></div></div></div></div><div class=card><div class=card-image><a href=/posts/20200107-shellSort.html class="image is-7by1"><img class=thumbnail src=/gallery/thumbnail/01.jpeg alt=希尔排序-----------java实现></a></div><div class="card-content article"><div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto"><div class=level-left><time class="level-item has-text-grey" datetime=2020-01-07T05:39:24.000Z>2020-01-07</time><div class=level-item><a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a></div><span class="level-item has-text-grey">6 分钟 读完 (大约 935 个字)</span></div></div><h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal"><a class=has-link-black-ter href=/posts/20200107-shellSort.html>希尔排序-----------java实现</a></h1><div class=content><p><strong>首先看一下之前使用简单插入排序存在的问题：</strong></p><p>当存在一个数组，其最后一个数据为最小值，如：arr={5,6,16,34,33,2}</p><p>这样的话需要循环到最后一次，也就是第6次的时候，才可以将2排到前边，效率非常低</p><p>但是希尔排序可以很好的解决这个问题，其是简单插入排序改进后的一个效率较高的排序方式，也叫<strong>缩小增量排序</strong></p></div><div class="level is-mobile"><div class=level-start><div class=level-item><a class="button is-size-7 is-light" href=/posts/20200107-shellSort.html#more>阅读更多</a></div></div></div></div></div><div class=card><div class=card-image><a href=/posts/20200107-insertSort.html class="image is-7by1"><img class=thumbnail src=/gallery/thumbnail/07.jpeg alt=插入排序-----------java实现></a></div><div class="card-content article"><div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto"><div class=level-left><time class="level-item has-text-grey" datetime=2020-01-07T05:38:04.000Z>2020-01-07</time><div class=level-item><a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a></div><span class="level-item has-text-grey">2 分钟 读完 (大约 334 个字)</span></div></div><h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal"><a class=has-link-black-ter href=/posts/20200107-insertSort.html>插入排序-----------java实现</a></h1><div class=content><h1 id=一、复杂度><a href=#一、复杂度 class=headerlink title=一、复杂度></a>一、复杂度</h1><figure class="highlight plain"><table><tr><td class=gutter><pre><span class=line>1</span><br><span class=line>2</span><br><span class=line>3</span><br><span class=line>4</span><br><span class=line>5</span><br></pre></td><td class=code><pre><span class=line>平均时间复杂度： O(n²)</span><br><span class=line>最差时： O(n²)</span><br><span class=line>是否稳定： 稳定</span><br><span class=line>空间开销： O(1)</span><br><span class=line>在大部分数据已经排好序时性能较好</span><br></pre></td></tr></table></figure><p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt=点击并拖拽以移动></p></div><div class="level is-mobile"><div class=level-start><div class=level-item><a class="button is-size-7 is-light" href=/posts/20200107-insertSort.html#more>阅读更多</a></div></div></div></div></div><div class=card><div class=card-image><a href=/posts/20200107-selectSort.html class="image is-7by1"><img class=thumbnail src=/gallery/thumbnail/02.jpeg alt="选择排序 ------java实现"></a></div><div class="card-content article"><div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto"><div class=level-left><time class="level-item has-text-grey" datetime=2020-01-07T05:35:53.000Z>2020-01-07</time><div class=level-item><a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a></div><span class="level-item has-text-grey">4 分钟 读完 (大约 576 个字)</span></div></div><h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal"><a class=has-link-black-ter href=/posts/20200107-selectSort.html>选择排序 ------java实现</a></h1><div class=content><h1 id=一、选择排序的思想><a href=#一、选择排序的思想 class=headerlink title=一、选择排序的思想></a>一、选择排序的思想</h1><p>第一次从arr[0]~arr[n-1]中选取最小值与arr[0]交换，第二次从arr[1]到arr[n-1]中选取最小值与arr[1]交换，第三次从arr[2]到arr[n-1]中选取最小值与arr[2]交换，以此类推，总共循环n-1次，得到一个从小到大的有序序列。</p></div><div class="level is-mobile"><div class=level-start><div class=level-item><a class="button is-size-7 is-light" href=/posts/20200107-selectSort.html#more>阅读更多</a></div></div></div></div></div><div class=card><div class=card-image><a href=/posts/20200107-bubbleSort.html class="image is-7by1"><img class=thumbnail src=/gallery/thumbnail/05.jpeg alt=冒泡排序---------java实现></a></div><div class="card-content article"><div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto"><div class=level-left><time class="level-item has-text-grey" datetime=2020-01-07T05:34:27.000Z>2020-01-07</time><div class=level-item><a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a></div><span class="level-item has-text-grey">4 分钟 读完 (大约 655 个字)</span></div></div><h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal"><a class=has-link-black-ter href=/posts/20200107-bubbleSort.html>冒泡排序---------java实现</a></h1><div class=content><h3 id=一、冒泡排序><a href=#一、冒泡排序 class=headerlink title=一、冒泡排序></a>一、冒泡排序</h3><blockquote><p>平均时间复杂度: O(n²)<br>最差时： O(n²)<br>是否稳定： 稳定<br>空间开销：O（1）<br>适合n较小时</p></blockquote></div><div class="level is-mobile"><div class=level-start><div class=level-item><a class="button is-size-7 is-light" href=/posts/20200107-bubbleSort.html#more>阅读更多</a></div></div></div></div></div></div><div class="column is-4-tablet is-3-desktop is-3-widescreen has-order-1 column-left"><div class="card widget"><div class=card-content><nav class=level><div class="level-item has-text-centered" style="flex-shrink: 1"><div><figure class="image is-128x128 has-mb-6"><img src=/images/avatar.jpeg alt=一颗小陨石></figure><p class="is-size-4 is-block">一颗小陨石</p><p class="is-size-6 is-block">Student</p><p class="is-size-6 is-flex is-flex-center has-text-grey"><i class="fas fa-map-marker-alt has-mr-7"></i> <span>中国,江苏</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class=heading>文章</p><a href=/archives><p class="title has-text-weight-normal">15</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class=heading>分类</p><a href=/categories><p class="title has-text-weight-normal">8</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class=heading>标签</p><a href=/tags><p class="title has-text-weight-normal">13</p></a></div></div></nav><div class=level><a class="level-item button is-link is-rounded" href=https://blog.csdn.net/weixin_43696529 target=_blank rel=noopener>关注我</a></div><div class="level is-mobile"><a class="level-item button is-white is-marginless" target=_blank rel=noopener title=Github href=https://github.com/804434940/804434940.github.io><i class="fab fa-github"></i></a> <a class="level-item button is-white is-marginless" target=_blank rel=noopener title=CSDN href=https://blog.csdn.net/weixin_43696529><i class="fab fa-telegram"></i></a> <a class="level-item button is-white is-marginless" target=_blank rel=noopener title=QQ href="tencent://message/?uin=804434940&amp;Site=&amp;Menu=yes"><i class="fab fa-qq"></i></a></div></div></div><div class="card widget"><div class=card-content><div class=menu><h3 class=menu-label>链接</h3><ul class=menu-list><li><a class="level is-mobile" href=https://blog.csdn.net/weixin_43696529 target=_blank rel=noopener><span class=level-left><span class=level-item>CSDN</span></span> <span class=level-right><span class="level-item tag">blog.csdn.net</span></span></a></li></ul></div></div></div><div class="card widget"><div class=card-content><div class=menu><h3 class=menu-label>分类</h3><ul class=menu-list><li><a class="level is-marginless" href="/categories/docker/"><span class=level-start><span class=level-item>docker</span></span> <span class=level-end><span class="level-item tag">2</span></span></a></li><li><a class="level is-marginless" href="/categories/linux/"><span class=level-start><span class=level-item>linux</span></span> <span class=level-end><span class="level-item tag">2</span></span></a></li><li><a class="level is-marginless" href="/categories/springboot/"><span class=level-start><span class=level-item>springboot</span></span> <span class=level-end><span class="level-item tag">1</span></span></a></li><li><a class="level is-marginless" href="/categories/%E5%B7%A5%E5%85%B7/"><span class=level-start><span class=level-item>工具</span></span> <span class=level-end><span class="level-item tag">1</span></span></a></li><li><a class="level is-marginless" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><span class=level-start><span class=level-item>操作系统</span></span> <span class=level-end><span class="level-item tag">1</span></span></a></li><li><a class="level is-marginless" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"><span class=level-start><span class=level-item>数据结构</span></span> <span class=level-end><span class="level-item tag">8</span></span></a><ul><li><a class="level is-marginless" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E5%8F%89%E6%A0%91/"><span class=level-start><span class=level-item>二叉树</span></span> <span class=level-end><span class="level-item tag">1</span></span></a></li><li><a class="level is-marginless" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/"><span class=level-start><span class=level-item>排序</span></span> <span class=level-end><span class="level-item tag">7</span></span></a></li></ul></li></ul></div></div></div><div class="card widget"><div class=card-content><h3 class=menu-label>标签云</h3><a href="/tags/centos7/" style="font-size: 10px;">centos7</a> <a href="/tags/docker/" style="font-size: 15px;">docker</a> <a href="/tags/elasticsearch/" style="font-size: 10px;">elasticsearch</a> <a href="/tags/fdfs/" style="font-size: 10px;">fdfs</a> <a href="/tags/firewall/" style="font-size: 10px;">firewall</a> <a href="/tags/gulp-%E5%8E%8B%E7%BC%A9%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90/" style="font-size: 10px;">gulp,压缩静态资源</a> <a href="/tags/jib/" style="font-size: 10px;">jib</a> <a href="/tags/linux/" style="font-size: 15px;">linux</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" style="font-size: 10px;">二叉树</a> <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 20px;">排序</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 10px;">文件上传</a> <a href="/tags/%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/" style="font-size: 10px;">调度算法</a></div></div><div class="card widget"><div class=card-content><h3 class=menu-label>最新文章</h3><article class=media><a href=/posts/20200111-hexo-gulp.html class=media-left><p class="image is-64x64"><img class=thumbnail src=/gallery/thumbnail/01.jpeg alt=hexo压缩静态资源></p></a><div class=media-content><div class=content><div><time class="has-text-grey is-size-7 is-uppercase" datetime=2020-01-11T14:44:42.000Z>2020-01-11</time></div><a href=/posts/20200111-hexo-gulp.html class="title has-link-black-ter is-size-6 has-text-weight-normal">hexo压缩静态资源</a><p class="is-size-7 is-uppercase"><a class="has-link-grey -link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></p></div></div></article><article class=media><a href=/posts/20200107-binarytree.html class=media-left><p class="image is-64x64"><img class=thumbnail src=/gallery/thumbnail/01.jpeg alt=（复习）二叉树的三种遍历方式、查找和删除----------Java实现></p></a><div class=media-content><div class=content><div><time class="has-text-grey is-size-7 is-uppercase" datetime=2020-01-07T05:44:57.000Z>2020-01-07</time></div><a href=/posts/20200107-binarytree.html class="title has-link-black-ter is-size-6 has-text-weight-normal">（复习）二叉树的三种遍历方式、查找和删除----------Java实现</a><p class="is-size-7 is-uppercase"><a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E5%8F%89%E6%A0%91/">二叉树</a></p></div></div></article><article class=media><a href=/posts/20200107-OS_dispatch.html class=media-left><p class="image is-64x64"><img class=thumbnail src=/gallery/thumbnail/06.jpeg alt=模拟先来先服务、短作业优先、时间片轮转以及最高响应比优先调度算法的JAVA实现></p></a><div class=media-content><div class=content><div><time class="has-text-grey is-size-7 is-uppercase" datetime=2020-01-07T05:42:48.000Z>2020-01-07</time></div><a href=/posts/20200107-OS_dispatch.html class="title has-link-black-ter is-size-6 has-text-weight-normal">模拟先来先服务、短作业优先、时间片轮转以及最高响应比优先调度算法的JAVA实现</a><p class="is-size-7 is-uppercase"><a class="has-link-grey -link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></p></div></div></article><article class=media><a href=/posts/20200107-jishuSort.html class=media-left><p class="image is-64x64"><img class=thumbnail src=/gallery/thumbnail/03.jpeg alt=基数排序-------------java实现></p></a><div class=media-content><div class=content><div><time class="has-text-grey is-size-7 is-uppercase" datetime=2020-01-07T05:42:02.000Z>2020-01-07</time></div><a href=/posts/20200107-jishuSort.html class="title has-link-black-ter is-size-6 has-text-weight-normal">基数排序-------------java实现</a><p class="is-size-7 is-uppercase"><a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a></p></div></div></article><article class=media><a href=/posts/20200107-guibingSort.html class=media-left><p class="image is-64x64"><img class=thumbnail src=/gallery/thumbnail/02.jpeg alt=归并排序-------------java实现></p></a><div class=media-content><div class=content><div><time class="has-text-grey is-size-7 is-uppercase" datetime=2020-01-07T05:41:10.000Z>2020-01-07</time></div><a href=/posts/20200107-guibingSort.html class="title has-link-black-ter is-size-6 has-text-weight-normal">归并排序-------------java实现</a><p class="is-size-7 is-uppercase"><a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a></p></div></div></article></div></div><div class="card widget"><div class=card-content><div class=menu><h3 class=menu-label>归档</h3><ul class=menu-list><li><a class="level is-marginless" href="/archives/2020/01/"><span class=level-start><span class=level-item>一月 2020</span></span> <span class=level-end><span class="level-item tag">15</span></span></a></li></ul></div></div></div><div class="card widget"><div class=card-content><div class=menu><h3 class=menu-label>标签</h3><div class="field is-grouped is-grouped-multiline"><div class=control><a class="tags has-addons" href="/tags/centos7/"><span class=tag>centos7</span> <span class="tag is-grey">1</span></a></div><div class=control><a class="tags has-addons" href="/tags/docker/"><span class=tag>docker</span> <span class="tag is-grey">2</span></a></div><div class=control><a class="tags has-addons" href="/tags/elasticsearch/"><span class=tag>elasticsearch</span> <span class="tag is-grey">1</span></a></div><div class=control><a class="tags has-addons" href="/tags/fdfs/"><span class=tag>fdfs</span> <span class="tag is-grey">1</span></a></div><div class=control><a class="tags has-addons" href="/tags/firewall/"><span class=tag>firewall</span> <span class="tag is-grey">1</span></a></div><div class=control><a class="tags has-addons" href="/tags/gulp-%E5%8E%8B%E7%BC%A9%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90/"><span class=tag>gulp,压缩静态资源</span> <span class="tag is-grey">1</span></a></div><div class=control><a class="tags has-addons" href="/tags/jib/"><span class=tag>jib</span> <span class="tag is-grey">1</span></a></div><div class=control><a class="tags has-addons" href="/tags/linux/"><span class=tag>linux</span> <span class="tag is-grey">2</span></a></div><div class=control><a class="tags has-addons" href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/"><span class=tag>二叉树</span> <span class="tag is-grey">1</span></a></div><div class=control><a class="tags has-addons" href="/tags/%E6%8E%92%E5%BA%8F/"><span class=tag>排序</span> <span class="tag is-grey">7</span></a></div><div class=control><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"><span class=tag>数据结构</span> <span class="tag is-grey">1</span></a></div><div class=control><a class="tags has-addons" href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/"><span class=tag>文件上传</span> <span class="tag is-grey">1</span></a></div><div class=control><a class="tags has-addons" href="/tags/%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/"><span class=tag>调度算法</span> <span class="tag is-grey">1</span></a></div></div></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div></div></div></section><footer class=footer><div class=container><div id=foot-new><div class=level style=text-align:center><div class="level-start has-text-centered-mobile"><a class="footer-logo is-block has-mb-6" href="/"><img src=/images/logo.png alt=一颗小陨石 height=28></a><p class=is-size-7>&copy; 2020 MaoLin Wang&nbsp; <a href="http://beian.miit.gov.cn/">苏ICP备19070231号-1</a><br><span id=busuanzi_container_site_uv>共<span id=busuanzi_value_site_uv>0</span>个访客</span></p></div><div class=level-end></div></div></div></div></footer><script src=https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js></script><script src=https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js></script><script>moment.locale("zh-CN");</script><script>
+<!DOCTYPE html>
+<script src="/js/src/click.js"></script>
+
+<html  lang="zh">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>分类: 数据结构 - 一颗小陨石</title>
+
+
+    <meta property="og:type" content="website">
+<meta property="og:title" content="一颗小陨石">
+<meta property="og:url" content="https://wbml.top/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.html">
+<meta property="og:site_name" content="一颗小陨石">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wbml.top/images/og_image.png">
+<meta property="article:author" content="MaoLin Wang">
+<meta property="article:tag" content="docker">
+<meta property="article:tag" content="springboot">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="数据结构">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wbml.top/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    <script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+	<meta name="sogou_site_verification" content="YLG0ofTESs"/>
+<meta name="360-site-verification" content="a44f3f715e55a4a2e4589897cc3ebd60" />
+	<meta name="baidu-site-verification" content="HWPg36A4P2" />
+	<meta name="google-site-verification" content="V5LVp6ybWL3boDnSNAlThRETW3_r0vTUReVaxHKA5ac" />
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
+<script src="https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget/autoload.js"></script>
+
+</head>
+<body class="is-2-column">
+
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.png" alt="一颗小陨石" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">主页</a>
+                
+                <a class="navbar-item"
+                href="/archives">文章</a>
+                
+                <a class="navbar-item"
+                href="/categories">分类</a>
+                
+                <a class="navbar-item"
+                href="/tags">标签</a>
+                
+                <a class="navbar-item"
+                href="/gallery">相册</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    <a class="navbar-item" target="_blank" rel="noopener" title="My CSDN" href="https://blog.csdn.net/weixin_43696529">
+                        
+                        <i class="fab fa-telegram"></i>
+                        
+                    </a>
+                    
+                    <a class="navbar-item" target="_blank" rel="noopener" title="My Github" href="https://github.com/804434940/804434940.github.io">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-9-desktop is-9-widescreen has-order-2 column-main"><div class="card">
+    <div class="card-content">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/categories">分类</a></li>
+            
+            <li class="is-active"><a href="#" aria-current="page">数据结构</a></li>
+        </ul>
+        </nav>
+    </div>
+</div>
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/posts/20200107-binarytree.html" class="image is-7by1">
+            <img class="thumbnail" src="/gallery/thumbnail/01.jpeg" alt="（复习）二叉树的三种遍历方式、查找和删除----------Java实现">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-01-07T05:44:57.000Z">2020-01-07</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E5%8F%89%E6%A0%91/">二叉树</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    13 分钟 读完 (大约 2012 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/posts/20200107-binarytree.html">（复习）二叉树的三种遍历方式、查找和删除----------Java实现</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="一、概念："><a href="#一、概念：" class="headerlink" title="一、概念："></a>一、概念：</h2><h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3><p>二叉树的每个节点最多只能由两个子节点</p>
+<h4 id="性质："><a href="#性质：" class="headerlink" title="性质："></a>性质：</h4><ol>
+<li>二叉树的第 i 层最多有 2 ^ (i-1) 个节点</li>
+<li>深度为 k （ k≥0 ）的二叉树最少有 k 个节点(一层一个)，最多有 （2^k ）-1 个节点 （空树k=0，只有一个根节点k=1）</li>
+<li>对于任意一个非空二叉树，若其 叶子节点数为 n，度为2的非叶子节点数为 m，则   ==n=m+1==，（度 即节点所拥有的子树的个数）</li>
+<li>如果节点总数为 2^n-1 且所有叶子节点都在最后一层，则该树为==满二叉树==</li>
+<li>如果该二叉树的所有叶子节点都在最后一层或者倒数第二层，而且最后一层的叶子节点在左边连续，倒数第二层的叶子节点在右边连续，则称为==完全二叉树==。<br>如下：<br><img src="https://img-blog.csdnimg.cn/20191105214059994.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzY5NjUyOQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+</ol>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/posts/20200107-binarytree.html#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/posts/20200107-jishuSort.html" class="image is-7by1">
+            <img class="thumbnail" src="/gallery/thumbnail/03.jpeg" alt="基数排序-------------java实现">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-01-07T05:42:02.000Z">2020-01-07</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    6 分钟 读完 (大约 887 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/posts/20200107-jishuSort.html">基数排序-------------java实现</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="一、基本思想"><a href="#一、基本思想" class="headerlink" title="一、基本思想"></a>一、基本思想</h2><p>1.基数排序(Radix Sort)属于分配式排序（distribution sort），又称”桶子法”(Bucket Sort或Bin Sort)，它是通过键值的各个位的值，将要排序的元素分配至某些“桶”中，达到排序的作用。<br>2.基数排序属于稳定的排序，基数排序法的是效率高的稳定性排序法</p>
+<p>3.基数排序(Radix Sort)是桶排序的扩展<br>4.将所有待比较数值统一为同样的数位长度，数位较短的数前面补零。然后，从最低位开始，依次进行一次排序。这样从最低位排序一直到最高位排序完成以后, 数列就变成一个有序序列。</p>
+<ul>
+<li><p>平均时间复杂度： O(n+k)</p>
+</li>
+<li><p>最优情况：   O(n+k)</p>
+</li>
+<li><p>最坏情况：  O(n²)</p>
+</li>
+<li><p>空间复杂度: O(n+k)</p>
+</li>
+<li><p>稳定性： 稳定</p>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/posts/20200107-jishuSort.html#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/posts/20200107-guibingSort.html" class="image is-7by1">
+            <img class="thumbnail" src="/gallery/thumbnail/02.jpeg" alt="归并排序-------------java实现">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-01-07T05:41:10.000Z">2020-01-07</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    5 分钟 读完 (大约 802 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/posts/20200107-guibingSort.html">归并排序-------------java实现</a>
+            
+        </h1>
+        <div class="content">
+            <p>归并排序采用分治策略实现</p>
+<ul>
+<li>平均时间复杂度 : O（nlogn）</li>
+<li>最差时间复杂度: O(nlogn)</li>
+<li>稳定性： 稳定</li>
+<li>空间复杂度：O(n)</li>
+</ul>
+<p>归并排序时以空间换时间的排序方法，空间消耗很大，一般内部排序使用快速排序较多</p>
+<p>假设有这样一组数据：[10,4,8,7,1,3,2,9]</p>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/posts/20200107-guibingSort.html#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/posts/20200107-quickSort.html" class="image is-7by1">
+            <img class="thumbnail" src="/gallery/thumbnail/04.jpeg" alt="快速排序-------------java实现">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-01-07T05:40:22.000Z">2020-01-07</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    6 分钟 读完 (大约 954 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/posts/20200107-quickSort.html">快速排序-------------java实现</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="一、基本思想"><a href="#一、基本思想" class="headerlink" title="一、基本思想"></a>一、基本思想</h1><p>选择一个基准数，通过一趟排序将待排序数据分成两个独立的部分，其中一部分的所有数都比基准数小，另一部分都比基准数大，然后再使用此方法递归对两部分数据进行快排，最终实现整个数据的有序。</p>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/posts/20200107-quickSort.html#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/posts/20200107-shellSort.html" class="image is-7by1">
+            <img class="thumbnail" src="/gallery/thumbnail/01.jpeg" alt="希尔排序-----------java实现">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-01-07T05:39:24.000Z">2020-01-07</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    6 分钟 读完 (大约 935 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/posts/20200107-shellSort.html">希尔排序-----------java实现</a>
+            
+        </h1>
+        <div class="content">
+            <p><strong>首先看一下之前使用简单插入排序存在的问题：</strong></p>
+<p>当存在一个数组，其最后一个数据为最小值，如：arr={5,6,16,34,33,2}</p>
+<p>这样的话需要循环到最后一次，也就是第6次的时候，才可以将2排到前边，效率非常低</p>
+<p>但是希尔排序可以很好的解决这个问题，其是简单插入排序改进后的一个效率较高的排序方式，也叫<strong>缩小增量排序</strong></p>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/posts/20200107-shellSort.html#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/posts/20200107-insertSort.html" class="image is-7by1">
+            <img class="thumbnail" src="/gallery/thumbnail/07.jpeg" alt="插入排序-----------java实现">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-01-07T05:38:04.000Z">2020-01-07</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 分钟 读完 (大约 334 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/posts/20200107-insertSort.html">插入排序-----------java实现</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="一、复杂度"><a href="#一、复杂度" class="headerlink" title="一、复杂度"></a>一、复杂度</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">平均时间复杂度： O(n²)</span><br><span class="line">最差时： O(n²)</span><br><span class="line">是否稳定： 稳定</span><br><span class="line">空间开销： O(1)</span><br><span class="line">在大部分数据已经排好序时性能较好</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/posts/20200107-insertSort.html#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/posts/20200107-selectSort.html" class="image is-7by1">
+            <img class="thumbnail" src="/gallery/thumbnail/02.jpeg" alt="选择排序  ------java实现">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-01-07T05:35:53.000Z">2020-01-07</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 分钟 读完 (大约 576 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/posts/20200107-selectSort.html">选择排序  ------java实现</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="一、选择排序的思想"><a href="#一、选择排序的思想" class="headerlink" title="一、选择排序的思想"></a>一、选择排序的思想</h1><p>第一次从arr[0]~arr[n-1]中选取最小值与arr[0]交换，第二次从arr[1]到arr[n-1]中选取最小值与arr[1]交换，第三次从arr[2]到arr[n-1]中选取最小值与arr[2]交换，以此类推，总共循环n-1次，得到一个从小到大的有序序列。</p>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/posts/20200107-selectSort.html#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/posts/20200107-bubbleSort.html" class="image is-7by1">
+            <img class="thumbnail" src="/gallery/thumbnail/05.jpeg" alt="冒泡排序---------java实现">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-01-07T05:34:27.000Z">2020-01-07</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 分钟 读完 (大约 655 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/posts/20200107-bubbleSort.html">冒泡排序---------java实现</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="一、冒泡排序"><a href="#一、冒泡排序" class="headerlink" title="一、冒泡排序"></a>一、冒泡排序</h3><blockquote>
+<p>平均时间复杂度:  O(n²)<br>最差时： O(n²)<br>是否稳定： 稳定<br>空间开销：O（1）<br>适合n较小时</p>
+</blockquote>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/posts/20200107-bubbleSort.html#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-3-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="" src="/images/avatar.jpeg" alt="一颗小陨石">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        一颗小陨石
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Student
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>中国,江苏</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            15
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            8
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            13
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://blog.csdn.net/weixin_43696529" target="_blank" rel="noopener">
+                关注我</a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Github" href="https://github.com/804434940/804434940.github.io">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="CSDN" href="https://blog.csdn.net/weixin_43696529">
+                
+                <i class="fab fa-telegram"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="QQ" href="tencent://message/?uin=804434940&amp;Site=&amp;Menu=yes">
+                
+                <i class="fab fa-qq"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://blog.csdn.net/weixin_43696529" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">CSDN</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">blog.csdn.net</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/docker/">
+            <span class="level-start">
+                <span class="level-item">docker</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/linux/">
+            <span class="level-start">
+                <span class="level-item">linux</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/springboot/">
+            <span class="level-start">
+                <span class="level-item">springboot</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E5%B7%A5%E5%85%B7/">
+            <span class="level-start">
+                <span class="level-item">工具</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+            <span class="level-start">
+                <span class="level-item">操作系统</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+            <span class="level-start">
+                <span class="level-item">数据结构</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">8</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E5%8F%89%E6%A0%91/">
+            <span class="level-start">
+                <span class="level-item">二叉树</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">
+            <span class="level-start">
+                <span class="level-item">排序</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">7</span>
+            </span>
+        </a></li></ul></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+			
+        </h3>
+        <a href="/tags/centos7/" style="font-size: 10px;">centos7</a> <a href="/tags/docker/" style="font-size: 15px;">docker</a> <a href="/tags/elasticsearch/" style="font-size: 10px;">elasticsearch</a> <a href="/tags/fdfs/" style="font-size: 10px;">fdfs</a> <a href="/tags/firewall/" style="font-size: 10px;">firewall</a> <a href="/tags/gulp-%E5%8E%8B%E7%BC%A9%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90/" style="font-size: 10px;">gulp,压缩静态资源</a> <a href="/tags/jib/" style="font-size: 10px;">jib</a> <a href="/tags/linux/" style="font-size: 15px;">linux</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" style="font-size: 10px;">二叉树</a> <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 20px;">排序</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 10px;">文件上传</a> <a href="/tags/%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/" style="font-size: 10px;">调度算法</a>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/posts/20200111-hexo-gulp.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnail/01.jpeg" alt="hexo压缩静态资源">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-11T14:44:42.000Z">2020-01-11</time></div>
+                    <a href="/posts/20200111-hexo-gulp.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">hexo压缩静态资源</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/posts/20200107-binarytree.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnail/01.jpeg" alt="（复习）二叉树的三种遍历方式、查找和删除----------Java实现">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T05:44:57.000Z">2020-01-07</time></div>
+                    <a href="/posts/20200107-binarytree.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">（复习）二叉树的三种遍历方式、查找和删除----------Java实现</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E5%8F%89%E6%A0%91/">二叉树</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/posts/20200107-OS_dispatch.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnail/06.jpeg" alt="模拟先来先服务、短作业优先、时间片轮转以及最高响应比优先调度算法的JAVA实现">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T05:42:48.000Z">2020-01-07</time></div>
+                    <a href="/posts/20200107-OS_dispatch.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">模拟先来先服务、短作业优先、时间片轮转以及最高响应比优先调度算法的JAVA实现</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/posts/20200107-jishuSort.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnail/03.jpeg" alt="基数排序-------------java实现">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T05:42:02.000Z">2020-01-07</time></div>
+                    <a href="/posts/20200107-jishuSort.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">基数排序-------------java实现</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/posts/20200107-guibingSort.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnail/02.jpeg" alt="归并排序-------------java实现">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T05:41:10.000Z">2020-01-07</time></div>
+                    <a href="/posts/20200107-guibingSort.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">归并排序-------------java实现</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">15</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/centos7/">
+                        <span class="tag">centos7</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/docker/">
+                        <span class="tag">docker</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/elasticsearch/">
+                        <span class="tag">elasticsearch</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/fdfs/">
+                        <span class="tag">fdfs</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/firewall/">
+                        <span class="tag">firewall</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/gulp-%E5%8E%8B%E7%BC%A9%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90/">
+                        <span class="tag">gulp,压缩静态资源</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/jib/">
+                        <span class="tag">jib</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/linux/">
+                        <span class="tag">linux</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/">
+                        <span class="tag">二叉树</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%8E%92%E5%BA%8F/">
+                        <span class="tag">排序</span>
+                        <span class="tag is-grey">7</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                        <span class="tag">数据结构</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">
+                        <span class="tag">文件上传</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/">
+                        <span class="tag">调度算法</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+        </div>
+    
+</div>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container" >
+      <div id="foot-new">
+		  <div class="level" style="text-align:center">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.png" alt="一颗小陨石" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 MaoLin Wang&nbsp;
+                <a href="http://beian.miit.gov.cn/">苏ICP备19070231号-1 </a>
+                
+                <br>
+                <span id="busuanzi_container_site_uv">
+                共<span id="busuanzi_value_site_uv">0</span>个访客
+                </span>
+                
+                </p>
+            </div>
+			
+
+            <div class="level-end">
+            
+            </div>
+			
+	  </div>
+
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+<script>
 var IcarusThemeSettings = {
     site: {
         url: 'https://wbml.top',
@@ -11,7 +1183,33 @@ var IcarusThemeSettings = {
         }
     }
 };
-</script><script src=https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js defer></script><script src=/js/animation.js></script><script src=https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js defer></script><script src=https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js defer></script><script src=/js/gallery.js defer></script><div id=outdated><h6>Your browser is out-of-date!</h6><p>Update your browser to view this website correctly. <a id=btnUpdateBrowser href="http://outdatedbrowser.com/">Update my browser now</a></p><p class=last><a href=# id=btnCloseUpdateBrowser title=Close>&times;</a></p></div><script src=https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js defer></script><script>
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
     document.addEventListener("DOMContentLoaded", function () {
         outdatedBrowser({
             bgColor: '#f25648',
@@ -19,7 +1217,11 @@ var IcarusThemeSettings = {
             lowerThan: 'flex'
         });
     });
-</script><script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script><script>
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
 document.addEventListener('DOMContentLoaded', function () {
     MathJax.Hub.Config({
         'HTML-CSS': {
@@ -39,7 +1241,42 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
-</script><a id=back-to-top title=回到顶端 href=javascript:;><i class="fas fa-chevron-up"></i></a><script src=/js/back-to-top.js defer></script><script src=/js/main.js defer></script><div class="searchbox ins-search"><div class="searchbox-container ins-search-container"><div class=searchbox-input-wrapper><input type=text class="searchbox-input ins-search-input" placeholder=想要查找什么...> <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span></div><div class="searchbox-result-wrapper ins-section-wrapper"><div class=ins-section-container></div></div></div></div><script>
+</script>
+
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
@@ -53,7 +1290,18 @@ document.addEventListener('DOMContentLoaded', function () {
         };
         window.INSIGHT_CONFIG = INSIGHT_CONFIG;
     })(window);
-</script><script src=/js/insight.js defer></script><link rel=stylesheet href=/css/search.css><link rel=stylesheet href=/css/insight.css><script type=text/javascript src=http://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js></script><script type=text/javascript src=/js/src/snow.js></script><style type=text/css>
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+	
+
+	
+	<!--3D飘雪花特效 整理by yaxi.net-->
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/js/src/snow.js"></script>
+	<style type="text/css">
 	.snow-container{
 	position:fixed;
 	top:0;left:0;
@@ -62,4 +1310,15 @@ document.addEventListener('DOMContentLoaded', function () {
 	pointer-events:none;
 	z-index:100001;
 	}
-	</style><div class=snow-container></div><script src=//g.joyinshare.com/hc/ribbon.min.js type=text/javascript></script><script src=//g.joyinshare.com/hc/piao.js type=text/javascript></script><script src=/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"live2d-widget-model-z16"},"display":{"position":"right","width":85,"height":85},"mobile":{"show":true}});</script></body></html>
+	</style>
+	<div class="snow-container"></div>
+	<!-- 样式一（鼠标点击更换样式） -->
+	<script src="//g.joyinshare.com/hc/ribbon.min.js" type="text/javascript"></script>
+	<!-- 样式二（飘动的彩带） -->
+	<script src="//g.joyinshare.com/hc/piao.js" type="text/javascript"></script>
+
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"live2d-widget-model-z16"},"display":{"position":"right","width":85,"height":85},"mobile":{"show":true}});</script></body>
+</html>

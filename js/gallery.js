@@ -1,1 +1,9 @@
-document.addEventListener("DOMContentLoaded",function(){"function"==typeof $.fn.lightGallery&&$(".article").lightGallery({selector:".gallery-item"}),"function"==typeof $.fn.justifiedGallery&&($(".justified-gallery").justifiedGallery(),$(".justified-gallery").justifiedGallery({rowHeight:160,margins:4}))});
+document.addEventListener('DOMContentLoaded', function () {
+    if (typeof ($.fn.lightGallery) === 'function') {
+        $('.article').lightGallery({ selector: '.gallery-item' });
+    }
+    if (typeof ($.fn.justifiedGallery) === 'function') {
+-       $('.justified-gallery').justifiedGallery();
++       $('.justified-gallery').justifiedGallery({rowHeight:160, margins:4});
+    }
+});

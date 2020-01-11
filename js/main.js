@@ -1,1 +1,179 @@
-!function(a){function i(){var i=a(".navbar-main .navbar-start").outerWidth()+a(".navbar-main .navbar-end").outerWidth();a(document).outerWidth()<i?a(".navbar-main .navbar-menu").addClass("is-flex-start"):a(".navbar-main .navbar-menu").removeClass("is-flex-start")}if(a('.article img:not(".not-gallery-item")').each(function(){0===a(this).parent("a").length&&(a(this).wrap('<a class="gallery-item" href="'+a(this).attr("src")+'"></a>'),this.alt&&a(this).after('<div class="has-text-centered is-size-6 has-text-grey caption">'+this.alt+"</div>"))}),"function"==typeof moment&&a(".article-meta time").each(function(){a(this).text(moment(a(this).attr("datetime")).fromNow())}),a(".article > .content > table").each(function(){a(this).width()>a(this).parent().width()&&a(this).wrap('<div class="table-overflow"></div>')}),i(),a(window).resize(i),a("figure.highlight table").wrap('<div class="highlight-body">'),"undefined"!=typeof IcarusThemeSettings&&void 0!==IcarusThemeSettings.article&&void 0!==IcarusThemeSettings.article.highlight){a("figure.highlight").addClass("hljs"),a("figure.highlight .code .line span").each(function(){var i=a(this).attr("class").split(/\s+/);1===i.length&&(a(this).addClass("hljs-"+i[0]),a(this).removeClass(i[0]))}),"undefined"!=typeof ClipboardJS&&IcarusThemeSettings.article.highlight.clipboard&&(a("figure.highlight").each(function(){var i="code-"+Date.now()+(1e3*Math.random()|0),t='<a href="javascript:;" class="copy" title="Copy" data-clipboard-target="#'+i+' .code"><i class="fas fa-copy"></i></a>';a(this).attr("id",i),a(this).find("figcaption").length?a(this).find("figcaption").prepend(t):a(this).prepend("<figcaption>"+t+"</figcaption>")}),new ClipboardJS(".highlight .copy"));var t=IcarusThemeSettings.article.highlight.fold;if(t.trim()){function e(i,t){var e=a(i).find(".fold i");t?a(i).addClass("folded"):a(i).removeClass("folded"),t?e.removeClass("fa-angle-down"):e.removeClass("fa-angle-right"),t?e.addClass("fa-angle-right"):e.addClass("fa-angle-down")}var n='<span class="fold">'+("unfolded"===t?'<i class="fas fa-angle-down"></i>':'<i class="fas fa-angle-right"></i>')+"</span>";a("figure.highlight").each(function(){if(a(this).find("figcaption").length){if(0<a(this).find("figcaption").find("span").length){var i=a(this).find("figcaption").find("span");if(-1<i[0].innerText.indexOf(">folded"))return i[0].innerText=i[0].innerText.replace(">folded",""),n='<span class="fold"><i class="fas fa-angle-right"></i></span>',a(this).find("figcaption").prepend(n),void e(this,!0)}a(this).find("figcaption").prepend(n)}else a(this).prepend("<figcaption>"+n+"</figcaption>");e(this,"folded"===t)}),a("figure.highlight figcaption .fold").click(function(){var i=a(this).closest("figure.highlight");e(i.eq(0),!i.hasClass("folded"))})}}var s=a("#toc");if(0<s.length){function r(){s.toggleClass("is-active"),l.toggleClass("is-active")}var l=a("<div>");l.attr("id","toc-mask"),a("body").append(l),s.on("click",r),l.on("click",r),a(".navbar-main .catalogue").on("click",r)}"undefined"!=typeof IcarusThemeSettings&&void 0!==IcarusThemeSettings.site.url&&void 0!==IcarusThemeSettings.site.external_link&&IcarusThemeSettings.site.external_link.enable&&a(".article .content a").filter(function(i,t){return t.href&&!a(t).attr("href").startsWith("#")&&0===t.classList.length&&function(i,t,e){try{t=new URL(t).hostname}catch(i){}if(!t)return!1;var a=new URL(i,"http://"+t);if("null"===a.origin)return!1;var n=a.hostname;if((e=e&&(Array.isArray(e)?e:[e]))&&e.length){var s=!0,r=!1,l=void 0;try{for(var h,o=e[Symbol.iterator]();!(s=(h=o.next()).done);s=!0){if(n===h.value)return!1}}catch(i){r=!0,l=i}finally{try{!s&&o.return&&o.return()}finally{if(r)throw l}}}return n!==t}(t.href,IcarusThemeSettings.site.url,IcarusThemeSettings.site.external_link.exclude)}).each(function(i,t){t.relList.add("noopener"),t.target="_blank"})}(jQuery);
+(function ($) {
+    $('.article img:not(".not-gallery-item")').each(function () {
+        // wrap images with link and add caption if possible
+        if ($(this).parent('a').length === 0) {
+            $(this).wrap('<a class="gallery-item" href="' + $(this).attr('src') + '"></a>');
+            if (this.alt) {
+                $(this).after('<div class="has-text-centered is-size-6 has-text-grey caption">' + this.alt + '</div>');
+            }
+        }
+    });
+
+    if (typeof (moment) === 'function') {
+        $('.article-meta time').each(function () {
+            $(this).text(moment($(this).attr('datetime')).fromNow());
+        });
+    }
+
+    $('.article > .content > table').each(function () {
+        if ($(this).width() > $(this).parent().width()) {
+            $(this).wrap('<div class="table-overflow"></div>');
+        }
+    });
+
+    function adjustNavbar() {
+        const navbarWidth = $('.navbar-main .navbar-start').outerWidth() + $('.navbar-main .navbar-end').outerWidth();
+        if ($(document).outerWidth() < navbarWidth) {
+            $('.navbar-main .navbar-menu').addClass('is-flex-start');
+        } else {
+            $('.navbar-main .navbar-menu').removeClass('is-flex-start');
+        }
+    }
+    adjustNavbar();
+    $(window).resize(adjustNavbar);
+
+    $('figure.highlight table').wrap('<div class="highlight-body">');
+    if (typeof (IcarusThemeSettings) !== 'undefined' &&
+        typeof (IcarusThemeSettings.article) !== 'undefined' &&
+        typeof (IcarusThemeSettings.article.highlight) !== 'undefined') {
+
+        $('figure.highlight').addClass('hljs');
+        $('figure.highlight .code .line span').each(function () {
+            const classes = $(this).attr('class').split(/\s+/);
+            if (classes.length === 1) {
+                $(this).addClass('hljs-' + classes[0]);
+                $(this).removeClass(classes[0]);
+            }
+        });
+
+        if (typeof (ClipboardJS) !== 'undefined' && IcarusThemeSettings.article.highlight.clipboard) {
+            $('figure.highlight').each(function () {
+                var id = 'code-' + Date.now() + (Math.random() * 1000 | 0);
+                var button = '<a href="javascript:;" class="copy" title="Copy" data-clipboard-target="#' + id + ' .code"><i class="fas fa-copy"></i></a>';
+                $(this).attr('id', id);
+                if ($(this).find('figcaption').length) {
+                    $(this).find('figcaption').prepend(button);
+                } else {
+                    $(this).prepend('<figcaption>' + button + '</figcaption>');
+                }
+            });
+            new ClipboardJS('.highlight .copy');
+        }
+        var fold = IcarusThemeSettings.article.highlight.fold;
+        if (fold.trim()) {
+            var button = '<span class="fold">' + (fold === 'unfolded' ? '<i class="fas fa-angle-down"></i>' : '<i class="fas fa-angle-right"></i>') + '</span>';
+            $('figure.highlight').each(function () {
+                if ($(this).find('figcaption').length) {
+
+                    // 此处find ">folded" span,如果有自定义code头,并且">folded"进行处理
+                    // 使用示例，.md 文件中头行标记">folded"
+                    // ```java main.java >folded
+                    // import main.java
+                    // private static void main(){
+                    //     // test
+                    //     int i = 0;
+                    //     return i;
+                    // }
+                    // ```
+                    if ($(this).find('figcaption').find('span').length > 0) {
+                        let spanArr = $(this).find('figcaption').find('span');
+                        if (spanArr[0].innerText.indexOf(">folded") > -1) {
+                            // 去掉folded
+                            spanArr[0].innerText = spanArr[0].innerText.replace(">folded", "")
+                            button = '<span class="fold"><i class="fas fa-angle-right"></i></span>';
+                            $(this).find('figcaption').prepend(button);
+
+                            // 收叠代码块
+                            toggleFold(this, true);
+                            return;
+                        }
+                    }
+                    $(this).find('figcaption').prepend(button);
+                } else {
+                    $(this).prepend('<figcaption>' + button + '</figcaption>');
+                }
+                toggleFold(this, fold === 'folded');
+            });
+
+            function toggleFold(codeBlock, isFolded) {
+                var $toggle = $(codeBlock).find('.fold i');
+                !isFolded ? $(codeBlock).removeClass('folded') : $(codeBlock).addClass('folded');
+                !isFolded ? $toggle.removeClass('fa-angle-right') : $toggle.removeClass('fa-angle-down');
+                !isFolded ? $toggle.addClass('fa-angle-down') : $toggle.addClass('fa-angle-right');
+            }
+
+            // $('figure.highlight').each(function () {
+            //     toggleFold(this, fold === 'folded');
+            // });
+            $('figure.highlight figcaption .fold').click(function () {
+                var $code = $(this).closest('figure.highlight');
+                toggleFold($code.eq(0), !$code.hasClass('folded'));
+            });
+        }
+    }
+
+    var $toc = $('#toc');
+    if ($toc.length > 0) {
+        var $mask = $('<div>');
+        $mask.attr('id', 'toc-mask');
+
+        $('body').append($mask);
+
+        function toggleToc() {
+            $toc.toggleClass('is-active');
+            $mask.toggleClass('is-active');
+        }
+
+        $toc.on('click', toggleToc);
+        $mask.on('click', toggleToc);
+        $('.navbar-main .catalogue').on('click', toggleToc);
+    }
+
+    // hexo-util/lib/is_external_link.js
+    function isExternalLink(input, sitehost, exclude) {
+        try {
+            sitehost = new URL(sitehost).hostname;
+        } catch (e) { }
+
+        if (!sitehost) return false;
+
+        // handle relative url
+        const data = new URL(input, 'http://' + sitehost);
+
+        // handle mailto: javascript: vbscript: and so on
+        if (data.origin === 'null') return false;
+
+        const host = data.hostname;
+
+        if (exclude) {
+            exclude = Array.isArray(exclude) ? exclude : [exclude];
+
+            if (exclude && exclude.length) {
+                for (const i of exclude) {
+                    if (host === i) return false;
+                }
+            }
+        }
+
+        if (host !== sitehost) return true;
+
+        return false;
+    }
+
+    if (typeof (IcarusThemeSettings) !== 'undefined' &&
+        typeof (IcarusThemeSettings.site.url) !== 'undefined' &&
+        typeof (IcarusThemeSettings.site.external_link) !== 'undefined' &&
+        IcarusThemeSettings.site.external_link.enable) {
+        $('.article .content a').filter(function (i, link) {
+            return link.href &&
+                !$(link).attr('href').startsWith('#') &&
+                link.classList.length === 0 &&
+                isExternalLink(link.href,
+                    IcarusThemeSettings.site.url,
+                    IcarusThemeSettings.site.external_link.exclude);
+        }).each(function (i, link) {
+            link.relList.add('noopener');
+            link.target = '_blank';
+        });
+    }
+})(jQuery);
