@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://wbml.top/posts/20200111-hexo-gulp.html</loc>
+    
+    <lastmod>2020-01-11T15:06:13.748Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://wbml.top/posts/20200107-centos7_firewall.html</loc>
     
     <lastmod>2020-01-11T13:44:10.909Z</lastmod>
@@ -96,13 +103,6 @@
     <loc>https://wbml.top/posts/20200107-selectSort.html</loc>
     
     <lastmod>2020-01-11T13:37:07.718Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wbml.top/gallery/index.html</loc>
-    
-    <lastmod>2020-01-10T13:34:34.643Z</lastmod>
     
   </url>
   
