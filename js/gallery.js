@@ -3,7 +3,9 @@ document.addEventListener('DOMContentLoaded', function () {
         $('.article').lightGallery({ selector: '.gallery-item' });
     }
     if (typeof ($.fn.justifiedGallery) === 'function') {
--       $('.justified-gallery').justifiedGallery();
-+       $('.justified-gallery').justifiedGallery({rowHeight:160, margins:4});
+        if ($('.justified-gallery > p > .gallery-item').length) {
+            $('.justified-gallery > p > .gallery-item').unwrap();
+        }
+        $('.justified-gallery').justifiedGallery();
     }
 });
