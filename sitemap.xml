@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://wbml.top/posts/20200111-hexo-gulp.html</loc>
+    
+    <lastmod>2020-01-23T07:43:53.822Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://wbml.top/posts/20200123-ForkJoin.html</loc>
     
-    <lastmod>2020-01-23T07:40:15.002Z</lastmod>
+    <lastmod>2020-01-23T07:43:29.879Z</lastmod>
     
   </url>
   
@@ -19,13 +26,6 @@
     <loc>https://wbml.top/gallery/index.html</loc>
     
     <lastmod>2020-01-12T00:46:47.770Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wbml.top/posts/20200111-hexo-gulp.html</loc>
-    
-    <lastmod>2020-01-11T15:35:55.396Z</lastmod>
     
   </url>
   
