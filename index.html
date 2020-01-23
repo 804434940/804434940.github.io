@@ -151,6 +151,73 @@
 <div class="card">
     
     <div class="card-image">
+        <a href="/posts/20200123-fork/join.html" class="image is-7by1">
+            <img class="thumbnail" src="/gallery/thumbnail/01.jpeg" alt="java并发编程之Fork-Join分治编程">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-01-23T07:28:05.000Z">2020-01-23</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">并发编程</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    7 分钟 读完 (大约 977 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/posts/20200123-fork/join.html">java并发编程之Fork-Join分治编程</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="一、Fork-Join框架"><a href="#一、Fork-Join框架" class="headerlink" title="一、Fork-Join框架"></a>一、Fork-Join框架</h3><p>   forkjoin即分而治之，在几大排序算法中，快速排序、归并排序、二分查找均用到了分治的思想，即将一个大问题，逐一分解为一个个小问题，将各个子问题的解最终合并为最终解。这里也是如此，将一个大任务分解成若干个小任务（fork），再将这若干的小任务的执行结果进行合并（join）。</p>
+<h3 id="二、工作密取"><a href="#二、工作密取" class="headerlink" title="二、工作密取"></a>二、工作密取</h3><p>fork-join采用工作密取的方式实现线程的工作负载。forkjoinPool中维护了多个线程执行分下的小任务，当当前线程的任务结束后，会自动获取其他线程的任务继续执行，同时也会根据当前工作线程的空闲情况去获取任务较多的线程的task，以达到线程间的平衡，提供CPU利用率。</p>
+<h3 id="三、fork-join的实现"><a href="#三、fork-join的实现" class="headerlink" title="三、fork-join的实现"></a>三、fork-join的实现</h3><p>forkjoin框架提供了两个子类供我们继承使用。<br>分别是：<br><strong>==1.RecursiveAction==</strong><br>此类主要用于没有返回值的任务。<br><strong>==2.RecursiveTask==</strong><br>此类主要用于有返回值的任务</p>
+<p>两个类都提供了compute的方法，用于生成、调用子任务，完成分治运算。在compute方法中，需要判断当前任务是否达到设置的阈值，如果小于该值，则直接执行，否则，将该任务分割成两个小任务，再让两个小任务调用invokeAll方法，会再次进入compute方法，重复以上工作。最后使用join方法等到子任务执行结束获取其运行的结果，合并即可。</p>
+<blockquote>
+<p>这里使用invokeAll而不是用invoke主要是因为，如果使用invoke会使任务分离开，两个任务中只工作一个任务，而使用invokeAll可以让两个任务同时工作，提供效率。</p>
+</blockquote>
+<ul>
+<li><p>fork-join的任务是通过ForkJoinPool池来执行，其提供了两种提交方式，submit和invoke，其中，submit是异步提交，不需要等待任务运行完毕即可运行sumbit之后的代码；相反，invoke是同步执行，必须等待任务完成才会执行invoke之后的代码。</p>
+<h3 id="四、使用Foke-Join实现数组求和"><a href="#四、使用Foke-Join实现数组求和" class="headerlink" title="四、使用Foke-Join实现数组求和"></a>四、使用Foke-Join实现数组求和</h3></li>
+</ul>
+<h4 id="4-1创建求和任务类"><a href="#4-1创建求和任务类" class="headerlink" title="4.1创建求和任务类"></a>4.1创建求和任务类</h4><p>自定义阈值，当任务低于该阈值时直接执行，否则进行分割，任务执行完毕后返回子任务合并的结果。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AddTask</span> <span class="keyword">extends</span> <span class="title">RecursiveTask</span>&lt;<span class="title">Integer</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 阈值</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> THRESHOLD=<span class="number">10</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] nums;</span><br><span class="line">    <span class="comment">//左边界</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> left;</span><br><span class="line">    <span class="comment">//右边界</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> right;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AddTask</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.nums = nums;</span><br><span class="line">        <span class="keyword">this</span>.left = left;</span><br><span class="line">        <span class="keyword">this</span>.right = right;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 生成随机数组</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] randomNum()&#123;</span><br><span class="line">        Random r = <span class="keyword">new</span> Random();</span><br><span class="line">        <span class="keyword">int</span>[] nums = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">100</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">100</span>;i++)&#123;</span><br><span class="line">            nums[i] =  r.nextInt(<span class="number">100</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nums;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> Integer <span class="title">compute</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (right-left&lt;THRESHOLD)&#123;</span><br><span class="line">            <span class="comment">//任务在阈值范围内，符合要求，执行执行任务</span></span><br><span class="line">            <span class="keyword">int</span> sum=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = left; i &lt;= right; i++) &#123;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    TimeUnit.MILLISECONDS.sleep(<span class="number">1</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                sum+=nums[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> sum;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">//任务太大，需要分割成小任务</span></span><br><span class="line">            <span class="keyword">int</span> mid=(left+right)/<span class="number">2</span>;</span><br><span class="line">            AddTask leftTask=<span class="keyword">new</span> AddTask(nums,left,mid);</span><br><span class="line">            AddTask rightTask=<span class="keyword">new</span> AddTask(nums,mid+<span class="number">1</span>,right);</span><br><span class="line">            invokeAll(leftTask,rightTask);</span><br><span class="line">            <span class="comment">//返回子任务合并的结果</span></span><br><span class="line">            <span class="keyword">return</span> leftTask.join()+rightTask.join();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="4-2创建Add类调用任务类"><a href="#4-2创建Add类调用任务类" class="headerlink" title="4.2创建Add类调用任务类"></a>4.2创建Add类调用任务类</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> */</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Add</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ForkJoinPool forkJoinPool=<span class="keyword">new</span> ForkJoinPool();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span>[] nums = AddTask.randomNum();</span><br><span class="line">        System.out.println(<span class="string">"待求和数组:"</span>+ Arrays.toString(nums));</span><br><span class="line">        <span class="comment">//创建求和任务</span></span><br><span class="line">        AddTask addTask=<span class="keyword">new</span> AddTask(nums,<span class="number">0</span>,nums.length-<span class="number">1</span>);</span><br><span class="line">        forkJoinPool.invoke(addTask);</span><br><span class="line">        System.out.println(<span class="string">"求和中。。"</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"和为:"</span>+addTask.join());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>结果：</strong><br>待求和数组:[34, 38, 71, 98, 38, 51, 35, 67, 59, 58, 33, 64, 65, 40, 30, 49, 67, 15, 4, 3, 5, 10, 94, 17, 24, 43, 94, 52, 53, 81, 7, 70, 25, 90, 96, 3, 84, 73, 54, 11, 42, 97, 18, 11, 95, 28, 14, 74, 95, 91, 53, 48, 69, 71, 91, 64, 25, 72, 3, 74, 77, 90, 22, 36, 77, 86, 41, 53, 92, 15, 30, 5, 51, 86, 60, 49, 76, 91, 15, 38, 55, 37, 24, 58, 53, 58, 75, 77, 34, 41, 88, 50, 91, 25, 56, 83, 14, 3, 75, 7]<br>求和中。。<br>和为:5134</p>
+<p>而如果使用submit提交，将数组大小改为10000，就可看到求和中一句话是在任务执行完毕后才会打印，体现同步性。</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
         <a href="/posts/20200111-hexo-gulp.html" class="image is-7by1">
             <img class="thumbnail" src="/gallery/thumbnail/01.jpeg" alt="hexo压缩静态资源">
         </a>
@@ -408,73 +475,6 @@
 
 
 
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/posts/20200107-guibingSort.html" class="image is-7by1">
-            <img class="thumbnail" src="/gallery/thumbnail/02.jpeg" alt="归并排序-------------java实现">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-01-07T05:41:10.000Z">2020-01-07</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    5 分钟 读完 (大约 802 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/posts/20200107-guibingSort.html">归并排序-------------java实现</a>
-            
-        </h1>
-        <div class="content">
-            <p>归并排序采用分治策略实现</p>
-<ul>
-<li>平均时间复杂度 : O（nlogn）</li>
-<li>最差时间复杂度: O(nlogn)</li>
-<li>稳定性： 稳定</li>
-<li>空间复杂度：O(n)</li>
-</ul>
-<p>归并排序时以空间换时间的排序方法，空间消耗很大，一般内部排序使用快速排序较多</p>
-<p>假设有这样一组数据：[10,4,8,7,1,3,2,9]</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/posts/20200107-guibingSort.html#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -492,6 +492,8 @@
             <li><a class="pagination-link has-text-black-ter" href="/page/2/">2</a></li>
             
             <li><a class="pagination-link has-text-black-ter" href="/page/3/">3</a></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/page/4/">4</a></li>
             
         </ul>
     </nav>
@@ -542,7 +544,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            15
+                            16
                         </p>
                     </a>
                 </div>
@@ -554,7 +556,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            8
+                            9
                         </p>
                     </a>
                 </div>
@@ -566,7 +568,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            13
+                            16
                         </p>
                     </a>
                 </div>
@@ -676,6 +678,14 @@
                 <span class="level-item tag">1</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">
+            <span class="level-start">
+                <span class="level-item">并发编程</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
             <span class="level-start">
                 <span class="level-item">操作系统</span>
@@ -719,7 +729,7 @@
             标签云
 			
         </h3>
-        <a href="/tags/centos7/" style="font-size: 10px;">centos7</a> <a href="/tags/docker/" style="font-size: 15px;">docker</a> <a href="/tags/elasticsearch/" style="font-size: 10px;">elasticsearch</a> <a href="/tags/fdfs/" style="font-size: 10px;">fdfs</a> <a href="/tags/firewall/" style="font-size: 10px;">firewall</a> <a href="/tags/gulp-%E5%8E%8B%E7%BC%A9%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90/" style="font-size: 10px;">gulp,压缩静态资源</a> <a href="/tags/jib/" style="font-size: 10px;">jib</a> <a href="/tags/linux/" style="font-size: 15px;">linux</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" style="font-size: 10px;">二叉树</a> <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 20px;">排序</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 10px;">文件上传</a> <a href="/tags/%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/" style="font-size: 10px;">调度算法</a>
+        <a href="/tags/centos7/" style="font-size: 10px;">centos7</a> <a href="/tags/docker/" style="font-size: 15px;">docker</a> <a href="/tags/elasticsearch/" style="font-size: 10px;">elasticsearch</a> <a href="/tags/fdfs/" style="font-size: 10px;">fdfs</a> <a href="/tags/firewall/" style="font-size: 10px;">firewall</a> <a href="/tags/fork-join/" style="font-size: 10px;">fork-join</a> <a href="/tags/gulp-%E5%8E%8B%E7%BC%A9%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90/" style="font-size: 10px;">gulp,压缩静态资源</a> <a href="/tags/jib/" style="font-size: 10px;">jib</a> <a href="/tags/linux/" style="font-size: 15px;">linux</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" style="font-size: 10px;">二叉树</a> <a href="/tags/%E5%88%86%E6%B2%BB/" style="font-size: 10px;">分治</a> <a href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">并发编程</a> <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 20px;">排序</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 10px;">文件上传</a> <a href="/tags/%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/" style="font-size: 10px;">调度算法</a>
     </div>
 </div>
     
@@ -728,6 +738,25 @@
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/posts/20200123-fork/join.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnail/01.jpeg" alt="java并发编程之Fork-Join分治编程">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-23T07:28:05.000Z">2020-01-23</time></div>
+                    <a href="/posts/20200123-fork/join.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">java并发编程之Fork-Join分治编程</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">并发编程</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -805,25 +834,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/posts/20200107-guibingSort.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/gallery/thumbnail/02.jpeg" alt="归并排序-------------java实现">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T05:41:10.000Z">2020-01-07</time></div>
-                    <a href="/posts/20200107-guibingSort.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">归并排序-------------java实现</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -841,7 +851,7 @@
                     <span class="level-item">一月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">15</span>
+                    <span class="level-item tag">16</span>
                 </span>
             </a>
         </li>
@@ -895,6 +905,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/fork-join/">
+                        <span class="tag">fork-join</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/gulp-%E5%8E%8B%E7%BC%A9%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90/">
                         <span class="tag">gulp,压缩静态资源</span>
                         <span class="tag is-grey">1</span>
@@ -918,6 +935,20 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/">
                         <span class="tag">二叉树</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%88%86%E6%B2%BB/">
+                        <span class="tag">分治</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">
+                        <span class="tag">并发编程</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1145,10 +1176,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 	</style>
 	<div class="snow-container"></div>
-	<!-- 样式一（鼠标点击更换样式） -->
-	<script src="//g.joyinshare.com/hc/ribbon.min.js" type="text/javascript"></script>
-	<!-- 样式二（飘动的彩带） -->
-	<script src="//g.joyinshare.com/hc/piao.js" type="text/javascript"></script>
+
 
 
 
