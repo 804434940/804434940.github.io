@@ -9,12 +9,12 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>分类: 并发编程 - 一颗小陨石</title>
+<title>标签: Semaphore - 一颗小陨石</title>
 
 
     <meta property="og:type" content="website">
 <meta property="og:title" content="一颗小陨石">
-<meta property="og:url" content="https://wbml.top/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/index.html">
+<meta property="og:url" content="https://wbml.top/tags/Semaphore/index.html">
 <meta property="og:site_name" content="一颗小陨石">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://wbml.top/images/og_image.png">
@@ -150,9 +150,8 @@
     <div class="card-content">
         <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
-            <li><a href="/categories">分类</a></li>
-            
-            <li class="is-active"><a href="#" aria-current="page">并发编程</a></li>
+            <li><a href="/tags">标签</a></li>
+            <li class="is-active"><a href="#" aria-current="page">Semaphore</a></li>
         </ul>
         </nav>
     </div>
@@ -253,65 +252,6 @@
 <h5 id="semaphore示例："><a href="#semaphore示例：" class="headerlink" title="semaphore示例："></a>semaphore示例：</h5><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">package com.wml.test1.semphore;</span><br><span class="line"></span><br><span class="line">import java.sql.Connection;</span><br><span class="line">import java.util.LinkedList;</span><br><span class="line">import java.util.Random;</span><br><span class="line">import java.util.concurrent.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Wang</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020/1/2416:31</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SemphoreTest</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> int POOL_SIZE=<span class="number">10</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Semaphore connections;</span><br><span class="line">    <span class="comment">//连接池</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> LinkedList&lt;Integer&gt;pool;</span><br><span class="line">    <span class="keyword">public</span> SemphoreTest() &#123;</span><br><span class="line">        pool=<span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        <span class="comment">//初始化连接池</span></span><br><span class="line">        <span class="keyword">for</span> (int i = <span class="number">0</span>; i &lt; POOL_SIZE; i++) &#123;</span><br><span class="line">            pool.addLast(i);</span><br><span class="line">        &#125;</span><br><span class="line">        this.connections = <span class="keyword">new</span> Semaphore(POOL_SIZE);</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">//释放连接</span></span><br><span class="line">    <span class="keyword">public</span> void release(Integer conn)&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(conn!=<span class="keyword">null</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">"当前有"</span>+connections.getQueueLength()+<span class="string">"个线程等待数据库连接!!"</span></span><br><span class="line">                    +<span class="string">"可用连接数："</span>+connections.availablePermits());</span><br><span class="line">            synchronized (pool) &#123;</span><br><span class="line">                pool.addLast(conn);</span><br><span class="line">            &#125;</span><br><span class="line">            connections.release();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">//获取连接</span></span><br><span class="line">    <span class="keyword">public</span> Integer acquire() throws InterruptedException &#123;</span><br><span class="line">        connections.acquire();</span><br><span class="line">        Integer conn;</span><br><span class="line">        synchronized (pool)&#123;</span><br><span class="line">            conn=pool.removeFirst();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> conn;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> void main(String[] args) &#123;</span><br><span class="line">        SemphoreTest dbPool=<span class="keyword">new</span> SemphoreTest();</span><br><span class="line">        ExecutorService pool = <span class="keyword">new</span> ThreadPoolExecutor(<span class="number">50</span>,<span class="number">100</span>,<span class="number">0</span>L, TimeUnit.MILLISECONDS, <span class="keyword">new</span> LinkedBlockingDeque&lt;&gt;());</span><br><span class="line">		<span class="comment">//50个线程获取连接</span></span><br><span class="line">        <span class="keyword">for</span> (int i = <span class="number">0</span>; i &lt; <span class="number">50</span>; i++) &#123;</span><br><span class="line">            pool.execute(()-&gt;&#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    Integer conn=dbPool.acquire();</span><br><span class="line">                    System.out.println(Thread.currentThread().getName()</span><br><span class="line">                            +<span class="string">"--------获取数据库连接"</span>);</span><br><span class="line">                    Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">                    System.out.println(<span class="string">"归还连接"</span>);</span><br><span class="line">                    dbPool.release(conn);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         </div>
         
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/posts/20200123-ForkJoin.html" class="image is-7by1">
-            <img class="thumbnail" src="/gallery/thumbnail/08.jpeg" alt="java并发编程之Fork-Join分治编程">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-01-23T07:28:05.000Z">2020-01-23</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">并发编程</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E5%B9%B6%E5%8F%91%E5%B7%A5%E5%85%B7%E7%B1%BB/">并发工具类</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    7 分钟 读完 (大约 978 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/posts/20200123-ForkJoin.html">java并发编程之Fork-Join分治编程</a>
-            
-        </h1>
-        <div class="content">
-            <h3 id="一、Fork-Join框架"><a href="#一、Fork-Join框架" class="headerlink" title="一、Fork-Join框架"></a>一、Fork-Join框架</h3><p>   forkjoin即分而治之，在几大排序算法中，快速排序、归并排序、二分查找均用到了分治的思想，即将一个大问题，逐一分解为一个个小问题，将各个子问题的解最终合并为最终解。这里也是如此，将一个大任务分解成若干个小任务（fork），再将这若干的小任务的执行结果进行合并（join）。</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/posts/20200123-ForkJoin.html#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
         
         
     </div>
