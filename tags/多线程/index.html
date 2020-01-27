@@ -9,25 +9,22 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>centos7查看防火墙以及开放和关闭端口 - 一颗小陨石</title>
+<title>标签: 多线程 - 一颗小陨石</title>
 
 
-    <meta name="description" content="查看某个端口是否开放  1firewall-cmd --query-port&#x3D;22122&#x2F;tcp">
-<meta property="og:type" content="article">
-<meta property="og:title" content="centos7查看防火墙以及开放和关闭端口">
-<meta property="og:url" content="https://wbml.top/posts/20200107-centos7_firewall.html">
+    <meta property="og:type" content="website">
+<meta property="og:title" content="一颗小陨石">
+<meta property="og:url" content="https://wbml.top/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/index.html">
 <meta property="og:site_name" content="一颗小陨石">
-<meta property="og:description" content="查看某个端口是否开放  1firewall-cmd --query-port&#x3D;22122&#x2F;tcp">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://wbml.top/gallery/thumbnail/08.jpeg">
-<meta property="article:published_time" content="2020-01-07T05:31:44.000Z">
-<meta property="article:modified_time" content="2020-01-11T13:44:10.909Z">
+<meta property="og:image" content="https://wbml.top/images/og_image.png">
 <meta property="article:author" content="MaoLin Wang">
-<meta property="article:tag" content="centos7">
-<meta property="article:tag" content="防火墙">
-<meta property="article:tag" content="端口">
+<meta property="article:tag" content="docker">
+<meta property="article:tag" content="springboot">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://wbml.top/gallery/thumbnail/08.jpeg">
+<meta name="twitter:image" content="https://wbml.top/images/og_image.png">
 
 
 
@@ -94,7 +91,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.png" alt="centos7查看防火墙以及开放和关闭端口" height="28">
+                <img src="/images/logo.png" alt="一颗小陨石" height="28">
             
             </a>
         </div>
@@ -149,182 +146,81 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-9-desktop is-9-widescreen has-order-2 column-main">
+                <div class="column is-8-tablet is-9-desktop is-9-widescreen has-order-2 column-main"><div class="card">
+    <div class="card-content">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/tags">标签</a></li>
+            <li class="is-active"><a href="#" aria-current="page">多线程</a></li>
+        </ul>
+        </nav>
+    </div>
+</div>
+
+    
 <div class="card">
     
     <div class="card-image">
-        <span  class="image is-7by1">
-            <img class="thumbnail" src="/gallery/thumbnail/08.jpeg" alt="centos7查看防火墙以及开放和关闭端口">
-        </span>
+        <a href="/posts/20200127-runcalfutask.html" class="image is-7by1">
+            <img class="thumbnail" src="/gallery/thumbnail/09.jpeg" alt="java多线程之Callable+Future+FutureTask原理详解和简单使用">
+        </a>
     </div>
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-01-07T05:31:44.000Z">2020-01-07</time>
+                <time class="level-item has-text-grey" datetime="2020-01-27T15:42:22.000Z">2020-01-27</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/linux/">linux</a>
+                <a class="has-link-grey -link" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">并发编程</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E5%B9%B6%E5%8F%91%E5%B7%A5%E5%85%B7%E7%B1%BB/">并发工具类</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    1 分钟 读完 (大约 197 个字)
+                    25 分钟 读完 (大约 3747 个字)
                 </span>
                 
-                
-                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
-                    <i class="far fa-eye"></i>
-                    <span id="busuanzi_value_page_pv">0</span>次访问
-                </span>
                 
             </div>
         </div>
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                centos7查看防火墙以及开放和关闭端口
+                <a class="has-link-black-ter" href="/posts/20200127-runcalfutask.html">java多线程之Callable+Future+FutureTask原理详解和简单使用</a>
             
         </h1>
         <div class="content">
-            <ol>
-<li>查看某个端口是否开放</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --query-port=22122/tcp</span><br></pre></td></tr></table></figure>
-
-<a id="more"></a>
-
-<p>yes/no  开放/未开放</p>
-<ol start="2">
-<li>开放指定端口<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --add-port=22122/tcp --permanent</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<blockquote>
-<p>firewall-cmd –zone=public –add-port=80/tcp –permanent<br>-zone #作用域<br>-permanent 没有该参数重启后失效</p>
-</blockquote>
-<p>重新加载端口：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
-<p> 3.关闭某个端口</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --permanent --remove-port=22122/tcp</span><br></pre></td></tr></table></figure>
-<p>重新加载<br> 4. 查看防火墙状态</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --state</span><br><span class="line">或者:</span><br><span class="line">systemctl status firewalld</span><br></pre></td></tr></table></figure>
-<ol start="5">
-<li>打开/关闭防火墙</li>
-</ol>
-<blockquote>
-<p>启动：systemctl start firewalld<br>关闭： systemctl stop firewalld<br>开机启用 ： systemctl enable firewalld<br>禁止firewall开机启动 ：systemctl disable firewalld.service<br>启动服务：systemctl start firewalld.service<br>关闭服务：systemctl stop firewalld.service<br>重启服务：systemctl restart firewalld.service</p>
-</blockquote>
-<ol start="6">
-<li>查看端口占用情况</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -anp</span><br></pre></td></tr></table></figure>
-
-<ol start="7">
-<li>查看防火墙已开放的端口</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --list-ports</span><br></pre></td></tr></table></figure>
-
-
+            <h3 id="一、Runnable和Callable"><a href="#一、Runnable和Callable" class="headerlink" title="一、Runnable和Callable"></a>一、Runnable和Callable</h3><p><code>Runnable</code>是一个接口，只声明了一个<code>run()</code>方法，此方法为void类型，所以只能执行无返回值的任务。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Callable是java.util.concurrent包下的一个接口，提供了一个call()方法:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Callable</span>&lt;<span class="title">V</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Computes a result, or throws an exception if unable to do so.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> computed result</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Exception if unable to compute a result</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function">V <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该方法返回的数据类型就是传进来的泛型类型，主要用于计算产生结果。如果没有计算出结果，则会抛出异常。</p>
         </div>
         
-        <div class="level is-size-7 is-uppercase">
+        
+        <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/centos7/" rel="tag">centos7</a>, <a class="has-link-grey -link" href="/tags/firewall/" rel="tag">firewall</a>, <a class="has-link-grey -link" href="/tags/linux/" rel="tag">linux</a>
+                <a class="button is-size-7 is-light" href="/posts/20200127-runcalfutask.html#more">阅读更多</a>
                 </div>
             </div>
         </div>
         
         
-        
-        <div class="social-share"></div>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
-<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
-        
     </div>
 </div>
 
 
 
-<div class="card">
-    <div class="card-content">
-        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
-        <div class="buttons is-centered">
-            
-                
-<a class="button is-info donate">
-    <span class="icon is-small">
-        <i class="fab fa-alipay"></i>
-    </span>
-    <span>支付宝</span>
-    <div class="qrcode"><img src="/images/alipay.jpg" alt="支付宝"></div>
-</a>
-
-                
-                
-<a class="button is-success donate">
-    <span class="icon is-small">
-        <i class="fab fa-weixin"></i>
-    </span>
-    <span>微信</span>
-    <div class="qrcode"><img src="/images/wechatpay.png" alt="微信"></div>
-</a>
-
-                
-        </div>
-    </div>
-</div>
 
 
 
-<div class="card card-transparent">
-    <div class="level post-navigation is-flex-wrap is-mobile">
-        
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/posts/20200107-bubbleSort.html">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">冒泡排序---------java实现</span>
-            </a>
-        </div>
-        
-        
-        <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/posts/20200106-linux_file_1.html">
-                <span class="level-item">Linux命令整理-------------文件管理相关(一)</span>
-                <i class="level-item fas fa-chevron-right"></i>
-            </a>
-        </div>
-        
-    </div>
-</div>
 
 
 
-<div class="card">
-    <div class="card-content">
-        <h3 class="title is-5 has-text-weight-normal">评论</h3>
-        
-<div id="valine-thread" class="content"></div>
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js"></script>
-<script>
-    new Valine({
-        el: '#valine-thread' ,
-        notify: false,
-        verify: true,
-        app_id: 'SVCDAnf08SY2EwoCRCSASyoS-gzGzoHsz',
-        app_key: '9NEI7yw8OtqwvHIiA5FkbhP4',
-        placeholder: '快来发表你的评论吧~'
-    });
-</script>
-
-    </div>
-</div>
 </div>
                 
 
@@ -894,7 +790,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.png" alt="centos7查看防火墙以及开放和关闭端口" height="28">
+                    <img src="/images/logo.png" alt="一颗小陨石" height="28">
                 
                 </a>
                 <p class="is-size-7">
