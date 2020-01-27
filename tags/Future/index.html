@@ -9,12 +9,12 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>标签: 并发编程 - 一颗小陨石</title>
+<title>标签: Future - 一颗小陨石</title>
 
 
     <meta property="og:type" content="website">
 <meta property="og:title" content="一颗小陨石">
-<meta property="og:url" content="https://wbml.top/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/index.html">
+<meta property="og:url" content="https://wbml.top/tags/Future/index.html">
 <meta property="og:site_name" content="一颗小陨石">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://wbml.top/images/og_image.png">
@@ -151,7 +151,7 @@
         <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
             <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">并发编程</a></li>
+            <li class="is-active"><a href="#" aria-current="page">Future</a></li>
         </ul>
         </nav>
     </div>
@@ -270,124 +270,6 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Callable子线程开始计算！</span><br><span class="line">sum=<span class="number">0</span></span><br><span class="line">sum=<span class="number">1</span></span><br><span class="line">sum=<span class="number">3</span></span><br><span class="line">sum=<span class="number">6</span></span><br><span class="line">sum=<span class="number">10</span></span><br><span class="line">sum=<span class="number">15</span></span><br><span class="line">sum=<span class="number">21</span></span><br><span class="line">Cancel................. </span><br><span class="line">sum=<span class="number">28</span></span><br><span class="line">Callable子线程计算任务中断！</span><br></pre></td></tr></table></figure>
         </div>
         
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/posts/20200124-cdlcbs.html" class="image is-7by1">
-            <img class="thumbnail" src="/gallery/thumbnail/07.jpeg" alt="java并发编程之CountDownLatch,CyclicBarrier和Semaphore">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-01-24T08:55:24.000Z">2020-01-24</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">并发编程</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E5%B9%B6%E5%8F%91%E5%B7%A5%E5%85%B7%E7%B1%BB/">并发工具类</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    21 分钟 读完 (大约 3118 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/posts/20200124-cdlcbs.html">java并发编程之CountDownLatch,CyclicBarrier和Semaphore</a>
-            
-        </h1>
-        <div class="content">
-            <h3 id="一、CountDownLatch"><a href="#一、CountDownLatch" class="headerlink" title="一、CountDownLatch"></a>一、CountDownLatch</h3><p>   CountDownLatch能够让一个线程在等待其他线程全部完成各自任务后再执行。而CountDownLatch是通过计数器来实现的，计数器的初始值即为任务的总数。<br>    举个例子，如，同学聚会结束回家，每个人都要回各自的家，此时计数器的初始值为参加聚会的总人数，而每个人都是一个线程，每个同学到家后，都需要调用countDown方法，对计数器减一，表示完成回家的任务，当所有同学都到家后，主线程才可以执行通知班长全部到家的任务。再比如，所编写的应用程序，希望等待启动框架的线程启动完毕后再执行。</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/posts/20200124-cdlcbs.html#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/posts/20200123-ForkJoin.html" class="image is-7by1">
-            <img class="thumbnail" src="/gallery/thumbnail/08.jpeg" alt="java并发编程之Fork-Join分治编程">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-01-23T07:28:05.000Z">2020-01-23</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">并发编程</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E5%B9%B6%E5%8F%91%E5%B7%A5%E5%85%B7%E7%B1%BB/">并发工具类</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    7 分钟 读完 (大约 978 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/posts/20200123-ForkJoin.html">java并发编程之Fork-Join分治编程</a>
-            
-        </h1>
-        <div class="content">
-            <h3 id="一、Fork-Join框架"><a href="#一、Fork-Join框架" class="headerlink" title="一、Fork-Join框架"></a>一、Fork-Join框架</h3><p>   forkjoin即分而治之，在几大排序算法中，快速排序、归并排序、二分查找均用到了分治的思想，即将一个大问题，逐一分解为一个个小问题，将各个子问题的解最终合并为最终解。这里也是如此，将一个大任务分解成若干个小任务（fork），再将这若干的小任务的执行结果进行合并（join）。</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/posts/20200123-ForkJoin.html#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
         
         
     </div>
