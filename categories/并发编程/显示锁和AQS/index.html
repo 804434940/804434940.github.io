@@ -9,12 +9,12 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>分类: 并发工具类 - 一颗小陨石</title>
+<title>分类: 显示锁和AQS - 一颗小陨石</title>
 
 
     <meta property="og:type" content="website">
 <meta property="og:title" content="一颗小陨石">
-<meta property="og:url" content="https://wbml.top/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E5%B9%B6%E5%8F%91%E5%B7%A5%E5%85%B7%E7%B1%BB/index.html">
+<meta property="og:url" content="https://wbml.top/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E6%98%BE%E7%A4%BA%E9%94%81%E5%92%8CAQS/index.html">
 <meta property="og:site_name" content="一颗小陨石">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://wbml.top/images/og_image.png">
@@ -154,7 +154,7 @@
             
             <li><a href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">并发编程</a></li>
             
-            <li class="is-active"><a href="#" aria-current="page">并发工具类</a></li>
+            <li class="is-active"><a href="#" aria-current="page">显示锁和AQS</a></li>
         </ul>
         </nav>
     </div>
@@ -164,8 +164,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/posts/20200127-runcalfutask.html" class="image is-7by1">
-            <img class="thumbnail" src="/gallery/thumbnail/09.jpeg" alt="java多线程之Callable+Future+FutureTask原理详解和简单使用">
+        <a href="/posts/20200204-lcAQS.html" class="image is-7by1">
+            <img class="thumbnail" src="/gallery/thumbnail/04.jpeg" alt="java并发编程之显示锁Lock、Condition接口、LockSupport以及AQS（同步队列、条件等待队列）详解">
         </a>
     </div>
     
@@ -173,17 +173,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-01-27T15:42:22.000Z">2020-01-27</time>
+                <time class="level-item has-text-grey" datetime="2020-02-04T05:24:00.000Z">2020-02-04</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">并发编程</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E5%B9%B6%E5%8F%91%E5%B7%A5%E5%85%B7%E7%B1%BB/">并发工具类</a>
+                <a class="has-link-grey -link" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">并发编程</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E6%98%BE%E7%A4%BA%E9%94%81%E5%92%8CAQS/">显示锁和AQS</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    25 分钟 读完 (大约 3747 个字)
+                    1 小时 读完 (大约 11476 个字)
                 </span>
                 
                 
@@ -192,140 +192,18 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/posts/20200127-runcalfutask.html">java多线程之Callable+Future+FutureTask原理详解和简单使用</a>
+                <a class="has-link-black-ter" href="/posts/20200204-lcAQS.html">java并发编程之显示锁Lock、Condition接口、LockSupport以及AQS（同步队列、条件等待队列）详解</a>
             
         </h1>
         <div class="content">
-            <h3 id="一、Runnable和Callable"><a href="#一、Runnable和Callable" class="headerlink" title="一、Runnable和Callable"></a>一、Runnable和Callable</h3><p><code>Runnable</code>是一个接口，只声明了一个<code>run()</code>方法，此方法为void类型，所以只能执行无返回值的任务。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Callable是java.util.concurrent包下的一个接口，提供了一个call()方法:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Callable</span>&lt;<span class="title">V</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Computes a result, or throws an exception if unable to do so.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> computed result</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Exception if unable to compute a result</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function">V <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>该方法返回的数据类型就是传进来的泛型类型，主要用于计算产生结果。如果没有计算出结果，则会抛出异常。</p>
+            <h3 id="一、显式锁"><a href="#一、显式锁" class="headerlink" title="一、显式锁"></a>一、显式锁</h3><p><code>synchronized</code>关键字是java内置的语言特性，使用<code>synchronized</code>关键字会隐式的获取锁，在获取锁的线程执行执行完任务或是执行过程中发生异常时会自动释放锁。但为什么还需要Lock呢？<br>    如，目前绝大多数的业务场景基本都是读多写少，如读写比例为10:1，倘若使用<code>synchronized</code>，若有一个线程在读，则因为其的<code>独占性</code>，其他的线程都只能等待，造成大量的资源浪费，但<code>Lock</code>的实现类<code>ReentrantReadWriteLock</code><strong>读写锁</strong>便可以完美的解决这一问题。<br>    又如，<code>synchronized</code>无法设置超时时间，而如果获取该锁的线程因为I/O请求或是其他原因导致一直无法释放锁，则其他线程便会进入“无限等待”的状态，而<code>Lock</code>获取锁时可设置超时时间，如果在截止时间之后仍未获取到锁，则返回。<br>    但个人认为如果不使用lock.trylock或者lockInterruptbly()中断获取锁的线程等，尽量使用<code>synchronized</code>关键字，synchronized因为是一个语言特性，而Lock是一个类，使用就需要创建对象实例必然会比synchronized有所消耗，jdk对synchronized也进行了许多优化。</p>
         </div>
         
         
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/posts/20200127-runcalfutask.html#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/posts/20200124-cdlcbs.html" class="image is-7by1">
-            <img class="thumbnail" src="/gallery/thumbnail/07.jpeg" alt="java并发编程之CountDownLatch,CyclicBarrier和Semaphore">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-01-24T08:55:24.000Z">2020-01-24</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">并发编程</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E5%B9%B6%E5%8F%91%E5%B7%A5%E5%85%B7%E7%B1%BB/">并发工具类</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    21 分钟 读完 (大约 3118 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/posts/20200124-cdlcbs.html">java并发编程之CountDownLatch,CyclicBarrier和Semaphore</a>
-            
-        </h1>
-        <div class="content">
-            <h3 id="一、CountDownLatch"><a href="#一、CountDownLatch" class="headerlink" title="一、CountDownLatch"></a>一、CountDownLatch</h3><p>   CountDownLatch能够让一个线程在等待其他线程全部完成各自任务后再执行。而CountDownLatch是通过计数器来实现的，计数器的初始值即为任务的总数。<br>    举个例子，如，同学聚会结束回家，每个人都要回各自的家，此时计数器的初始值为参加聚会的总人数，而每个人都是一个线程，每个同学到家后，都需要调用countDown方法，对计数器减一，表示完成回家的任务，当所有同学都到家后，主线程才可以执行通知班长全部到家的任务。再比如，所编写的应用程序，希望等待启动框架的线程启动完毕后再执行。</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/posts/20200124-cdlcbs.html#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/posts/20200123-ForkJoin.html" class="image is-7by1">
-            <img class="thumbnail" src="/gallery/thumbnail/08.jpeg" alt="java并发编程之Fork-Join分治编程">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-01-23T07:28:05.000Z">2020-01-23</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">并发编程</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E5%B9%B6%E5%8F%91%E5%B7%A5%E5%85%B7%E7%B1%BB/">并发工具类</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    7 分钟 读完 (大约 978 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/posts/20200123-ForkJoin.html">java并发编程之Fork-Join分治编程</a>
-            
-        </h1>
-        <div class="content">
-            <h3 id="一、Fork-Join框架"><a href="#一、Fork-Join框架" class="headerlink" title="一、Fork-Join框架"></a>一、Fork-Join框架</h3><p>   forkjoin即分而治之，在几大排序算法中，快速排序、归并排序、二分查找均用到了分治的思想，即将一个大问题，逐一分解为一个个小问题，将各个子问题的解最终合并为最终解。这里也是如此，将一个大任务分解成若干个小任务（fork），再将这若干的小任务的执行结果进行合并（join）。</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/posts/20200123-ForkJoin.html#more">阅读更多</a>
+                <a class="button is-size-7 is-light" href="/posts/20200204-lcAQS.html#more">阅读更多</a>
                 </div>
             </div>
         </div>

@@ -151,6 +151,69 @@
 <div class="card">
     
     <div class="card-image">
+        <a href="/posts/20200111-hexo-gulp.html" class="image is-7by1">
+            <img class="thumbnail" src="/gallery/thumbnail/01.jpeg" alt="hexo压缩静态资源">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-01-11T14:44:42.000Z">2020-01-11</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 分钟 读完 (大约 392 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/posts/20200111-hexo-gulp.html">hexo压缩静态资源</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="1-安装gulp"><a href="#1-安装gulp" class="headerlink" title="1.安装gulp"></a>1.安装gulp</h3><h5 id="1-1首先全局安装gulp"><a href="#1-1首先全局安装gulp" class="headerlink" title="1.1首先全局安装gulp"></a>1.1首先全局安装gulp</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install gulp -g</span><br></pre></td></tr></table></figure>
+
+<h5 id="1-2-再局部安装相关插件"><a href="#1-2-再局部安装相关插件" class="headerlink" title="1.2 再局部安装相关插件"></a>1.2 再局部安装相关插件</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install  gulp-imagemin gulp gulp-minify-css gulp-minify-html gulp-uglify --</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 解决【Gulp打包问题】 GulpUglifyError: unable to minify JavaScript</span><br><span class="line"># 解决 gulp-uglify 压缩JavaScript 不兼容 es5 语法的问题</span><br><span class="line">npm install babel-core@<span class="number">6.26</span><span class="number">.3</span> --save</span><br><span class="line">npm install gulp-babel@<span class="number">7.0</span><span class="number">.1</span> --save</span><br><span class="line">npm install babel-preset-es2015@<span class="number">6.24</span><span class="number">.1</span> --save</span><br><span class="line"># gulp-babel 取消严格模式方法("use strict")</span><br><span class="line">npm install babel-plugin-transform-remove-strict-mode --save</span><br></pre></td></tr></table></figure>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/posts/20200111-hexo-gulp.html#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
         <a href="/posts/20200107-binarytree.html" class="image is-7by1">
             <img class="thumbnail" src="/gallery/thumbnail/01.jpeg" alt="（复习）二叉树的三种遍历方式、查找和删除----------Java实现">
         </a>
@@ -409,65 +472,6 @@
 
 
 
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/posts/20200107-quickSort.html" class="image is-7by1">
-            <img class="thumbnail" src="/gallery/thumbnail/04.jpeg" alt="快速排序-------------java实现">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-01-07T05:40:22.000Z">2020-01-07</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    6 分钟 读完 (大约 954 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/posts/20200107-quickSort.html">快速排序-------------java实现</a>
-            
-        </h1>
-        <div class="content">
-            <h1 id="一、基本思想"><a href="#一、基本思想" class="headerlink" title="一、基本思想"></a>一、基本思想</h1><p>选择一个基准数，通过一趟排序将待排序数据分成两个独立的部分，其中一部分的所有数都比基准数小，另一部分都比基准数大，然后再使用此方法递归对两部分数据进行快排，最终实现整个数据的有序。</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/posts/20200107-quickSort.html#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -537,7 +541,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            19
+                            20
                         </p>
                     </a>
                 </div>
@@ -549,7 +553,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            10
+                            12
                         </p>
                     </a>
                 </div>
@@ -561,7 +565,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            27
+                            30
                         </p>
                     </a>
                 </div>
@@ -676,15 +680,31 @@
                 <span class="level-item">并发编程</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">4</span>
+                <span class="level-item tag">5</span>
             </span>
         </a><ul><li>
+        <a class="level is-marginless" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9CCAS/">
+            <span class="level-start">
+                <span class="level-item">原子操作CAS</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E5%B9%B6%E5%8F%91%E5%B7%A5%E5%85%B7%E7%B1%BB/">
             <span class="level-start">
                 <span class="level-item">并发工具类</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">4</span>
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E6%98%BE%E7%A4%BA%E9%94%81%E5%92%8CAQS/">
+            <span class="level-start">
+                <span class="level-item">显示锁和AQS</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
@@ -730,7 +750,7 @@
             标签云
 			
         </h3>
-        <a href="/tags/AtomicXXX/" style="font-size: 10px;">AtomicXXX</a> <a href="/tags/CAS/" style="font-size: 10px;">CAS</a> <a href="/tags/Callable/" style="font-size: 10px;">Callable</a> <a href="/tags/CountDownLatch/" style="font-size: 10px;">CountDownLatch</a> <a href="/tags/CyclicBarrier/" style="font-size: 10px;">CyclicBarrier</a> <a href="/tags/Future/" style="font-size: 10px;">Future</a> <a href="/tags/FutureTask/" style="font-size: 10px;">FutureTask</a> <a href="/tags/Runnable/" style="font-size: 10px;">Runnable</a> <a href="/tags/Semaphore/" style="font-size: 10px;">Semaphore</a> <a href="/tags/centos7/" style="font-size: 10px;">centos7</a> <a href="/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/tags/elasticsearch/" style="font-size: 10px;">elasticsearch</a> <a href="/tags/fdfs/" style="font-size: 10px;">fdfs</a> <a href="/tags/firewall/" style="font-size: 10px;">firewall</a> <a href="/tags/fork-join/" style="font-size: 10px;">fork/join</a> <a href="/tags/gulp-%E5%8E%8B%E7%BC%A9%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90/" style="font-size: 10px;">gulp,压缩静态资源</a> <a href="/tags/jib/" style="font-size: 10px;">jib</a> <a href="/tags/linux/" style="font-size: 13.33px;">linux</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" style="font-size: 10px;">二叉树</a> <a href="/tags/%E5%88%86%E6%B2%BB/" style="font-size: 10px;">分治</a> <a href="/tags/%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C%E7%B1%BB/" style="font-size: 10px;">原子操作类</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 13.33px;">多线程</a> <a href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" style="font-size: 16.67px;">并发编程</a> <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 20px;">排序</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 10px;">文件上传</a> <a href="/tags/%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/" style="font-size: 10px;">调度算法</a>
+        <a href="/tags/AQS/" style="font-size: 10px;">AQS</a> <a href="/tags/AtomicXXX/" style="font-size: 10px;">AtomicXXX</a> <a href="/tags/CAS/" style="font-size: 10px;">CAS</a> <a href="/tags/Callable/" style="font-size: 10px;">Callable</a> <a href="/tags/CountDownLatch/" style="font-size: 10px;">CountDownLatch</a> <a href="/tags/CyclicBarrier/" style="font-size: 10px;">CyclicBarrier</a> <a href="/tags/Future/" style="font-size: 10px;">Future</a> <a href="/tags/FutureTask/" style="font-size: 10px;">FutureTask</a> <a href="/tags/LockSupport/" style="font-size: 10px;">LockSupport</a> <a href="/tags/Runnable/" style="font-size: 10px;">Runnable</a> <a href="/tags/Semaphore/" style="font-size: 10px;">Semaphore</a> <a href="/tags/centos7/" style="font-size: 10px;">centos7</a> <a href="/tags/docker/" style="font-size: 12.5px;">docker</a> <a href="/tags/elasticsearch/" style="font-size: 10px;">elasticsearch</a> <a href="/tags/fdfs/" style="font-size: 10px;">fdfs</a> <a href="/tags/firewall/" style="font-size: 10px;">firewall</a> <a href="/tags/fork-join/" style="font-size: 10px;">fork/join</a> <a href="/tags/gulp-%E5%8E%8B%E7%BC%A9%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90/" style="font-size: 10px;">gulp,压缩静态资源</a> <a href="/tags/jib/" style="font-size: 10px;">jib</a> <a href="/tags/linux/" style="font-size: 12.5px;">linux</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" style="font-size: 10px;">二叉树</a> <a href="/tags/%E5%88%86%E6%B2%BB/" style="font-size: 10px;">分治</a> <a href="/tags/%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C%E7%B1%BB/" style="font-size: 10px;">原子操作类</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 15px;">多线程</a> <a href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" style="font-size: 17.5px;">并发编程</a> <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 20px;">排序</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 10px;">文件上传</a> <a href="/tags/%E6%98%BE%E7%A4%BA%E9%94%81Lock/" style="font-size: 10px;">显示锁Lock</a> <a href="/tags/%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/" style="font-size: 10px;">调度算法</a>
     </div>
 </div>
     
@@ -739,6 +759,25 @@
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/posts/20200204-lcAQS.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnail/04.jpeg" alt="java并发编程之显示锁Lock、Condition接口、LockSupport以及AQS（同步队列、条件等待队列）详解">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-04T05:24:00.000Z">2020-02-04</time></div>
+                    <a href="/posts/20200204-lcAQS.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">java并发编程之显示锁Lock、Condition接口、LockSupport以及AQS（同步队列、条件等待队列）详解</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">并发编程</a> / <a class="has-link-grey -link" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E6%98%BE%E7%A4%BA%E9%94%81%E5%92%8CAQS/">显示锁和AQS</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -753,7 +792,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-30T05:26:52.000Z">2020-01-30</time></div>
                     <a href="/posts/20200130-atomicClass.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">java多线程之CAS操作及相关原子操作类详解</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">并发编程</a> / <a class="has-link-grey -link" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E5%B9%B6%E5%8F%91%E5%B7%A5%E5%85%B7%E7%B1%BB/">并发工具类</a>
+                        <a class="has-link-grey -link" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">并发编程</a> / <a class="has-link-grey -link" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9CCAS/">原子操作CAS</a>
                     </p>
                 </div>
             </div>
@@ -816,25 +855,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/posts/20200111-hexo-gulp.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/gallery/thumbnail/01.jpeg" alt="hexo压缩静态资源">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-11T14:44:42.000Z">2020-01-11</time></div>
-                    <a href="/posts/20200111-hexo-gulp.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">hexo压缩静态资源</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -845,6 +865,17 @@
             归档
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2020/01/">
@@ -869,6 +900,13 @@
                 标签
             </h3>
             <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AQS/">
+                        <span class="tag">AQS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/AtomicXXX/">
@@ -915,6 +953,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/FutureTask/">
                         <span class="tag">FutureTask</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LockSupport/">
+                        <span class="tag">LockSupport</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1020,14 +1065,14 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
                         <span class="tag">多线程</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">
                         <span class="tag">并发编程</span>
-                        <span class="tag is-grey">4</span>
+                        <span class="tag is-grey">5</span>
                     </a>
                 </div>
                 
@@ -1048,6 +1093,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">
                         <span class="tag">文件上传</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%98%BE%E7%A4%BA%E9%94%81Lock/">
+                        <span class="tag">显示锁Lock</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>

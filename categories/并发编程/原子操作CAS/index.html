@@ -9,12 +9,12 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>分类: 并发工具类 - 一颗小陨石</title>
+<title>分类: 原子操作CAS - 一颗小陨石</title>
 
 
     <meta property="og:type" content="website">
 <meta property="og:title" content="一颗小陨石">
-<meta property="og:url" content="https://wbml.top/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E5%B9%B6%E5%8F%91%E5%B7%A5%E5%85%B7%E7%B1%BB/index.html">
+<meta property="og:url" content="https://wbml.top/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9CCAS/index.html">
 <meta property="og:site_name" content="一颗小陨石">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://wbml.top/images/og_image.png">
@@ -154,7 +154,7 @@
             
             <li><a href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">并发编程</a></li>
             
-            <li class="is-active"><a href="#" aria-current="page">并发工具类</a></li>
+            <li class="is-active"><a href="#" aria-current="page">原子操作CAS</a></li>
         </ul>
         </nav>
     </div>
@@ -164,8 +164,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/posts/20200127-runcalfutask.html" class="image is-7by1">
-            <img class="thumbnail" src="/gallery/thumbnail/09.jpeg" alt="java多线程之Callable+Future+FutureTask原理详解和简单使用">
+        <a href="/posts/20200130-atomicClass.html" class="image is-7by1">
+            <img class="thumbnail" src="/gallery/thumbnail/03.jpeg" alt="java多线程之CAS操作及相关原子操作类详解">
         </a>
     </div>
     
@@ -173,17 +173,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-01-27T15:42:22.000Z">2020-01-27</time>
+                <time class="level-item has-text-grey" datetime="2020-01-30T05:26:52.000Z">2020-01-30</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">并发编程</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E5%B9%B6%E5%8F%91%E5%B7%A5%E5%85%B7%E7%B1%BB/">并发工具类</a>
+                <a class="has-link-grey -link" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">并发编程</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9CCAS/">原子操作CAS</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    25 分钟 读完 (大约 3747 个字)
+                    34 分钟 读完 (大约 5107 个字)
                 </span>
                 
                 
@@ -192,140 +192,18 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/posts/20200127-runcalfutask.html">java多线程之Callable+Future+FutureTask原理详解和简单使用</a>
+                <a class="has-link-black-ter" href="/posts/20200130-atomicClass.html">java多线程之CAS操作及相关原子操作类详解</a>
             
         </h1>
         <div class="content">
-            <h3 id="一、Runnable和Callable"><a href="#一、Runnable和Callable" class="headerlink" title="一、Runnable和Callable"></a>一、Runnable和Callable</h3><p><code>Runnable</code>是一个接口，只声明了一个<code>run()</code>方法，此方法为void类型，所以只能执行无返回值的任务。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Callable是java.util.concurrent包下的一个接口，提供了一个call()方法:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Callable</span>&lt;<span class="title">V</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Computes a result, or throws an exception if unable to do so.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> computed result</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Exception if unable to compute a result</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function">V <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>该方法返回的数据类型就是传进来的泛型类型，主要用于计算产生结果。如果没有计算出结果，则会抛出异常。</p>
+            <h3 id="一、原子操作是什么"><a href="#一、原子操作是什么" class="headerlink" title="一、原子操作是什么"></a>一、原子操作是什么</h3><p>原子操作即不可被中断（分割）的一个或一系列操作，如对于A,B两个操作，如果一个线程操作A，若另一个线程执行B操作时，要么将B执行到结束，要么完全不让B执行，此时对于A和B来说，就是原子的。</p>
         </div>
         
         
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/posts/20200127-runcalfutask.html#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/posts/20200124-cdlcbs.html" class="image is-7by1">
-            <img class="thumbnail" src="/gallery/thumbnail/07.jpeg" alt="java并发编程之CountDownLatch,CyclicBarrier和Semaphore">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-01-24T08:55:24.000Z">2020-01-24</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">并发编程</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E5%B9%B6%E5%8F%91%E5%B7%A5%E5%85%B7%E7%B1%BB/">并发工具类</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    21 分钟 读完 (大约 3118 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/posts/20200124-cdlcbs.html">java并发编程之CountDownLatch,CyclicBarrier和Semaphore</a>
-            
-        </h1>
-        <div class="content">
-            <h3 id="一、CountDownLatch"><a href="#一、CountDownLatch" class="headerlink" title="一、CountDownLatch"></a>一、CountDownLatch</h3><p>   CountDownLatch能够让一个线程在等待其他线程全部完成各自任务后再执行。而CountDownLatch是通过计数器来实现的，计数器的初始值即为任务的总数。<br>    举个例子，如，同学聚会结束回家，每个人都要回各自的家，此时计数器的初始值为参加聚会的总人数，而每个人都是一个线程，每个同学到家后，都需要调用countDown方法，对计数器减一，表示完成回家的任务，当所有同学都到家后，主线程才可以执行通知班长全部到家的任务。再比如，所编写的应用程序，希望等待启动框架的线程启动完毕后再执行。</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/posts/20200124-cdlcbs.html#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/posts/20200123-ForkJoin.html" class="image is-7by1">
-            <img class="thumbnail" src="/gallery/thumbnail/08.jpeg" alt="java并发编程之Fork-Join分治编程">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-01-23T07:28:05.000Z">2020-01-23</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">并发编程</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E5%B9%B6%E5%8F%91%E5%B7%A5%E5%85%B7%E7%B1%BB/">并发工具类</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    7 分钟 读完 (大约 978 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/posts/20200123-ForkJoin.html">java并发编程之Fork-Join分治编程</a>
-            
-        </h1>
-        <div class="content">
-            <h3 id="一、Fork-Join框架"><a href="#一、Fork-Join框架" class="headerlink" title="一、Fork-Join框架"></a>一、Fork-Join框架</h3><p>   forkjoin即分而治之，在几大排序算法中，快速排序、归并排序、二分查找均用到了分治的思想，即将一个大问题，逐一分解为一个个小问题，将各个子问题的解最终合并为最终解。这里也是如此，将一个大任务分解成若干个小任务（fork），再将这若干的小任务的执行结果进行合并（join）。</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/posts/20200123-ForkJoin.html#more">阅读更多</a>
+                <a class="button is-size-7 is-light" href="/posts/20200130-atomicClass.html#more">阅读更多</a>
                 </div>
             </div>
         </div>
