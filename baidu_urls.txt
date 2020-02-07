@@ -1,3 +1,4 @@
+https://wbml.top/posts/20200207-reentrant_read_write_lock.html
 https://wbml.top/posts/20200204-lcAQS.html
 https://wbml.top/posts/20200130-atomicClass.html
 https://wbml.top/posts/20200127-runcalfutask.html
@@ -7,4 +8,3 @@ https://wbml.top/posts/20200111-hexo-gulp.html
 https://wbml.top/posts/20200107-binarytree.html
 https://wbml.top/posts/20200107-OS_dispatch.html
 https://wbml.top/posts/20200107-jishuSort.html
-https://wbml.top/posts/20200107-guibingSort.html
