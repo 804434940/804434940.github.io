@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://wbml.top/posts/20200310-bst.html</loc>
+    <lastmod>2020-03-10</lastmod>
+  </url>  <url>
+    <loc>https://wbml.top/posts/20200310-avltree.html</loc>
+    <lastmod>2020-03-10</lastmod>
+  </url>  <url>
+    <loc>https://wbml.top/posts/20200310-RedBlackTree.html</loc>
+    <lastmod>2020-03-10</lastmod>
+  </url>  <url>
     <loc>https://wbml.top/posts/20200107-insertSort.html</loc>
     <lastmod>2020-03-10</lastmod>
   </url>  <url>
@@ -26,15 +35,6 @@
     <lastmod>2020-03-10</lastmod>
   </url>  <url>
     <loc>https://wbml.top/posts/20200310-seq-linear-hash.html</loc>
-    <lastmod>2020-03-10</lastmod>
-  </url>  <url>
-    <loc>https://wbml.top/posts/20200310-RedBlackTree.html</loc>
-    <lastmod>2020-03-10</lastmod>
-  </url>  <url>
-    <loc>https://wbml.top/posts/20200310-avltree.html</loc>
-    <lastmod>2020-03-10</lastmod>
-  </url>  <url>
-    <loc>https://wbml.top/posts/20200310-bst.html</loc>
     <lastmod>2020-03-10</lastmod>
   </url>  <url>
     <loc>https://wbml.top/posts/20200310-seq-binary-find.html</loc>

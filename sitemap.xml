@@ -2,6 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://wbml.top/photo/index.html</loc>
+    
+    <lastmod>2020-03-10T02:58:43.297Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wbml.top/posts/20200310-bst.html</loc>
+    
+    <lastmod>2020-03-10T02:58:04.847Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wbml.top/posts/20200310-avltree.html</loc>
+    
+    <lastmod>2020-03-10T02:57:42.963Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wbml.top/posts/20200310-RedBlackTree.html</loc>
+    
+    <lastmod>2020-03-10T02:57:16.263Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://wbml.top/posts/20200107-insertSort.html</loc>
     
     <lastmod>2020-03-10T02:50:31.205Z</lastmod>
@@ -65,27 +93,6 @@
   </url>
   
   <url>
-    <loc>https://wbml.top/posts/20200310-RedBlackTree.html</loc>
-    
-    <lastmod>2020-03-10T02:22:44.918Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wbml.top/posts/20200310-avltree.html</loc>
-    
-    <lastmod>2020-03-10T02:22:29.471Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wbml.top/posts/20200310-bst.html</loc>
-    
-    <lastmod>2020-03-10T02:10:44.550Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://wbml.top/posts/20200310-seq-binary-find.html</loc>
     
     <lastmod>2020-03-10T02:08:32.753Z</lastmod>
@@ -110,13 +117,6 @@
     <loc>https://wbml.top/posts/20200310-union-find.html</loc>
     
     <lastmod>2020-03-10T01:58:19.238Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wbml.top/photo/index.html</loc>
-    
-    <lastmod>2020-02-08T11:49:36.613Z</lastmod>
     
   </url>
   
