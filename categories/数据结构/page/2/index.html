@@ -376,7 +376,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    13 分钟 读完 (大约 1939 个字)
+                    12 分钟 读完 (大约 1852 个字)
                 </span>
                 
                 
@@ -416,7 +416,8 @@
 <p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
 <p><strong>结果：</strong></p>
 <p><strong>以下执行地动态情况可以看出归并排序的递归过程，加深理解：</strong></p>
-<p><strong>sort(arr,0,22)    sort(arr,0,11)  ————将左半部分排序        sort(arr,0,5)            sort(arr,0,2)                sort(arr,0,1)                merge(arr,temp,0,1,1)            merge(arr,temp,0,2,2)            sort(arr,3,5)                sort(arr,3,4)                merge(arr,temp,3,4,4)            merge(arr,temp,3,5,5)        merge(arr,temp,0,3,5)        sort(arr,6,11)            sort(arr,6,8)                sort(arr,6,7)                merge(arr,temp,6,7,7)            merge(arr,temp,6,8,8)            sort(arr,9,11)                sort(arr,9,10)                merge(arr,temp,9,10,10)            merge(arr,temp,9,11,11)        merge(arr,temp,6,9,11)    merge(arr,temp,0,6,11)    sort(arr,12,22) ————将右半部分排序        sort(arr,12,17)            sort(arr,12,14)                sort(arr,12,13)                    merge(arr,temp,12,13,13)            merge(arr,temp,12,14,14)            sort(arr,15,17)                sort(arr,15,16)                merge(arr,temp,15,16,16)            merge(arr,temp,15,17,17)        merge(arr,temp,12,15,17)        sort(arr,18,22)            sort(arr,18,20)                sort(arr,18,19)                merge(arr,temp,18,19,19)            merge(arr,temp,18,20,20)            sort(arr,21,22)            merge(arr,temp,21,22,22)        merge(arr,temp,18,21,22)    merge(arr,temp,12,18,22)merge(arr,temp,0,12,22)</strong></p>
+<p><img src="C:%5CUsers%5CMI%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1583824372133.png" alt="1583824372133"></p>
+<p><img src="C:%5CUsers%5CMI%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1583824397338.png" alt="1583824397338"></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">4</span><br><span class="line">4</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">12</span><br><span class="line">12</span><br><span class="line">12</span><br><span class="line">12</span><br><span class="line">12</span><br><span class="line">21</span><br><span class="line">21</span><br><span class="line">25</span><br><span class="line">25</span><br><span class="line">47</span><br><span class="line">56</span><br><span class="line">78</span><br><span class="line">96</span><br><span class="line">346</span><br><span class="line">346</span><br><span class="line">524</span><br><span class="line">587</span><br><span class="line">4534</span><br></pre></td></tr></table></figure>
 
 <p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
@@ -442,10 +443,27 @@
 <p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
 <p>暂时去掉优化的部分，同样对该算法的调用进行打印输出（仍用自顶向下归并的数据）：</p>
 <p>gap=1时，两两排序</p>
-<p><strong>merge(arr,temp,0,1,1)    merge(arr,temp,2,3,3)        merge(arr,temp,4,5,5)            merge(arr,temp,6,7,7)                merge(arr,temp,8,9,9)                    merge(arr,temp,10,11,11)                        merge(arr,temp,12,13,13)                            merge(arr,temp,14,15,15)                                merge(arr,temp,16,17,17)                                    merge(arr,temp,18,19,19)                                         merge(arr,temp,20,21,21)</strong></p>
-<p>gap=2时，四个四个排序<br><strong>merge(arr,temp,0,2,3)    merge(arr,temp,4,6,7)        merge(arr,temp,8,10,11)            merge(arr,temp,12,14,15)                merge(arr,temp,16,18,19)                    merge(arr,temp,20,22,22)</strong></p>
-<p>gap=4时，八个八个排序<br><strong>merge(arr,temp,0,4,7)    merge(arr,temp,8,12,15)</strong></p>
-<p>​       <strong>//此时右半边只有7个数据，因此right=N-1=23-1=22        merge(arr,temp,16,20,22)</strong></p>
+<p>*<em>merge(arr,temp,0,1,1)    *</em></p>
+<p>​    *<em>merge(arr,temp,2,3,3)        *</em></p>
+<p>​        *<em>merge(arr,temp,4,5,5)          *</em></p>
+<p>​            *<em>merge(arr,temp,6,7,7)                *</em></p>
+<p>​                *<em>merge(arr,temp,8,9,9)                    *</em></p>
+<p>​                    <strong>merge(arr,temp,10,11,11)</strong></p>
+<p>​                        *<em>merge(arr,temp,12,13,13)                            *</em>    </p>
+<p>​                            *<em>merge(arr,temp,14,15,15)                                *</em></p>
+<p>​                                *<em>merge(arr,temp,16,17,17)                                 *</em></p>
+<p>​                                    *<em>merge(arr,temp,18,19,19)                                    *</em></p>
+<p>​                                        <strong>merge(arr,temp,20,21,21)</strong></p>
+<p>gap=2时，四个四个排序<br>*<em>merge(arr,temp,0,2,3)    *</em></p>
+<p>​    *<em>merge(arr,temp,4,6,7)        *</em></p>
+<p>​        *<em>merge(arr,temp,8,10,11)          *</em></p>
+<p>​            <strong>merge(arr,temp,12,14,15)</strong>               </p>
+<p>​                 <strong>merge(arr,temp,16,18,19)</strong>   </p>
+<p>​                    <strong>merge(arr,temp,20,22,22)</strong></p>
+<p>gap=4时，八个八个排序<br>*<em>merge(arr,temp,0,4,7)    *</em></p>
+<p>​    <strong>merge(arr,temp,8,12,15)</strong></p>
+<p>​       *<em>//此时右半边只有7个数据，因此right=N-1=23-1=22            *</em></p>
+<p>​        <strong>merge(arr,temp,16,20,22)</strong></p>
 <p>gap=8时，16个一组排序<br><strong>merge(arr,temp,0,8,15)</strong></p>
 <p>gap=16时，此时左半边为0-15，右半边为16-22，合并之<br><strong>merge(arr,temp,0,16,22)</strong><br>2<br>4<br>4<br>8<br>9<br>12<br>12<br>12<br>12<br>12<br>21<br>21<br>25<br>25<br>47<br>56<br>78<br>96<br>346<br>346<br>524<br>587<br>4534</p>
 <blockquote>

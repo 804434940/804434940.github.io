@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://wbml.top/posts/20200107-mergeSort.html</loc>
+    
+    <lastmod>2020-03-10T07:18:21.541Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://wbml.top/photo/index.html</loc>
     
     <lastmod>2020-03-10T02:58:43.297Z</lastmod>
@@ -54,13 +61,6 @@
     <loc>https://wbml.top/posts/20200107-selectSort.html</loc>
     
     <lastmod>2020-03-10T02:49:44.850Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wbml.top/posts/20200107-mergeSort.html</loc>
-    
-    <lastmod>2020-03-10T02:42:44.158Z</lastmod>
     
   </url>
   
