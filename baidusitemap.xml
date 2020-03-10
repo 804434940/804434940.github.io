@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://wbml.top/posts/20200107-insertSort.html</loc>
+    <lastmod>2020-03-10</lastmod>
+  </url>  <url>
+    <loc>https://wbml.top/posts/20200107-quickSort.html</loc>
+    <lastmod>2020-03-10</lastmod>
+  </url>  <url>
+    <loc>https://wbml.top/posts/20200107-shellSort.html</loc>
+    <lastmod>2020-03-10</lastmod>
+  </url>  <url>
+    <loc>https://wbml.top/posts/20200107-selectSort.html</loc>
+    <lastmod>2020-03-10</lastmod>
+  </url>  <url>
+    <loc>https://wbml.top/posts/20200107-mergeSort.html</loc>
+    <lastmod>2020-03-10</lastmod>
+  </url>  <url>
+    <loc>https://wbml.top/posts/20200310-prim-kruskal.html</loc>
+    <lastmod>2020-03-10</lastmod>
+  </url>  <url>
+    <loc>https://wbml.top/posts/20200310-sp-dijkstra.html</loc>
+    <lastmod>2020-03-10</lastmod>
+  </url>  <url>
+    <loc>https://wbml.top/posts/20200310-graphDetails.html</loc>
+    <lastmod>2020-03-10</lastmod>
+  </url>  <url>
+    <loc>https://wbml.top/posts/20200310-seq-linear-hash.html</loc>
+    <lastmod>2020-03-10</lastmod>
+  </url>  <url>
+    <loc>https://wbml.top/posts/20200310-RedBlackTree.html</loc>
+    <lastmod>2020-03-10</lastmod>
+  </url>  <url>
+    <loc>https://wbml.top/posts/20200310-avltree.html</loc>
+    <lastmod>2020-03-10</lastmod>
+  </url>  <url>
+    <loc>https://wbml.top/posts/20200310-bst.html</loc>
+    <lastmod>2020-03-10</lastmod>
+  </url>  <url>
+    <loc>https://wbml.top/posts/20200310-seq-binary-find.html</loc>
+    <lastmod>2020-03-10</lastmod>
+  </url>  <url>
+    <loc>https://wbml.top/posts/20200310-indexPQ.html</loc>
+    <lastmod>2020-03-10</lastmod>
+  </url>  <url>
+    <loc>https://wbml.top/posts/20200310-HeapPQ.html</loc>
+    <lastmod>2020-03-10</lastmod>
+  </url>  <url>
+    <loc>https://wbml.top/posts/20200310-union-find.html</loc>
+    <lastmod>2020-03-10</lastmod>
+  </url>  <url>
     <loc>https://wbml.top/posts/20200207-reentrant_read_write_lock.html</loc>
     <lastmod>2020-02-07</lastmod>
   </url>  <url>
@@ -25,9 +73,6 @@
     <loc>https://wbml.top/posts/20200107-centos7_firewall.html</loc>
     <lastmod>2020-01-11</lastmod>
   </url>  <url>
-    <loc>https://wbml.top/posts/20200107-insertSort.html</loc>
-    <lastmod>2020-01-11</lastmod>
-  </url>  <url>
     <loc>https://wbml.top/posts/20200106-jib_ali.html</loc>
     <lastmod>2020-01-11</lastmod>
   </url>  <url>
@@ -46,22 +91,10 @@
     <loc>https://wbml.top/posts/20200107-jishuSort.html</loc>
     <lastmod>2020-01-11</lastmod>
   </url>  <url>
-    <loc>https://wbml.top/posts/20200107-guibingSort.html</loc>
-    <lastmod>2020-01-11</lastmod>
-  </url>  <url>
     <loc>https://wbml.top/posts/20200107-bubbleSort.html</loc>
     <lastmod>2020-01-11</lastmod>
   </url>  <url>
-    <loc>https://wbml.top/posts/20200107-quickSort.html</loc>
-    <lastmod>2020-01-11</lastmod>
-  </url>  <url>
     <loc>https://wbml.top/posts/20200107-binarytree.html</loc>
-    <lastmod>2020-01-11</lastmod>
-  </url>  <url>
-    <loc>https://wbml.top/posts/20200107-shellSort.html</loc>
-    <lastmod>2020-01-11</lastmod>
-  </url>  <url>
-    <loc>https://wbml.top/posts/20200107-selectSort.html</loc>
     <lastmod>2020-01-11</lastmod>
   </url>
 </urlset>
