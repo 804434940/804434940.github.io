@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: 
+Disallow: /archives/
+Disallow: /categories/
+Disallow: /tags/
+Disallow: /photo/
+Sitemap: https://wbml.top/sitemap.xml
+Sitemap: https://wbml.top/baidusitemap.xml
