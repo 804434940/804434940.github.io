@@ -151,6 +151,328 @@
 <div class="card">
     
     <div class="card-image">
+        <a href="/posts/20200107-mergeSort.html" class="image is-7by1">
+            <img class="thumbnail" src="/gallery/thumbnail/02.jpeg" alt="《算法4》归并排序---------java实现">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-01-07T05:41:10.000Z">2020-01-07</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    12 分钟 读完 (大约 1852 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/posts/20200107-mergeSort.html">《算法4》归并排序---------java实现</a>
+            
+        </h1>
+        <div class="content">
+            <p>归并排序采用分治策略实现</p>
+<ul>
+<li>平均时间复杂度 : O（nlogn）</li>
+<li>最差时间复杂度: O(nlogn)</li>
+<li>稳定性： 稳定</li>
+<li>空间复杂度：O(n)</li>
+</ul>
+<p>归并排序时以空间换时间的排序方法，空间消耗很大，一般内部排序使用快速排序较多</p>
+<p>假设有这样一组数据：[10,4,8,7,1,3,2,9]</p>
+<p>我们先介绍<strong>自顶向下</strong>的归并排序</p>
+<h1 id="一、分"><a href="#一、分" class="headerlink" title="一、分"></a>一、分</h1><p><img src="https://img-blog.csdnimg.cn/20191029203021127.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzY5NjUyOQ==,size_16,color_FFFFFF,t_70" alt="img">)<img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p>如上将8个数组分成8个单独的数据</p>
+<h1 id="二、合"><a href="#二、合" class="headerlink" title="二、合"></a>二、合</h1><p><strong>1.将 10和 4合并</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/20191029203438240.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzY5NjUyOQ==,size_16,color_FFFFFF,t_70" alt="img">)<img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p><strong>2.将8和7合并</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/20191029203526490.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzY5NjUyOQ==,size_16,color_FFFFFF,t_70" alt="img">)<img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p><strong>3. 将4,10和7,8合并</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/20191029203638882.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzY5NjUyOQ==,size_16,color_FFFFFF,t_70" alt="img">)<img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"><strong>、</strong></p>
+<p><strong>4.同样将右半部分也按此合并得到如下两组数据</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/20191029203751570.png" alt="img">)<img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p><strong>5.最后将两组数据合并在一起</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/20191029203906105.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzY5NjUyOQ==,size_16,color_FFFFFF,t_70" alt="img">)<img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<h1 id="三、代码实现"><a href="#三、代码实现" class="headerlink" title="三、代码实现"></a><strong>三、代码实现</strong></h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.wml.sort;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2019/10/2919:17</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MergeSort</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> CUTOFF = <span class="number">15</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T extends Comparable&lt;? <span class="keyword">super</span> T&gt;&gt; <span class="function"><span class="keyword">void</span> <span class="title">mergeSort</span><span class="params">(T[] arr)</span> </span>&#123;</span><br><span class="line">        T[] temp = (T[]) <span class="keyword">new</span> Comparable[arr.length];</span><br><span class="line">      mergeSort(arr, temp, <span class="number">0</span>, arr.length - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *  自顶向下归并排序 长度为N的数组，需要1/2NlogN到NlgN次比较</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> arr</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> temp</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> left</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> right</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &lt;T&gt;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> &lt;T extends Comparable&lt;? <span class="keyword">super</span> T&gt;&gt; <span class="function"><span class="keyword">void</span> <span class="title">mergeSort</span><span class="params">(T[] arr, T[] temp, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (left &lt; right) &#123;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">//System.out.println("sort(arr," + left + "," + right + ")");</span></span><br><span class="line">            <span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</span><br><span class="line">            mergeSort(arr, temp, left, mid);</span><br><span class="line">            mergeSort(arr, temp, mid + <span class="number">1</span>, right);</span><br><span class="line">             merge(arr, temp, left, mid + <span class="number">1</span>, right);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 合并两组数据</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> arr 原始数组</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> temp 临时数组</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> leftStart 左半部分开始位置</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> rightStart 右半部分开始位置</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> rightEnd 右半部分结束位置</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &lt;T&gt;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> &lt;T extends Comparable&lt;? <span class="keyword">super</span> T&gt;&gt; <span class="function"><span class="keyword">void</span> <span class="title">merge</span><span class="params">(T[] arr, T[] temp, <span class="keyword">int</span> leftStart, <span class="keyword">int</span> rightStart, <span class="keyword">int</span> rightEnd)</span> </span>&#123;</span><br><span class="line">       <span class="comment">// System.out.println("merge(arr,temp," + leftStart + "," + rightStart + "," + rightEnd + ")");</span></span><br><span class="line">        <span class="comment">//计算左半部分边界</span></span><br><span class="line">        <span class="keyword">int</span> leftEnd = rightStart - <span class="number">1</span>;</span><br><span class="line">        <span class="comment">//临时数组当前位置的指针</span></span><br><span class="line">        <span class="keyword">int</span> tempCurrent = leftStart;</span><br><span class="line">        <span class="comment">//计算待合并数组的总长度</span></span><br><span class="line">        <span class="keyword">int</span> length = rightEnd - leftStart + <span class="number">1</span>;</span><br><span class="line">        <span class="comment">//当任意一边数据拷贝完毕结束循环</span></span><br><span class="line">        <span class="keyword">while</span> (leftStart &lt;= leftEnd &amp;&amp; rightStart &lt;= rightEnd) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[leftStart].compareTo(arr[rightStart]) &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">                temp[tempCurrent++] = arr[leftStart++];</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                temp[tempCurrent++] = arr[rightStart++];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果是左边的未拷贝完毕，则继续将左边剩下的拷贝到临时数组</span></span><br><span class="line">        <span class="keyword">while</span> (leftStart &lt;= leftEnd) &#123;</span><br><span class="line">            temp[tempCurrent++] = arr[leftStart++];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果是右边的未拷贝完毕，则继续将右边剩下的拷贝到临时数组</span></span><br><span class="line">        <span class="keyword">while</span> (rightStart &lt;= rightEnd) &#123;</span><br><span class="line">            temp[tempCurrent++] = arr[rightStart++];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length; i++, rightEnd--) &#123;</span><br><span class="line">            arr[rightEnd] = temp[rightEnd];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="comment">/*  Integer[]arr=new Integer[8000000];</span></span><br><span class="line"><span class="comment">        Random random=new Random();</span></span><br><span class="line"><span class="comment">        for (int i = 0; i &lt; 8000000; i++) &#123;</span></span><br><span class="line"><span class="comment">            arr[i]= random.nextInt(8000000);</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">        long begin=System.currentTimeMillis();</span></span><br><span class="line"><span class="comment">        System.out.println(begin);</span></span><br><span class="line"><span class="comment">        mergeSort(arr);</span></span><br><span class="line"><span class="comment">        long end=System.currentTimeMillis();</span></span><br><span class="line"><span class="comment">        System.out.println(end);</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">        System.out.println(end-begin);*/</span></span><br><span class="line">        Integer[]arr=&#123;<span class="number">4</span>,<span class="number">12</span>,<span class="number">4</span>,<span class="number">25</span>,<span class="number">12</span>,<span class="number">524</span>,<span class="number">12</span>,<span class="number">12</span>,<span class="number">25</span>,<span class="number">346</span>,<span class="number">21</span>,<span class="number">346</span>,<span class="number">47</span>,<span class="number">587</span>,<span class="number">96</span>,<span class="number">4534</span>,<span class="number">21</span>,<span class="number">56</span>,<span class="number">8</span>,<span class="number">78</span>,<span class="number">9</span>,<span class="number">2</span>,<span class="number">12</span>&#125;;</span><br><span class="line">        mergeSort(arr);</span><br><span class="line">        <span class="keyword">for</span> (Integer o:arr)&#123;</span><br><span class="line">            System.out.println(o);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p><strong>结果：</strong></p>
+<p><strong>以下执行地动态情况可以看出归并排序的递归过程，加深理解：</strong></p>
+<p><img src="C:%5CUsers%5CMI%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1583824372133.png" alt="1583824372133"></p>
+<p><img src="C:%5CUsers%5CMI%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1583824397338.png" alt="1583824397338"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">4</span><br><span class="line">4</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">12</span><br><span class="line">12</span><br><span class="line">12</span><br><span class="line">12</span><br><span class="line">12</span><br><span class="line">21</span><br><span class="line">21</span><br><span class="line">25</span><br><span class="line">25</span><br><span class="line">47</span><br><span class="line">56</span><br><span class="line">78</span><br><span class="line">96</span><br><span class="line">346</span><br><span class="line">346</span><br><span class="line">524</span><br><span class="line">587</span><br><span class="line">4534</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p><strong>算法第四版给出如下结论：</strong></p>
+<blockquote>
+<p>对于长度为N的任意数组，自顶向下的归并排序需要1/2NlgN到NlogN次比较。</p>
+<p>且最多需要访问组数6NlgN次</p>
+</blockquote>
+<p>此时我们可以对该算法进行一定的优化，我们知道在规模较小的数组排序时，使用插入排序更快速些，因为我们可以在数组规模小于15时让其执行插入排序。另外对于两个待合并数组，如果a[mid]&lt;=a[mid+1]，即左边一组的最后一个元素小于等于右边一组的第一个元素。我们可以不对其进行merge，因为这两组数据已经是有序的了。</p>
+<p><strong>修改后的mergeSort如下：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> &lt;T extends Comparable&lt;? <span class="keyword">super</span> T&gt;&gt; <span class="function"><span class="keyword">void</span> <span class="title">mergeSort</span><span class="params">(T[] arr, T[] temp, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">         <span class="keyword">if</span> (left &lt; right) &#123;</span><br><span class="line">            <span class="comment">//小于CUTOFF=15时，进行 插入排序</span></span><br><span class="line">            <span class="keyword">if</span> (right-left&lt;CUTOFF)&#123;</span><br><span class="line">                InsertSort.insertSort(arr,left,right);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(<span class="string">"sort(arr,"</span> + left + <span class="string">","</span> + right + <span class="string">")"</span>);</span><br><span class="line">            <span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</span><br><span class="line">            mergeSort(arr, temp, left, mid);</span><br><span class="line">            mergeSort(arr, temp, mid + <span class="number">1</span>, right);</span><br><span class="line">            <span class="comment">//如果左半边最后一个元素大于右半边第一个元素时才进行合并</span></span><br><span class="line">            <span class="keyword">if</span> (arr[mid].compareTo(arr[mid + <span class="number">1</span>]) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                merge(arr, temp, left, mid + <span class="number">1</span>, right);</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<h1 id="三、自底向上的归并排序"><a href="#三、自底向上的归并排序" class="headerlink" title="三、自底向上的归并排序"></a><strong>三、自底向上的归并排序</strong></h1><p>自底向上的归并排序思想是：</p>
+<p>先归并微型数组，再成对归并得到的子数组，直到将整个数组归并在一起。</p>
+<p>流程就是：</p>
+<p>1.将每个元素当做大小为1的数组，两两归并</p>
+<p>2.然后再四个四个归并</p>
+<p>3.再八个八个归并</p>
+<p>4.直到归并完毕</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 自底向上</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> arr 原始数组</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> temp 临时数组</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &lt;T&gt;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> &lt;T extends Comparable&lt;? <span class="keyword">super</span> T&gt;&gt; <span class="function"><span class="keyword">void</span> <span class="title">mergeSort</span><span class="params">(T[] arr, T[] temp)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> N = arr.length;</span><br><span class="line">        <span class="comment">//一开始两两比较，gap为1，之后每次都扩大一倍</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> gap = <span class="number">1</span>; gap &lt; N; gap *= <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="comment">//数组大小小于CUTOFF时，进行插入排序</span></span><br><span class="line">            <span class="keyword">if</span> (gap &lt; CUTOFF) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> left = <span class="number">0</span>; left &lt; N - gap; left += gap + gap) &#123;</span><br><span class="line">                    <span class="keyword">int</span> right = Math.min(left + gap + gap - <span class="number">1</span>, N - <span class="number">1</span>);</span><br><span class="line">                    InsertSort.insertSort(arr, left, right);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">//对0到N-gap进行排序，gap为1，就是两两排序，gap为2，就是四四排序</span></span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> left = <span class="number">0</span>; left &lt; N - gap; left += gap*<span class="number">2</span>) &#123;</span><br><span class="line">                    <span class="comment">//计算当前待合并数组的右边界位置，如果原始数组最后一组数据不够2*gap，则left+gap*2就会越界，其真实的边界应当是N-1</span></span><br><span class="line">                    <span class="keyword">int</span> right = Math.min(left + gap*<span class="number">2</span> - <span class="number">1</span>, N - <span class="number">1</span>);</span><br><span class="line">                    <span class="comment">//同自顶向下，若待合并的数据已经是有序的，则不进行合并</span></span><br><span class="line">                    <span class="keyword">if</span> (arr[left + gap - <span class="number">1</span>].compareTo(arr[left + gap]) &gt; <span class="number">0</span>) &#123;</span><br><span class="line"></span><br><span class="line">                        merge(arr, temp, left, left + gap, right);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p>暂时去掉优化的部分，同样对该算法的调用进行打印输出（仍用自顶向下归并的数据）：</p>
+<p>gap=1时，两两排序</p>
+<p>*<em>merge(arr,temp,0,1,1)    *</em></p>
+<p>​    *<em>merge(arr,temp,2,3,3)        *</em></p>
+<p>​        *<em>merge(arr,temp,4,5,5)          *</em></p>
+<p>​            *<em>merge(arr,temp,6,7,7)                *</em></p>
+<p>​                *<em>merge(arr,temp,8,9,9)                    *</em></p>
+<p>​                    <strong>merge(arr,temp,10,11,11)</strong></p>
+<p>​                        *<em>merge(arr,temp,12,13,13)                            *</em>    </p>
+<p>​                            *<em>merge(arr,temp,14,15,15)                                *</em></p>
+<p>​                                *<em>merge(arr,temp,16,17,17)                                 *</em></p>
+<p>​                                    *<em>merge(arr,temp,18,19,19)                                    *</em></p>
+<p>​                                        <strong>merge(arr,temp,20,21,21)</strong></p>
+<p>gap=2时，四个四个排序<br>*<em>merge(arr,temp,0,2,3)    *</em></p>
+<p>​    *<em>merge(arr,temp,4,6,7)        *</em></p>
+<p>​        *<em>merge(arr,temp,8,10,11)          *</em></p>
+<p>​            <strong>merge(arr,temp,12,14,15)</strong>               </p>
+<p>​                 <strong>merge(arr,temp,16,18,19)</strong>   </p>
+<p>​                    <strong>merge(arr,temp,20,22,22)</strong></p>
+<p>gap=4时，八个八个排序<br>*<em>merge(arr,temp,0,4,7)    *</em></p>
+<p>​    <strong>merge(arr,temp,8,12,15)</strong></p>
+<p>​       *<em>//此时右半边只有7个数据，因此right=N-1=23-1=22            *</em></p>
+<p>​        <strong>merge(arr,temp,16,20,22)</strong></p>
+<p>gap=8时，16个一组排序<br><strong>merge(arr,temp,0,8,15)</strong></p>
+<p>gap=16时，此时左半边为0-15，右半边为16-22，合并之<br><strong>merge(arr,temp,0,16,22)</strong><br>2<br>4<br>4<br>8<br>9<br>12<br>12<br>12<br>12<br>12<br>21<br>21<br>25<br>25<br>47<br>56<br>78<br>96<br>346<br>346<br>524<br>587<br>4534</p>
+<blockquote>
+<p>对于长度为N的任意数组，自底向上的归并排序一样需要1/2NlgN到NlogN次比较。</p>
+<p>且最多需要访问组数6NlgN次</p>
+</blockquote>
+<p> <strong>当数组长度为2的幂时</strong>，两种归并方式所用的比较次数和数组访问次数正好相同，只是顺序不同。</p>
+<p><strong>而自底向上的归并更适合比较链表结构的数据。只需要重新组织链表的链接就可以原地排序，而不需要创建任何新的节点</strong>。</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/posts/20200107-quickSort.html" class="image is-7by1">
+            <img class="thumbnail" src="/gallery/thumbnail/04.jpeg" alt="快速排序-------------java实现">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-01-07T05:40:22.000Z">2020-01-07</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    13 分钟 读完 (大约 1881 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/posts/20200107-quickSort.html">快速排序-------------java实现</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="一、基本思想"><a href="#一、基本思想" class="headerlink" title="一、基本思想"></a>一、基本思想</h1><p>选择一个基准数，通过一趟排序将待排序数据分成两个独立的部分，其中一部分的所有数都比基准数小，另一部分都比基准数大，然后再使用此方法递归对两部分数据进行快排，最终实现整个数据的有序。</p>
+<h1 id="二、详解排序过程"><a href="#二、详解排序过程" class="headerlink" title="二、详解排序过程"></a>二、详解排序过程</h1><p>现有待排序数据：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;-21, 312, 44, 11, -23, 2, 10&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/posts/20200107-quickSort.html#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/posts/20200107-shellSort.html" class="image is-7by1">
+            <img class="thumbnail" src="/gallery/thumbnail/01.jpeg" alt="希尔排序-----------java实现">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-01-07T05:39:24.000Z">2020-01-07</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    7 分钟 读完 (大约 1034 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/posts/20200107-shellSort.html">希尔排序-----------java实现</a>
+            
+        </h1>
+        <div class="content">
+            <p><strong>首先看一下之前使用简单插入排序存在的问题：</strong></p>
+<p>当存在一个数组，其最后一个数据为最小值，如：arr={5,6,16,34,33,2}</p>
+<p>这样的话需要循环到最后一次，也就是第6次的时候，才可以将2排到前边，效率非常低</p>
+<p>但是希尔排序（<strong>基于插入排序</strong>）可以很好的解决这个问题，其是简单插入排序改进后的一个效率较高的排序方式</p>
+<p>，也叫<strong>缩小增量排序</strong></p>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/posts/20200107-shellSort.html#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/posts/20200107-insertSort.html" class="image is-7by1">
+            <img class="thumbnail" src="/gallery/thumbnail/07.jpeg" alt="插入排序-----------java实现">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-01-07T05:38:04.000Z">2020-01-07</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 分钟 读完 (大约 602 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/posts/20200107-insertSort.html">插入排序-----------java实现</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="一、复杂度"><a href="#一、复杂度" class="headerlink" title="一、复杂度"></a>一、复杂度</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">平均时间复杂度： O(n²)</span><br><span class="line">最差时： O(n²)</span><br><span class="line">是否稳定： 稳定</span><br><span class="line">空间开销： O(1)</span><br><span class="line">在大部分数据已经排好序时性能较好</span><br><span class="line">也很适合小规模数组</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<h1 id="二、基本思想"><a href="#二、基本思想" class="headerlink" title="二、基本思想"></a>二、基本思想</h1><p>将n个待排序元素看成一个有序表和一个无序表，开始有序表只有一个元素，每次排序从无需表中取第一个元素，将它的值依此和有序表元素的数据比较，插入到有序表的适当位置，形成新的有序表</p>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/posts/20200107-insertSort.html#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
         <a href="/posts/20200107-selectSort.html" class="image is-7by1">
             <img class="thumbnail" src="/gallery/thumbnail/02.jpeg" alt="选择排序  ------java实现">
         </a>
@@ -206,249 +528,6 @@
 
 
 
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/posts/20200107-bubbleSort.html" class="image is-7by1">
-            <img class="thumbnail" src="/gallery/thumbnail/05.jpeg" alt="冒泡排序---------java实现">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-01-07T05:34:27.000Z">2020-01-07</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">排序</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    4 分钟 读完 (大约 655 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/posts/20200107-bubbleSort.html">冒泡排序---------java实现</a>
-            
-        </h1>
-        <div class="content">
-            <h3 id="一、冒泡排序"><a href="#一、冒泡排序" class="headerlink" title="一、冒泡排序"></a>一、冒泡排序</h3><blockquote>
-<p>平均时间复杂度:  O(n²)<br>最差时： O(n²)<br>是否稳定： 稳定<br>空间开销：O（1）<br>适合n较小时</p>
-</blockquote>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/posts/20200107-bubbleSort.html#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/posts/20200107-centos7_firewall.html" class="image is-7by1">
-            <img class="thumbnail" src="/gallery/thumbnail/08.jpeg" alt="centos7查看防火墙以及开放和关闭端口">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-01-07T05:31:44.000Z">2020-01-07</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/linux/">linux</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    1 分钟 读完 (大约 197 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/posts/20200107-centos7_firewall.html">centos7查看防火墙以及开放和关闭端口</a>
-            
-        </h1>
-        <div class="content">
-            <ol>
-<li>查看某个端口是否开放</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --query-port=22122/tcp</span><br></pre></td></tr></table></figure>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/posts/20200107-centos7_firewall.html#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/posts/20200106-linux_file_1.html" class="image is-7by1">
-            <img class="thumbnail" src="/gallery/thumbnail/05.jpeg" alt="Linux命令整理-------------文件管理相关(一)">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-01-06T12:46:00.000Z">2020-01-06</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/linux/">linux</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    15 分钟 读完 (大约 2191 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/posts/20200106-linux_file_1.html">Linux命令整理-------------文件管理相关(一)</a>
-            
-        </h1>
-        <div class="content">
-            <ul>
-<li><h2 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h2><pre><code>说明：用来显示文本内容(小文件)，对于大文件推荐使用more命令
-格式： cat +选项+指定文件</code></pre><p> ​
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/posts/20200106-linux_file_1.html#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/posts/20200106-mavon_boot_fdfs.html" class="image is-7by1">
-            <img class="thumbnail" src="/gallery/thumbnail/04.jpeg" alt="mavon-editor+springboot+fdfs上传文件">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-01-06T11:45:00.000Z">2020-01-06</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/springboot/">springboot</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    3 分钟 读完 (大约 507 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/posts/20200106-mavon_boot_fdfs.html">mavon-editor+springboot+fdfs上传文件</a>
-            
-        </h1>
-        <div class="content">
-            <h2 id="一、安装mavon"><a href="#一、安装mavon" class="headerlink" title="一、安装mavon"></a>一、安装mavon</h2><pre><code>直接npm install下就可以了，然后在main.js引入：</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> mavonEditor <span class="keyword">from</span> <span class="string">'mavon-editor'</span></span><br><span class="line">Vue.use(mavonEditor)</span><br></pre></td></tr></table></figure>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/posts/20200106-mavon_boot_fdfs.html#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -470,6 +549,8 @@
             <li><a class="pagination-link is-current" href="/page/6/">6</a></li>
             
             <li><a class="pagination-link has-text-black-ter" href="/page/7/">7</a></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/page/8/">8</a></li>
             
         </ul>
     </nav>
@@ -520,7 +601,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            32
+                            36
                         </p>
                     </a>
                 </div>
@@ -532,7 +613,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            17
+                            18
                         </p>
                     </a>
                 </div>
@@ -544,7 +625,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            61
+                            66
                         </p>
                     </a>
                 </div>
@@ -622,6 +703,14 @@
             </h3>
             <ul class="menu-list">
             <li>
+        <a class="level is-marginless" href="/categories/JVM/">
+            <span class="level-start">
+                <span class="level-item">JVM</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/docker/">
             <span class="level-start">
                 <span class="level-item">docker</span>
@@ -769,7 +858,7 @@
             标签云
 			
         </h3>
-        <a href="/tags/AQS/" style="font-size: 10px;">AQS</a> <a href="/tags/AVL/" style="font-size: 12.5px;">AVL</a> <a href="/tags/AtomicXXX/" style="font-size: 10px;">AtomicXXX</a> <a href="/tags/BST/" style="font-size: 10px;">BST</a> <a href="/tags/CAS/" style="font-size: 10px;">CAS</a> <a href="/tags/Callable/" style="font-size: 10px;">Callable</a> <a href="/tags/CountDownLatch/" style="font-size: 10px;">CountDownLatch</a> <a href="/tags/CyclicBarrier/" style="font-size: 10px;">CyclicBarrier</a> <a href="/tags/Dijkstra/" style="font-size: 10px;">Dijkstra</a> <a href="/tags/Future/" style="font-size: 10px;">Future</a> <a href="/tags/FutureTask/" style="font-size: 10px;">FutureTask</a> <a href="/tags/IndexPQ/" style="font-size: 10px;">IndexPQ</a> <a href="/tags/LockSupport/" style="font-size: 10px;">LockSupport</a> <a href="/tags/PriorityQueue/" style="font-size: 10px;">PriorityQueue</a> <a href="/tags/ReentrantLock/" style="font-size: 10px;">ReentrantLock</a> <a href="/tags/ReentrantReadWriteLock/" style="font-size: 10px;">ReentrantReadWriteLock</a> <a href="/tags/Runnable/" style="font-size: 10px;">Runnable</a> <a href="/tags/Semaphore/" style="font-size: 10px;">Semaphore</a> <a href="/tags/bfs/" style="font-size: 10px;">bfs</a> <a href="/tags/centos7/" style="font-size: 10px;">centos7</a> <a href="/tags/dfs/" style="font-size: 10px;">dfs</a> <a href="/tags/docker/" style="font-size: 12.5px;">docker</a> <a href="/tags/elasticsearch/" style="font-size: 10px;">elasticsearch</a> <a href="/tags/fdfs/" style="font-size: 10px;">fdfs</a> <a href="/tags/firewall/" style="font-size: 10px;">firewall</a> <a href="/tags/fork-join/" style="font-size: 10px;">fork/join</a> <a href="/tags/gulp-%E5%8E%8B%E7%BC%A9%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90/" style="font-size: 10px;">gulp,压缩静态资源</a> <a href="/tags/jib/" style="font-size: 10px;">jib</a> <a href="/tags/kruskal/" style="font-size: 10px;">kruskal</a> <a href="/tags/linux/" style="font-size: 12.5px;">linux</a> <a href="/tags/prim/" style="font-size: 10px;">prim</a> <a href="/tags/union-find/" style="font-size: 10px;">union-find</a> <a href="/tags/%E4%BA%8C%E5%88%86%E5%9B%BE/" style="font-size: 10px;">二分图</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91/" style="font-size: 10px;">二叉查找树</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" style="font-size: 10px;">二叉树</a> <a href="/tags/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/" style="font-size: 12.5px;">优先队列</a> <a href="/tags/%E5%88%86%E6%B2%BB/" style="font-size: 10px;">分治</a> <a href="/tags/%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C%E7%B1%BB/" style="font-size: 10px;">原子操作类</a> <a href="/tags/%E5%9B%BE/" style="font-size: 10px;">图</a> <a href="/tags/%E5%A0%86/" style="font-size: 10px;">堆</a> <a href="/tags/%E5%A0%86%E6%8E%92%E5%BA%8F/" style="font-size: 10px;">堆排序</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 15px;">多线程</a> <a href="/tags/%E5%B9%B3%E8%A1%A1%E6%A0%91/" style="font-size: 12.5px;">平衡树</a> <a href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" style="font-size: 17.5px;">并发编程</a> <a href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" style="font-size: 10px;">并查集</a> <a href="/tags/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/" style="font-size: 10px;">拓扑排序</a> <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 20px;">排序</a> <a href="/tags/%E6%95%A3%E5%88%97%E8%A1%A8/" style="font-size: 10px;">散列表</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 10px;">数据结构与算法</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 10px;">文件上传</a> <a href="/tags/%E6%98%BE%E7%A4%BA%E9%94%81Lock/" style="font-size: 10px;">显示锁Lock</a> <a href="/tags/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/" style="font-size: 10px;">最小生成树</a> <a href="/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84/" style="font-size: 10px;">最短路径</a> <a href="/tags/%E6%9F%A5%E6%89%BE/" style="font-size: 15px;">查找</a> <a href="/tags/%E7%B4%A2%E5%BC%95%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/" style="font-size: 10px;">索引优先队列</a> <a href="/tags/%E7%BA%A2%E9%BB%91%E6%A0%91/" style="font-size: 10px;">红黑树</a> <a href="/tags/%E8%AF%BB%E5%86%99%E9%94%81/" style="font-size: 10px;">读写锁</a> <a href="/tags/%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/" style="font-size: 10px;">调度算法</a> <a href="/tags/%E8%B7%AF%E5%BE%84%E5%8E%8B%E7%BC%A9/" style="font-size: 10px;">路径压缩</a> <a href="/tags/%E8%BF%9E%E9%80%9A%E6%80%A7/" style="font-size: 10px;">连通性</a>
+        <a href="/tags/AQS/" style="font-size: 10px;">AQS</a> <a href="/tags/AVL/" style="font-size: 12.5px;">AVL</a> <a href="/tags/AtomicXXX/" style="font-size: 10px;">AtomicXXX</a> <a href="/tags/BST/" style="font-size: 10px;">BST</a> <a href="/tags/CAS/" style="font-size: 10px;">CAS</a> <a href="/tags/Callable/" style="font-size: 10px;">Callable</a> <a href="/tags/CountDownLatch/" style="font-size: 10px;">CountDownLatch</a> <a href="/tags/CyclicBarrier/" style="font-size: 10px;">CyclicBarrier</a> <a href="/tags/Dijkstra/" style="font-size: 10px;">Dijkstra</a> <a href="/tags/Future/" style="font-size: 10px;">Future</a> <a href="/tags/FutureTask/" style="font-size: 10px;">FutureTask</a> <a href="/tags/GC/" style="font-size: 10px;">GC</a> <a href="/tags/IndexPQ/" style="font-size: 10px;">IndexPQ</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/LockSupport/" style="font-size: 10px;">LockSupport</a> <a href="/tags/PriorityQueue/" style="font-size: 10px;">PriorityQueue</a> <a href="/tags/ReentrantLock/" style="font-size: 10px;">ReentrantLock</a> <a href="/tags/ReentrantReadWriteLock/" style="font-size: 10px;">ReentrantReadWriteLock</a> <a href="/tags/Runnable/" style="font-size: 10px;">Runnable</a> <a href="/tags/Semaphore/" style="font-size: 10px;">Semaphore</a> <a href="/tags/bfs/" style="font-size: 10px;">bfs</a> <a href="/tags/centos7/" style="font-size: 10px;">centos7</a> <a href="/tags/dfs/" style="font-size: 10px;">dfs</a> <a href="/tags/docker/" style="font-size: 12.5px;">docker</a> <a href="/tags/elasticsearch/" style="font-size: 10px;">elasticsearch</a> <a href="/tags/fdfs/" style="font-size: 10px;">fdfs</a> <a href="/tags/firewall/" style="font-size: 10px;">firewall</a> <a href="/tags/fork-join/" style="font-size: 10px;">fork/join</a> <a href="/tags/gulp-%E5%8E%8B%E7%BC%A9%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90/" style="font-size: 10px;">gulp,压缩静态资源</a> <a href="/tags/jib/" style="font-size: 10px;">jib</a> <a href="/tags/kruskal/" style="font-size: 10px;">kruskal</a> <a href="/tags/linux/" style="font-size: 12.5px;">linux</a> <a href="/tags/prim/" style="font-size: 10px;">prim</a> <a href="/tags/union-find/" style="font-size: 10px;">union-find</a> <a href="/tags/%E4%B8%89%E8%89%B2%E6%A0%87%E8%AE%B0/" style="font-size: 10px;">三色标记</a> <a href="/tags/%E4%BA%8C%E5%88%86%E5%9B%BE/" style="font-size: 10px;">二分图</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91/" style="font-size: 10px;">二叉查找树</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" style="font-size: 10px;">二叉树</a> <a href="/tags/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/" style="font-size: 12.5px;">优先队列</a> <a href="/tags/%E5%88%86%E6%B2%BB/" style="font-size: 10px;">分治</a> <a href="/tags/%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C%E7%B1%BB/" style="font-size: 10px;">原子操作类</a> <a href="/tags/%E5%9B%9B%E5%A4%A7%E5%BC%95%E7%94%A8/" style="font-size: 10px;">四大引用</a> <a href="/tags/%E5%9B%BE/" style="font-size: 10px;">图</a> <a href="/tags/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" style="font-size: 10px;">垃圾收集器</a> <a href="/tags/%E5%A0%86/" style="font-size: 10px;">堆</a> <a href="/tags/%E5%A0%86%E6%8E%92%E5%BA%8F/" style="font-size: 10px;">堆排序</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 15px;">多线程</a> <a href="/tags/%E5%B9%B3%E8%A1%A1%E6%A0%91/" style="font-size: 12.5px;">平衡树</a> <a href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" style="font-size: 17.5px;">并发编程</a> <a href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" style="font-size: 10px;">并查集</a> <a href="/tags/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/" style="font-size: 10px;">拓扑排序</a> <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 20px;">排序</a> <a href="/tags/%E6%95%A3%E5%88%97%E8%A1%A8/" style="font-size: 10px;">散列表</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 10px;">数据结构与算法</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 10px;">文件上传</a> <a href="/tags/%E6%98%BE%E7%A4%BA%E9%94%81Lock/" style="font-size: 10px;">显示锁Lock</a> <a href="/tags/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/" style="font-size: 10px;">最小生成树</a> <a href="/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84/" style="font-size: 10px;">最短路径</a> <a href="/tags/%E6%9F%A5%E6%89%BE/" style="font-size: 15px;">查找</a> <a href="/tags/%E7%B4%A2%E5%BC%95%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/" style="font-size: 10px;">索引优先队列</a> <a href="/tags/%E7%BA%A2%E9%BB%91%E6%A0%91/" style="font-size: 10px;">红黑树</a> <a href="/tags/%E8%AF%BB%E5%86%99%E9%94%81/" style="font-size: 10px;">读写锁</a> <a href="/tags/%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/" style="font-size: 10px;">调度算法</a> <a href="/tags/%E8%B7%AF%E5%BE%84%E5%8E%8B%E7%BC%A9/" style="font-size: 10px;">路径压缩</a> <a href="/tags/%E8%BF%9E%E9%80%9A%E6%80%A7/" style="font-size: 10px;">连通性</a>
     </div>
 </div>
     
@@ -778,6 +867,82 @@
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/posts/20200316-jvm-garbage-collector.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnail/07.jpeg" alt="JVM笔记《四》常见的垃圾收集器">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-16T12:49:55.000Z">2020-03-16</time></div>
+                    <a href="/posts/20200316-jvm-garbage-collector.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">JVM笔记《四》常见的垃圾收集器</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JVM/">JVM</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/posts/20200316-jvm-gc.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnail/08.jpeg" alt="JVM笔记（三）垃圾收集算法以及HotSpot的算法实现(安全点、记忆集与卡表、写屏障、三色标记等)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-16T12:47:01.000Z">2020-03-16</time></div>
+                    <a href="/posts/20200316-jvm-gc.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">JVM笔记（三）垃圾收集算法以及HotSpot的算法实现(安全点、记忆集与卡表、写屏障、三色标记等)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JVM/">JVM</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/posts/20200316-JVM-obj-reference.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnail/09.jpeg" alt="JVM笔记（二）对象的生死与java的四大引用">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-16T12:43:40.000Z">2020-03-16</time></div>
+                    <a href="/posts/20200316-JVM-obj-reference.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">JVM笔记（二）对象的生死与java的四大引用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JVM/">JVM</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/posts/20200316-jvm-memory.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnail/10.jpeg" alt="JVM笔记（一）java内存区域与内存溢出以及对象的创建、布局和定位">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-16T12:39:45.000Z">2020-03-16</time></div>
+                    <a href="/posts/20200316-jvm-memory.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">JVM笔记（一）java内存区域与内存溢出以及对象的创建、布局和定位</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JVM/">JVM</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -793,82 +958,6 @@
                     <a href="/posts/20200310-sp-dijkstra.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">《算法4》最短路径问题笔记</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%9B%BE/">图</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/posts/20200310-prim-kruskal.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/gallery/thumbnail/02.jpeg" alt="《算法4》最小生成树讲解笔记（Prim的延时和即使实现，Kruskal算法）">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-10T02:23:35.000Z">2020-03-10</time></div>
-                    <a href="/posts/20200310-prim-kruskal.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">《算法4》最小生成树讲解笔记（Prim的延时和即使实现，Kruskal算法）</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%9B%BE/">图</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/posts/20200310-graphDetails.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/gallery/thumbnail/03.jpeg" alt="《算法4》无向图和有向图的有关问题详解（DFS,BFS,环,拓扑排序,连通性和强连通性）">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-10T02:23:22.000Z">2020-03-10</time></div>
-                    <a href="/posts/20200310-graphDetails.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">《算法4》无向图和有向图的有关问题详解（DFS,BFS,环,拓扑排序,连通性和强连通性）</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%9B%BE/">图</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/posts/20200310-seq-linear-hash.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/gallery/thumbnail/04.jpeg" alt="《算法4》散列表实现笔记">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-10T02:23:04.000Z">2020-03-10</time></div>
-                    <a href="/posts/20200310-seq-linear-hash.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">《算法4》散列表实现笔记</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%95%A3%E5%88%97%E8%A1%A8/">散列表</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/posts/20200310-RedBlackTree.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/gallery/thumbnail/05.jpeg" alt="《算法4》红黑树的原理解析---java实现">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-10T02:12:06.000Z">2020-03-10</time></div>
-                    <a href="/posts/20200310-RedBlackTree.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">《算法4》红黑树的原理解析---java实现</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%9F%A5%E6%89%BE/">查找</a>
                     </p>
                 </div>
             </div>
@@ -891,7 +980,7 @@
                     <span class="level-item">三月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">11</span>
+                    <span class="level-item tag">15</span>
                 </span>
             </a>
         </li>
@@ -1009,9 +1098,23 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/GC/">
+                        <span class="tag">GC</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/IndexPQ/">
                         <span class="tag">IndexPQ</span>
                         <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JVM/">
+                        <span class="tag">JVM</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -1156,6 +1259,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/%E4%B8%89%E8%89%B2%E6%A0%87%E8%AE%B0/">
+                        <span class="tag">三色标记</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/%E4%BA%8C%E5%88%86%E5%9B%BE/">
                         <span class="tag">二分图</span>
                         <span class="tag is-grey">1</span>
@@ -1198,8 +1308,22 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%9B%9B%E5%A4%A7%E5%BC%95%E7%94%A8/">
+                        <span class="tag">四大引用</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/%E5%9B%BE/">
                         <span class="tag">图</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/">
+                        <span class="tag">垃圾收集器</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>

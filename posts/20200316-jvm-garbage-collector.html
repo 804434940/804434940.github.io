@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<script src="/js/src/click.js"></script>
+
+<html  lang="zh">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>JVM笔记《四》常见的垃圾收集器 - 一颗小陨石</title>
+
+
+    <meta name="description" content="垃圾收集器一、 Serial （新生代）1.单线程（收集期间需要暂停其他所有线程） 2.客户端模式下的默认收集器，也是很好的选择 优点： 1.简单高效（与其他收集器的单线程相比） 2.内存资源受限时，额外内存消耗最小 3.因为没有线程交互的开销，因此可获得最高的单线程效率">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM笔记《四》常见的垃圾收集器">
+<meta property="og:url" content="https://wbml.top/posts/20200316-jvm-garbage-collector.html">
+<meta property="og:site_name" content="一颗小陨石">
+<meta property="og:description" content="垃圾收集器一、 Serial （新生代）1.单线程（收集期间需要暂停其他所有线程） 2.客户端模式下的默认收集器，也是很好的选择 优点： 1.简单高效（与其他收集器的单线程相比） 2.内存资源受限时，额外内存消耗最小 3.因为没有线程交互的开销，因此可获得最高的单线程效率">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wbml.top/gallery/thumbnail/07.jpeg">
+<meta property="article:published_time" content="2020-03-16T12:49:55.000Z">
+<meta property="article:modified_time" content="2020-03-16T12:52:58.667Z">
+<meta property="article:author" content="MaoLin Wang">
+<meta property="article:tag" content="JVM">
+<meta property="article:tag" content="垃圾收集器器">
+<meta property="article:tag" content="Serial">
+<meta property="article:tag" content="ParNew">
+<meta property="article:tag" content="Parallel">
+<meta property="article:tag" content="G1">
+<meta property="article:tag" content="Garbage First">
+<meta property="article:tag" content="CMS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wbml.top/gallery/thumbnail/07.jpeg">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    <script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+	<meta name="sogou_site_verification" content="YLG0ofTESs"/>
+<meta name="360-site-verification" content="a44f3f715e55a4a2e4589897cc3ebd60" />
+	<meta name="baidu-site-verification" content="HWPg36A4P2" />
+	<meta name="google-site-verification" content="V5LVp6ybWL3boDnSNAlThRETW3_r0vTUReVaxHKA5ac" />
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
+<script src="https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget/autoload.js"></script>
+
+</head>
+<body class="is-2-column">
+
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.png" alt="JVM笔记《四》常见的垃圾收集器" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">主页</a>
+                
+                <a class="navbar-item"
+                href="/archives">文章</a>
+                
+                <a class="navbar-item"
+                href="/categories">分类</a>
+                
+                <a class="navbar-item"
+                href="/tags">标签</a>
+                
+                <a class="navbar-item"
+                href="/photo">相册</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    <a class="navbar-item" target="_blank" rel="noopener" title="My CSDN" href="https://blog.csdn.net/weixin_43696529">
+                        
+                        <i class="fab fa-telegram"></i>
+                        
+                    </a>
+                    
+                    <a class="navbar-item" target="_blank" rel="noopener" title="My Github" href="https://github.com/804434940/804434940.github.io">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-9-desktop is-9-widescreen has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="/gallery/thumbnail/07.jpeg" alt="JVM笔记《四》常见的垃圾收集器">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-16T12:49:55.000Z">2020-03-16</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/JVM/">JVM</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    20 分钟 读完 (大约 3045 个字)
+                </span>
+                
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span>次访问
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                JVM笔记《四》常见的垃圾收集器
+            
+        </h1>
+        <div class="content">
+            <h1 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h1><h2 id="一、-Serial-（新生代）"><a href="#一、-Serial-（新生代）" class="headerlink" title="一、 Serial （新生代）"></a>一、 Serial （新生代）</h2><p>1.<strong>单线程</strong>（收集期间需要暂停其他所有线程）</p>
+<p>2.<strong>客户端模式下的默认收集器，也是很好的选择</strong></p>
+<p>优点：</p>
+<p>1.简单高效（与其他收集器的单线程相比）</p>
+<p>2.内存资源受限时，额外内存消耗最小</p>
+<p>3.因为没有线程交互的开销，因此可获得最高的单线程效率</p>
+<p><img src="https://img-blog.csdnimg.cn/20200315202431191.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzY5NjUyOQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<a id="more"></a>
+
+<h2 id="二、-ParNew（新生代）"><a href="#二、-ParNew（新生代）" class="headerlink" title="二、 ParNew（新生代）"></a>二、 ParNew（新生代）</h2><p>是Serial的多线程版本。</p>
+<p>多线程并行收集，其余与Serial相同</p>
+<ol>
+<li><p><strong>多线程并行收集</strong>（用户进程需等待）</p>
+</li>
+<li><p>目前唯一一个能<strong>与CMS收集器配合</strong>工作</p>
+<p>使用<code>-XX:+UseConcMarkSweepGC</code>参数，使用<strong>ParNew+CMS+Serial Old</strong>收集器组合，此时ParNew是新生代的默认收集器</p>
+</li>
+<li><p>默认<strong>开启的收集线程数与处理器核心数相同。</strong></p>
+<p>可以使用<code>-XX:ParallelGCThreads</code>参数限制线程数</p>
+</li>
+</ol>
+<p>对垃圾收集时系统资源的高效利用很有好处。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200315202449733.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzY5NjUyOQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><strong>JDK9</strong>后取消的组合：</p>
+<ol>
+<li><p><strong>ParNew+CMS(未被取消，但不推荐作为服务端模式下的收集器组合)</strong></p>
+</li>
+<li><p><strong>ParNew+Serial Old</strong></p>
+</li>
+<li><p><strong>Serial+CMS</strong></p>
+<p>因此只有ParNew和CMS可以组合，也可以理解为ParNew并入了CMS</p>
+</li>
+</ol>
+<h2 id="三、-Parallel-Scanvenge（新生代）"><a href="#三、-Parallel-Scanvenge（新生代）" class="headerlink" title="三、 Parallel Scanvenge（新生代）"></a>三、 Parallel Scanvenge（新生代）</h2><p>1.基于标记-复制</p>
+<p>2.并行收集</p>
+<p>3.关注吞吐量  $用户代码时间/(用户代码时间+垃圾收集时间)$</p>
+<pre><code>适合在后台运算而不需要太多交互的任务</code></pre><h4 id="相关参数"><a href="#相关参数" class="headerlink" title="相关参数"></a>相关参数</h4><ol>
+<li><p><strong>-XX:MaxGCPauseMillis</strong></p>
+<p>大于0的毫秒数</p>
+<p>最大垃圾收集停顿时间（以牺牲年轻代大小为代价，每次停顿时间短，但导致GC更频繁，降低吞吐量）</p>
+</li>
+<li><p><strong>-XX:GCTimeRatio</strong></p>
+<p>0-100 整数：垃圾收集时间占总时间的比率，这里原书概念有点乱不太好理解。</p>
+<p>但只要只要参数值N是通过公式： <strong>1/1+N</strong> 来计算垃圾收集时间占总时间的比率，而N本身不是该比率</p>
+<p>如参数为49时：吞吐量=1-1/(1+49)=1-1/50 = 98%  1/50就是垃圾收集时间的占比</p>
+</li>
+<li><p><strong>-XX:UseAdaptiveSizePolicy</strong></p>
+<p>开启该参数，不需要指定新生代大小(-Xmn)、-XX:SurvivorRatio、-XX:PretenureSizeThreshold等参数，只需要指定一个优化目标：如最大堆-Xmx，以及上面参数1或2，指定是关注停顿时间还是吞吐量，系统会动态的调整相关参数，此称为<strong>垃圾收集的自适应的调节策略</strong></p>
+</li>
+</ol>
+<h2 id="四、-Parallel-Old（老年代）"><a href="#四、-Parallel-Old（老年代）" class="headerlink" title="四、 Parallel Old（老年代）"></a>四、 Parallel Old（老年代）</h2><p>Parallel Scavenge的老年代版本</p>
+<ol>
+<li>多线程并发收集</li>
+<li>基于标记整理</li>
+<li>注重吞吐量（Parallel Scanvenge + Parallel Old)</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/20200315202533389.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzY5NjUyOQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="五、-Serial-Old-老年代"><a href="#五、-Serial-Old-老年代" class="headerlink" title="五、 Serial Old(老年代)"></a>五、 Serial Old(老年代)</h2><p>Serial的老年代版本</p>
+<p>1.单线程</p>
+<p>2.标记整理</p>
+<p>3.同Serial供客户端模式使用</p>
+<p>4.作为CMS收集器失败时的后备预案</p>
+<p>工作过程图参考一、 Serial收集器</p>
+<h2 id="六、-CMS（老年代）"><a href="#六、-CMS（老年代）" class="headerlink" title="六、 CMS（老年代）"></a>六、 CMS（老年代）</h2><p>关注<strong>停顿时间</strong>—&gt; B/S等服务端模式中给用户给拱良好的交互体验</p>
+<h3 id="运作过程"><a href="#运作过程" class="headerlink" title="运作过程"></a>运作过程</h3><p><strong>1.初始标记 （Initial Mark）</strong></p>
+<p><strong>2.并发标记（Concurrent Mark）</strong></p>
+<p><strong>3.重新标记（Remark）</strong></p>
+<p><strong>4.并发清除（Concurrent Sweep）</strong></p>
+<p>1.初始标记：标记与GCRoots直接关联的对象，速度快</p>
+<p>2.并发标记：从GCRoots直接关联的对象开始遍历整个对象图，不暂停用户线程，可与GC线程并发运行，耗时长</p>
+<p>3.重新标记：修正并发标记期间因用户线程导致标记产生变动的对象</p>
+<p>4.并发清除：删除掉被标记死亡的对象，可与用户程序并发运行</p>
+<p><img src="https://img-blog.csdnimg.cn/20200315202632314.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzY5NjUyOQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ol>
+<li><p><strong>对CPU资源敏感</strong></p>
+<p>CMS默认启动的回收线程数是<strong>（cpu数量+3）/4</strong>。所以CPU数量少会导致用户程序执行速度降低较多。</p>
+</li>
+<li><p><strong>无法处理浮动垃圾</strong></p>
+<p>两个并发阶段因为用户程序仍要执行，因此会产生新的垃圾对象，而这些对象因出现在标记后，只能在下一次GC时回收，这些就是<strong>浮动垃圾。</strong></p>
+<ul>
+<li><p>CMS不能等到老年代对象满了才触发。</p>
+</li>
+<li><p>参数<code>-XX:CMSInitiatingOccupancyFraction</code>：设置CMS触发的阈值，在jdk1.6中CMS默认启动阈值提升到了92%。</p>
+</li>
+<li><p><strong>-XX:+UseCMSInitiatingOccupancyOnly</strong> ：默认false，如果不使用，则只会使用一次上面设置的阈值，后面会自动调整；如果使用，则始终使用设定的阈值。</p>
+<p>可以将这两个参数搭配使用：</p>
+<p><code>-XX:CMSInitiatingOccupancyFraction=70 -XX:UseCMSInitiatingOccupancyOnly=true</code></p>
+</li>
+<li><p>CMS运行期间预留的内存无法满足程序的需要时，会出现”Concurrent Mode Failure“,然后会临时启用<strong>Serial Old</strong>收集器进行老年代的垃圾收集，这样停顿时间就很长了，所以参数值设置太高容易导致大量”Concurrent Mode Failure“。</p>
+</li>
+</ul>
+<p>需要注意的是：</p>
+<p><code>intx CMSInitiatingOccupancyFraction            = -1       {product}</code></p>
+<p>该参数的值在jdk1.8中默认值为-1，而92%的计算方式如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> ConcurrentMarkSweepGeneration::init_initiating_occupancy(intx io, uintx tr) &#123;</span><br><span class="line">  assert(io &lt;= <span class="number">100</span> &amp;&amp; tr &lt;= <span class="number">100</span>, <span class="string">"Check the arguments"</span>);</span><br><span class="line">  <span class="keyword">if</span> (io &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">    _initiating_occupancy = (<span class="keyword">double</span>)io / <span class="number">100.0</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    _initiating_occupancy = ((<span class="number">100</span> - MinHeapFreeRatio) +</span><br><span class="line">                             (<span class="keyword">double</span>)(tr * MinHeapFreeRatio) / <span class="number">100.0</span>)</span><br><span class="line">                            / <span class="number">100.0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>如果参数值大于等于0，则就按该百分比作为参数</p>
+</li>
+<li><p>如果小于0，则根据<code>MinHeapFreeRatio</code>和<code>tr</code>按上面公式计算，<code>MinHeapFreeRatio</code>是堆大小达到这个该百分比时会缩小堆（-Xms=-Xmx时无效），tr即<code>CMSTriggerRatio</code>，查看可知这两个参数的默认值为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">uintx MinHeapFreeRatio             = <span class="number">40</span>                           &#123;manageable&#125;</span><br><span class="line">uintx CMSTriggerRatio               = <span class="number">80</span>                           &#123;product&#125;</span><br></pre></td></tr></table></figure>
+
+<p>因此得出的触发CMS的百分比为：((100-40)+(80*40)/100)/100=0.92=92%</p>
+</li>
+</ol>
+</li>
+<li><p><strong>存在空间碎片</strong>，因为基于标记-清除算法</p>
+<ul>
+<li><strong>-XX:+UseCMSCompactAtFullCollection</strong> ：FullGC时进行碎片整理，独占无法并发，会使停顿时间变长，JDK9开始废弃</li>
+<li><strong>-XX:+CMSFullGCsBeforeCompaction</strong> 设置经过几次FullGC后进行碎片整理</li>
+</ul>
+</li>
+</ol>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>CMS触发阈值不能太大，否则会造成并发失效，也不能太小，会造成频繁触发CMS，而CMS的初始标记和重新标记（耗时长）会造成Stop The World，增大停顿时间，可设置为70</p>
+<h2 id="七、-Garbage-First-G1"><a href="#七、-Garbage-First-G1" class="headerlink" title="七、 Garbage First(G1)"></a>七、 Garbage First(G1)</h2><p>1.面向<strong>服务端</strong>（JDK9开始作为服务器模式下的默认垃圾收集器，CMS则被Deprecate）</p>
+<p>2.面向堆内存任何部分来组成<strong>回收集</strong>（CSet），衡量的标准变为哪块内存中存放的垃圾数量最多，回收收益最大</p>
+<ul>
+<li><p>G1将堆分为大小相等的独立区域（Region），每个region都可以扮演eden、survivor和老年代，收集器能够针对不同角色的region采取不同的策略区处理，region是单次回收的最小单元，即每次回收的内存空间都是region的整数倍</p>
+</li>
+<li><p>Region中的<strong>Humongous</strong>（当做老年代看待）区域用于存储<strong>大对象</strong>，只要超过一个region容量一半的对象都可以称为大对象</p>
+<p>参数<code>-XX:G1HeapRegionSize</code>参数可以指定每个region大小，范围：<code>1M~32M</code>间的2的幂次数</p>
+<p>超过整个region的超大对象被放于连续的Homongous中</p>
+</li>
+<li><p>G1按照各个region垃圾的价值（即回收获得的空间与所需时间的经验值），维护一个<strong>优先级列表</strong>，依据用户设置的停顿时间优先回收价值大的region</p>
+</li>
+</ul>
+<h3 id="几个问题"><a href="#几个问题" class="headerlink" title="几个问题"></a>几个问题</h3><ol>
+<li><p>G1使用<strong>记忆集</strong>避免整堆扫描</p>
+</li>
+<li><p><strong>并发标记</strong>阶段保证收集线程和用户线程互不干扰的方式：</p>
+<p>G1通过<strong>原始快照方式</strong>保证用户线程改变引用关系时，原本的对象图结构不被破坏，保证标记的正确性。参考上文4.6（原始快照）</p>
+</li>
+</ol>
+<ul>
+<li>G1为每个region设计了两个TAMS（Top At Mark Start）指针</li>
+<li>划分一部分空间用于并发回收时产生的新对象的分配</li>
+<li>新对象地址必须在两个指针位置以上</li>
+<li>G1默认在该地址以上的对象是存活的</li>
+<li>当分配对象的速度超过回收速度时，冻结用户线程，产生Full GC</li>
+</ul>
+<h3 id="运行过程"><a href="#运行过程" class="headerlink" title="运行过程"></a>运行过程</h3><ol>
+<li><p><strong>初始标记</strong></p>
+<p>标记GCRoots直接关联的对象，修改TAMS指针值，让下个阶段用户进程并发运行时，能够在可用的region中分配新对象。同前面一样，需要STW，但耗时很短，且是借助MinorGC时同步完成，因此G1在该阶段不需要额外的停顿。</p>
+</li>
+<li><p><strong>并发标记</strong></p>
+<p>从GCRoots直接关联的对象对对象图做可达性分析，找出回收对象，耗时长。</p>
+<p>可与用户进程并发执行，扫描完成后，需重新处理SATB（原始快照）记录下的并发时引用变动的对象。</p>
+</li>
+<li><p><strong>最终标记</strong></p>
+<p>对用户线程作另一个短暂<strong>暂停</strong>，用于处理并发阶段结束后遗留下的少量SATB记录。</p>
+</li>
+<li><p><strong>筛选回收</strong></p>
+<ul>
+<li>更新region的统计数据</li>
+<li>对所有region按照回收价值和成本排序</li>
+<li>根据用户设定的停顿时间制定回收计划</li>
+<li>自由选择多个region作为回收集，将决定回收的region的存活对象复制到另一个空的region，再清理整个旧region</li>
+<li>需<strong>暂停</strong>用户进程，可多条收集器并行执行。</li>
+</ul>
+<p><strong>更新-&gt;排序-&gt;制定回收计划-&gt;选择回收集-&gt;复制清理(并行、STW)</strong></p>
+<p>除了并发标记，都需要停止用户进程。</p>
+</li>
+</ol>
+<p><strong>示意图如下：</strong><br><img src="https://img-blog.csdnimg.cn/20200315203151273.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzY5NjUyOQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="特色和优点："><a href="#特色和优点：" class="headerlink" title="特色和优点："></a>特色和优点：</h3><ol>
+<li><p>延迟可控情况下获得尽可能高的吞吐量。</p>
+</li>
+<li><p>用户可指定期望（要符合实际）的停顿时间</p>
+<p>默认为200ms，不能太低，太低会造成每次选择的回收集只占堆的很小一部分，回收速度跟不上分配速度，导致Full GC</p>
+</li>
+<li><p>分区（region）管理堆内存</p>
+</li>
+<li><p>按回收效益确定回收集</p>
+</li>
+<li><p>整体基于标记-整理，局部基于标记-复制，不会产生碎片</p>
+</li>
+</ol>
+<h3 id="缺点（与CMS比）"><a href="#缺点（与CMS比）" class="headerlink" title="缺点（与CMS比）"></a>缺点（与CMS比）</h3><ol>
+<li><p>内存占用</p>
+<p>因为每个region都需要维护一个卡表解决跨代引用问题，记忆集可能占整堆的20%以上。CMS则只有一份卡表。</p>
+</li>
+<li><p>额外执行负载高</p>
+<p>和CMS一样都使用写屏障维护卡表。</p>
+<p>除了和CMS一样使用写后屏障外（直接使用同步），G1还需要写前屏障实现原始快照算法，产生额外负担。（使用消息队列）</p>
+</li>
+</ol>
+<p><strong>小内存应用CMS表现大概率由于G1</strong></p>
+<p>======================================================================</p>
+<p><strong>其他相关笔记：</strong></p>
+<h2 id="JVM笔记（一）java内存区域与内存溢出以及对象的创建、布局和定位"><a href="#JVM笔记（一）java内存区域与内存溢出以及对象的创建、布局和定位" class="headerlink" title="JVM笔记（一）java内存区域与内存溢出以及对象的创建、布局和定位"></a><a href="https://blog.csdn.net/weixin_43696529/article/details/104884273">JVM笔记（一）java内存区域与内存溢出以及对象的创建、布局和定位</a></h2><h2 id="JVM笔记（二）对象的生死与java的四大引用"><a href="#JVM笔记（二）对象的生死与java的四大引用" class="headerlink" title="JVM笔记（二）对象的生死与java的四大引用"></a><a href="https://blog.csdn.net/weixin_43696529/article/details/104884444">JVM笔记（二）对象的生死与java的四大引用</a></h2><h2 id="JVM笔记（三）垃圾收集算法以及HotSpot的算法实现-安全点、记忆集与卡表、写屏障、三色标记等"><a href="#JVM笔记（三）垃圾收集算法以及HotSpot的算法实现-安全点、记忆集与卡表、写屏障、三色标记等" class="headerlink" title="JVM笔记（三）垃圾收集算法以及HotSpot的算法实现(安全点、记忆集与卡表、写屏障、三色标记等)"></a><a href="https://blog.csdn.net/weixin_43696529/article/details/104884514">JVM笔记（三）垃圾收集算法以及HotSpot的算法实现(安全点、记忆集与卡表、写屏障、三色标记等)</a></h2><p>================================================================</p>
+<p><strong>参考：<br>《深入理解java虚拟机第三版》</strong></p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/JVM/" rel="tag">JVM</a>, <a class="has-link-grey -link" href="/tags/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" rel="tag">垃圾收集器</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/alipay.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/wechatpay.png" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/posts/20200316-jvm-gc.html">
+                <span class="level-item">JVM笔记（三）垃圾收集算法以及HotSpot的算法实现(安全点、记忆集与卡表、写屏障、三色标记等)</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="valine-thread" class="content"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: false,
+        verify: true,
+        app_id: 'SVCDAnf08SY2EwoCRCSASyoS-gzGzoHsz',
+        app_key: '9NEI7yw8OtqwvHIiA5FkbhP4',
+        placeholder: '快来发表你的评论吧~'
+    });
+</script>
+
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-3-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="" src="/images/avatar.jpeg" alt="一颗小陨石">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        一颗小陨石
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Student
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>中国,江苏</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            36
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            18
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            66
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://blog.csdn.net/weixin_43696529" target="_blank" rel="noopener">
+                关注我</a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Github" href="https://github.com/804434940/804434940.github.io">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="CSDN" href="https://blog.csdn.net/weixin_43696529">
+                
+                <i class="fab fa-telegram"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="QQ" href="tencent://message/?uin=804434940&amp;Site=&amp;Menu=yes">
+                
+                <i class="fab fa-qq"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://blog.csdn.net/weixin_43696529" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">CSDN</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">blog.csdn.net</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/JVM/">
+            <span class="level-start">
+                <span class="level-item">JVM</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/docker/">
+            <span class="level-start">
+                <span class="level-item">docker</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/linux/">
+            <span class="level-start">
+                <span class="level-item">linux</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/springboot/">
+            <span class="level-start">
+                <span class="level-item">springboot</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E5%B7%A5%E5%85%B7/">
+            <span class="level-start">
+                <span class="level-item">工具</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">
+            <span class="level-start">
+                <span class="level-item">并发编程</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9CCAS/">
+            <span class="level-start">
+                <span class="level-item">原子操作CAS</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E5%B9%B6%E5%8F%91%E5%B7%A5%E5%85%B7%E7%B1%BB/">
+            <span class="level-start">
+                <span class="level-item">并发工具类</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E6%98%BE%E7%A4%BA%E9%94%81%E5%92%8CAQS/">
+            <span class="level-start">
+                <span class="level-item">显示锁和AQS</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+            <span class="level-start">
+                <span class="level-item">操作系统</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+            <span class="level-start">
+                <span class="level-item">数据结构</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">19</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E5%8F%89%E6%A0%91/">
+            <span class="level-start">
+                <span class="level-item">二叉树</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/">
+            <span class="level-start">
+                <span class="level-item">优先队列</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%9B%BE/">
+            <span class="level-start">
+                <span class="level-item">图</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B9%B6%E6%9F%A5%E9%9B%86/">
+            <span class="level-start">
+                <span class="level-item">并查集</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">
+            <span class="level-start">
+                <span class="level-item">排序</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">7</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%95%A3%E5%88%97%E8%A1%A8/">
+            <span class="level-start">
+                <span class="level-item">散列表</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%9F%A5%E6%89%BE/">
+            <span class="level-start">
+                <span class="level-item">查找</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li></ul></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+			
+        </h3>
+        <a href="/tags/AQS/" style="font-size: 10px;">AQS</a> <a href="/tags/AVL/" style="font-size: 12.5px;">AVL</a> <a href="/tags/AtomicXXX/" style="font-size: 10px;">AtomicXXX</a> <a href="/tags/BST/" style="font-size: 10px;">BST</a> <a href="/tags/CAS/" style="font-size: 10px;">CAS</a> <a href="/tags/Callable/" style="font-size: 10px;">Callable</a> <a href="/tags/CountDownLatch/" style="font-size: 10px;">CountDownLatch</a> <a href="/tags/CyclicBarrier/" style="font-size: 10px;">CyclicBarrier</a> <a href="/tags/Dijkstra/" style="font-size: 10px;">Dijkstra</a> <a href="/tags/Future/" style="font-size: 10px;">Future</a> <a href="/tags/FutureTask/" style="font-size: 10px;">FutureTask</a> <a href="/tags/GC/" style="font-size: 10px;">GC</a> <a href="/tags/IndexPQ/" style="font-size: 10px;">IndexPQ</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/LockSupport/" style="font-size: 10px;">LockSupport</a> <a href="/tags/PriorityQueue/" style="font-size: 10px;">PriorityQueue</a> <a href="/tags/ReentrantLock/" style="font-size: 10px;">ReentrantLock</a> <a href="/tags/ReentrantReadWriteLock/" style="font-size: 10px;">ReentrantReadWriteLock</a> <a href="/tags/Runnable/" style="font-size: 10px;">Runnable</a> <a href="/tags/Semaphore/" style="font-size: 10px;">Semaphore</a> <a href="/tags/bfs/" style="font-size: 10px;">bfs</a> <a href="/tags/centos7/" style="font-size: 10px;">centos7</a> <a href="/tags/dfs/" style="font-size: 10px;">dfs</a> <a href="/tags/docker/" style="font-size: 12.5px;">docker</a> <a href="/tags/elasticsearch/" style="font-size: 10px;">elasticsearch</a> <a href="/tags/fdfs/" style="font-size: 10px;">fdfs</a> <a href="/tags/firewall/" style="font-size: 10px;">firewall</a> <a href="/tags/fork-join/" style="font-size: 10px;">fork/join</a> <a href="/tags/gulp-%E5%8E%8B%E7%BC%A9%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90/" style="font-size: 10px;">gulp,压缩静态资源</a> <a href="/tags/jib/" style="font-size: 10px;">jib</a> <a href="/tags/kruskal/" style="font-size: 10px;">kruskal</a> <a href="/tags/linux/" style="font-size: 12.5px;">linux</a> <a href="/tags/prim/" style="font-size: 10px;">prim</a> <a href="/tags/union-find/" style="font-size: 10px;">union-find</a> <a href="/tags/%E4%B8%89%E8%89%B2%E6%A0%87%E8%AE%B0/" style="font-size: 10px;">三色标记</a> <a href="/tags/%E4%BA%8C%E5%88%86%E5%9B%BE/" style="font-size: 10px;">二分图</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91/" style="font-size: 10px;">二叉查找树</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" style="font-size: 10px;">二叉树</a> <a href="/tags/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/" style="font-size: 12.5px;">优先队列</a> <a href="/tags/%E5%88%86%E6%B2%BB/" style="font-size: 10px;">分治</a> <a href="/tags/%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C%E7%B1%BB/" style="font-size: 10px;">原子操作类</a> <a href="/tags/%E5%9B%9B%E5%A4%A7%E5%BC%95%E7%94%A8/" style="font-size: 10px;">四大引用</a> <a href="/tags/%E5%9B%BE/" style="font-size: 10px;">图</a> <a href="/tags/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" style="font-size: 10px;">垃圾收集器</a> <a href="/tags/%E5%A0%86/" style="font-size: 10px;">堆</a> <a href="/tags/%E5%A0%86%E6%8E%92%E5%BA%8F/" style="font-size: 10px;">堆排序</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 15px;">多线程</a> <a href="/tags/%E5%B9%B3%E8%A1%A1%E6%A0%91/" style="font-size: 12.5px;">平衡树</a> <a href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" style="font-size: 17.5px;">并发编程</a> <a href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" style="font-size: 10px;">并查集</a> <a href="/tags/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/" style="font-size: 10px;">拓扑排序</a> <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 20px;">排序</a> <a href="/tags/%E6%95%A3%E5%88%97%E8%A1%A8/" style="font-size: 10px;">散列表</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 10px;">数据结构与算法</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 10px;">文件上传</a> <a href="/tags/%E6%98%BE%E7%A4%BA%E9%94%81Lock/" style="font-size: 10px;">显示锁Lock</a> <a href="/tags/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/" style="font-size: 10px;">最小生成树</a> <a href="/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84/" style="font-size: 10px;">最短路径</a> <a href="/tags/%E6%9F%A5%E6%89%BE/" style="font-size: 15px;">查找</a> <a href="/tags/%E7%B4%A2%E5%BC%95%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/" style="font-size: 10px;">索引优先队列</a> <a href="/tags/%E7%BA%A2%E9%BB%91%E6%A0%91/" style="font-size: 10px;">红黑树</a> <a href="/tags/%E8%AF%BB%E5%86%99%E9%94%81/" style="font-size: 10px;">读写锁</a> <a href="/tags/%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/" style="font-size: 10px;">调度算法</a> <a href="/tags/%E8%B7%AF%E5%BE%84%E5%8E%8B%E7%BC%A9/" style="font-size: 10px;">路径压缩</a> <a href="/tags/%E8%BF%9E%E9%80%9A%E6%80%A7/" style="font-size: 10px;">连通性</a>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/posts/20200316-jvm-garbage-collector.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnail/07.jpeg" alt="JVM笔记《四》常见的垃圾收集器">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-16T12:49:55.000Z">2020-03-16</time></div>
+                    <a href="/posts/20200316-jvm-garbage-collector.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">JVM笔记《四》常见的垃圾收集器</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JVM/">JVM</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/posts/20200316-jvm-gc.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnail/08.jpeg" alt="JVM笔记（三）垃圾收集算法以及HotSpot的算法实现(安全点、记忆集与卡表、写屏障、三色标记等)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-16T12:47:01.000Z">2020-03-16</time></div>
+                    <a href="/posts/20200316-jvm-gc.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">JVM笔记（三）垃圾收集算法以及HotSpot的算法实现(安全点、记忆集与卡表、写屏障、三色标记等)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JVM/">JVM</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/posts/20200316-JVM-obj-reference.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnail/09.jpeg" alt="JVM笔记（二）对象的生死与java的四大引用">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-16T12:43:40.000Z">2020-03-16</time></div>
+                    <a href="/posts/20200316-JVM-obj-reference.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">JVM笔记（二）对象的生死与java的四大引用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JVM/">JVM</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/posts/20200316-jvm-memory.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnail/10.jpeg" alt="JVM笔记（一）java内存区域与内存溢出以及对象的创建、布局和定位">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-16T12:39:45.000Z">2020-03-16</time></div>
+                    <a href="/posts/20200316-jvm-memory.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">JVM笔记（一）java内存区域与内存溢出以及对象的创建、布局和定位</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JVM/">JVM</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/posts/20200310-sp-dijkstra.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnail/01.jpeg" alt="《算法4》最短路径问题笔记">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-10T02:23:53.000Z">2020-03-10</time></div>
+                    <a href="/posts/20200310-sp-dijkstra.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">《算法4》最短路径问题笔记</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%9B%BE/">图</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">15</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">19</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AQS/">
+                        <span class="tag">AQS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AVL/">
+                        <span class="tag">AVL</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AtomicXXX/">
+                        <span class="tag">AtomicXXX</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/BST/">
+                        <span class="tag">BST</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CAS/">
+                        <span class="tag">CAS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Callable/">
+                        <span class="tag">Callable</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CountDownLatch/">
+                        <span class="tag">CountDownLatch</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CyclicBarrier/">
+                        <span class="tag">CyclicBarrier</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Dijkstra/">
+                        <span class="tag">Dijkstra</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Future/">
+                        <span class="tag">Future</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/FutureTask/">
+                        <span class="tag">FutureTask</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GC/">
+                        <span class="tag">GC</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/IndexPQ/">
+                        <span class="tag">IndexPQ</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JVM/">
+                        <span class="tag">JVM</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LockSupport/">
+                        <span class="tag">LockSupport</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/PriorityQueue/">
+                        <span class="tag">PriorityQueue</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ReentrantLock/">
+                        <span class="tag">ReentrantLock</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ReentrantReadWriteLock/">
+                        <span class="tag">ReentrantReadWriteLock</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Runnable/">
+                        <span class="tag">Runnable</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Semaphore/">
+                        <span class="tag">Semaphore</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/bfs/">
+                        <span class="tag">bfs</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/centos7/">
+                        <span class="tag">centos7</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/dfs/">
+                        <span class="tag">dfs</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/docker/">
+                        <span class="tag">docker</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/elasticsearch/">
+                        <span class="tag">elasticsearch</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/fdfs/">
+                        <span class="tag">fdfs</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/firewall/">
+                        <span class="tag">firewall</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/fork-join/">
+                        <span class="tag">fork/join</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/gulp-%E5%8E%8B%E7%BC%A9%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90/">
+                        <span class="tag">gulp,压缩静态资源</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/jib/">
+                        <span class="tag">jib</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/kruskal/">
+                        <span class="tag">kruskal</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/linux/">
+                        <span class="tag">linux</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/prim/">
+                        <span class="tag">prim</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/union-find/">
+                        <span class="tag">union-find</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E4%B8%89%E8%89%B2%E6%A0%87%E8%AE%B0/">
+                        <span class="tag">三色标记</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E4%BA%8C%E5%88%86%E5%9B%BE/">
+                        <span class="tag">二分图</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91/">
+                        <span class="tag">二叉查找树</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/">
+                        <span class="tag">二叉树</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/">
+                        <span class="tag">优先队列</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%88%86%E6%B2%BB/">
+                        <span class="tag">分治</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C%E7%B1%BB/">
+                        <span class="tag">原子操作类</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%9B%9B%E5%A4%A7%E5%BC%95%E7%94%A8/">
+                        <span class="tag">四大引用</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%9B%BE/">
+                        <span class="tag">图</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/">
+                        <span class="tag">垃圾收集器</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%A0%86/">
+                        <span class="tag">堆</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%A0%86%E6%8E%92%E5%BA%8F/">
+                        <span class="tag">堆排序</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
+                        <span class="tag">多线程</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%B9%B3%E8%A1%A1%E6%A0%91/">
+                        <span class="tag">平衡树</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">
+                        <span class="tag">并发编程</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/">
+                        <span class="tag">并查集</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/">
+                        <span class="tag">拓扑排序</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%8E%92%E5%BA%8F/">
+                        <span class="tag">排序</span>
+                        <span class="tag is-grey">7</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%95%A3%E5%88%97%E8%A1%A8/">
+                        <span class="tag">散列表</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                        <span class="tag">数据结构</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">
+                        <span class="tag">数据结构与算法</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">
+                        <span class="tag">文件上传</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%98%BE%E7%A4%BA%E9%94%81Lock/">
+                        <span class="tag">显示锁Lock</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/">
+                        <span class="tag">最小生成树</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84/">
+                        <span class="tag">最短路径</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%9F%A5%E6%89%BE/">
+                        <span class="tag">查找</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E7%B4%A2%E5%BC%95%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/">
+                        <span class="tag">索引优先队列</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E7%BA%A2%E9%BB%91%E6%A0%91/">
+                        <span class="tag">红黑树</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%AF%BB%E5%86%99%E9%94%81/">
+                        <span class="tag">读写锁</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/">
+                        <span class="tag">调度算法</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%B7%AF%E5%BE%84%E5%8E%8B%E7%BC%A9/">
+                        <span class="tag">路径压缩</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%BF%9E%E9%80%9A%E6%80%A7/">
+                        <span class="tag">连通性</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+        </div>
+    
+</div>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container" >
+      <div id="foot-new">
+		  <div class="level" style="text-align:center">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.png" alt="JVM笔记《四》常见的垃圾收集器" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 MaoLin Wang&nbsp;
+                <a href="http://beian.miit.gov.cn/">苏ICP备19070231号-1 </a>
+                
+                <br>
+                <span id="busuanzi_container_site_uv">
+                共<span id="busuanzi_value_site_uv">0</span>个访客
+                </span>
+                
+                </p>
+            </div>
+			
+
+            <div class="level-end">
+            
+            </div>
+			
+	  </div>
+
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'https://wbml.top',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+	
+
+	
+	<!--3D飘雪花特效 整理by yaxi.net-->
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/js/src/snow.js"></script>
+	<style type="text/css">
+	.snow-container{
+	position:fixed;
+	top:0;left:0;
+	width:100%;
+	height:100%;
+	pointer-events:none;
+	z-index:100001;
+	}
+	</style>
+	<div class="snow-container"></div>
+
+
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"live2d-widget-model-z16"},"display":{"position":"right","width":85,"height":85},"mobile":{"show":true}});</script></body>
+</html>

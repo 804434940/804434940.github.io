@@ -1,10 +1,10 @@
+https://wbml.top/posts/20200316-jvm-garbage-collector.html
+https://wbml.top/posts/20200316-jvm-gc.html
+https://wbml.top/posts/20200316-JVM-obj-reference.html
+https://wbml.top/posts/20200316-jvm-memory.html
 https://wbml.top/posts/20200310-sp-dijkstra.html
 https://wbml.top/posts/20200310-prim-kruskal.html
 https://wbml.top/posts/20200310-graphDetails.html
 https://wbml.top/posts/20200310-seq-linear-hash.html
 https://wbml.top/posts/20200310-RedBlackTree.html
 https://wbml.top/posts/20200310-avltree.html
-https://wbml.top/posts/20200310-bst.html
-https://wbml.top/posts/20200310-seq-binary-find.html
-https://wbml.top/posts/20200310-indexPQ.html
-https://wbml.top/posts/20200310-HeapPQ.html

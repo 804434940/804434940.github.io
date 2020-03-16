@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<script src="/js/src/click.js"></script>
+
+<html  lang="zh">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>JVM笔记（一）java内存区域与内存溢出以及对象的创建、布局和定位 - 一颗小陨石</title>
+
+
+    <meta name="description" content="JVM体系结构图 一、方法区1.是线程间共享的内存区域 2.存储了被虚拟机加载的类的信息（包括类的类型、修饰符、方法信息、字段信息）、类的静态变量、final类型的常量、类中的字段、方法数据信息、构造函数、以及编译器编译后的代码内容等">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM笔记（一）java内存区域与内存溢出以及对象的创建、布局和定位">
+<meta property="og:url" content="https://wbml.top/posts/20200316-jvm-memory.html">
+<meta property="og:site_name" content="一颗小陨石">
+<meta property="og:description" content="JVM体系结构图 一、方法区1.是线程间共享的内存区域 2.存储了被虚拟机加载的类的信息（包括类的类型、修饰符、方法信息、字段信息）、类的静态变量、final类型的常量、类中的字段、方法数据信息、构造函数、以及编译器编译后的代码内容等">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wbml.top/gallery/thumbnail/10.jpeg">
+<meta property="article:published_time" content="2020-03-16T12:39:45.000Z">
+<meta property="article:modified_time" content="2020-03-16T12:46:35.565Z">
+<meta property="article:author" content="MaoLin Wang">
+<meta property="article:tag" content="jvm">
+<meta property="article:tag" content="jvm内存模型">
+<meta property="article:tag" content="对象的创建">
+<meta property="article:tag" content="方法区">
+<meta property="article:tag" content="栈">
+<meta property="article:tag" content="堆">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wbml.top/gallery/thumbnail/10.jpeg">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    <script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+	<meta name="sogou_site_verification" content="YLG0ofTESs"/>
+<meta name="360-site-verification" content="a44f3f715e55a4a2e4589897cc3ebd60" />
+	<meta name="baidu-site-verification" content="HWPg36A4P2" />
+	<meta name="google-site-verification" content="V5LVp6ybWL3boDnSNAlThRETW3_r0vTUReVaxHKA5ac" />
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
+<script src="https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget/autoload.js"></script>
+
+</head>
+<body class="is-2-column">
+
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.png" alt="JVM笔记（一）java内存区域与内存溢出以及对象的创建、布局和定位" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">主页</a>
+                
+                <a class="navbar-item"
+                href="/archives">文章</a>
+                
+                <a class="navbar-item"
+                href="/categories">分类</a>
+                
+                <a class="navbar-item"
+                href="/tags">标签</a>
+                
+                <a class="navbar-item"
+                href="/photo">相册</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    <a class="navbar-item" target="_blank" rel="noopener" title="My CSDN" href="https://blog.csdn.net/weixin_43696529">
+                        
+                        <i class="fab fa-telegram"></i>
+                        
+                    </a>
+                    
+                    <a class="navbar-item" target="_blank" rel="noopener" title="My Github" href="https://github.com/804434940/804434940.github.io">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-9-desktop is-9-widescreen has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="/gallery/thumbnail/10.jpeg" alt="JVM笔记（一）java内存区域与内存溢出以及对象的创建、布局和定位">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-16T12:39:45.000Z">2020-03-16</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/JVM/">JVM</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    26 分钟 读完 (大约 3872 个字)
+                </span>
+                
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span>次访问
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                JVM笔记（一）java内存区域与内存溢出以及对象的创建、布局和定位
+            
+        </h1>
+        <div class="content">
+            <h1 id="JVM体系结构图"><a href="#JVM体系结构图" class="headerlink" title="JVM体系结构图"></a>JVM体系结构图</h1><p><img src="https://img-blog.csdnimg.cn/20200315192820203.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzY5NjUyOQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="一、方法区"><a href="#一、方法区" class="headerlink" title="一、方法区"></a>一、方法区</h3><p><strong>1.是线程间共享的内存区域</strong></p>
+<p><strong>2.存储了被虚拟机加载的类的信息（包括类的类型、修饰符、方法信息、字段信息）、类的静态变量、final类型的常量、类中的字段、方法数据信息、构造函数、以及编译器编译后的代码内容等</strong></p>
+<a id="more"></a>
+
+<p>但是以上只是一个规范，在不同虚拟机里实现是不一样的。</p>
+<p>如：<code>List list=new ArrayList();</code> List就是规范，ArrayList对应不同的虚拟机的不同实现。</p>
+<p>典型的两种就是”<strong>永久代</strong>“(JDK8以前)和”<strong>元空间</strong>“（JDK8及以后）</p>
+<p><strong>实例变量</strong>存储在堆中，与方法区无关。</p>
+<h4 id="运行时常量池"><a href="#运行时常量池" class="headerlink" title="运行时常量池"></a>运行时常量池</h4><p>运行时常量池是方法区的一部分。用于存放编译时产生的各种<strong>字面量</strong>和<strong>符号引用。</strong></p>
+<p>顾名思义，运行时产生的常量自然也会存储在这里（动态性）。</p>
+<p>如String的intern()方法，如果字符串常量池中已经包含一个等于此String对象的字符串，则会返回该对象的一个引用，否则会将该String对象包含的字符串添加到常量池中。</p>
+<p>测试：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">       String sb=<span class="keyword">new</span> StringBuilder(<span class="string">"哈哈"</span>).append(<span class="string">"嘿嘿"</span>).toString();</span><br><span class="line">       System.out.println(sb.intern()==sb);<span class="comment">//true</span></span><br><span class="line"></span><br><span class="line">       String sb2=<span class="keyword">new</span> StringBuilder(<span class="string">"ja"</span>).append(<span class="string">"va"</span>).toString();</span><br><span class="line">       <span class="comment">//java在Version类中已经出现，字符串常量池已经有它的引用，因此返回false</span></span><br><span class="line">       System.out.println(sb2.intern()==sb2);<span class="comment">//false</span></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> sun.misc;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Version</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String launcher_name = <span class="string">"java"</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String java_version = <span class="string">"1.8.0_231"</span>;</span><br><span class="line">    ..............................</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>该类在启动类加载器(Bootstrap ClassLoader)中被加载，位于rt.jar\sun\misc中：<br><img src="https://img-blog.csdnimg.cn/20200315192922861.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzY5NjUyOQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h4 id="异常情况"><a href="#异常情况" class="headerlink" title="异常情况"></a>异常情况</h4><p>方法区无法满足新的内存分配需求时，会抛出OOM异常。</p>
+<p>运行时常量池申请不到内存时，会抛出OOM异常。</p>
+<h3 id="二、栈"><a href="#二、栈" class="headerlink" title="二、栈"></a>二、栈</h3><p>栈负责<strong>运行</strong>（堆负责存储）</p>
+<p>1.<strong>线程私有</strong>的，与<strong>线程同生命周期</strong>，不存在垃圾回收问题</p>
+<p>2.<strong>每个方法执行会创建一个栈帧保存在栈的顶部，每个方法从调用到执行完毕对应一个栈帧从入栈到出栈的过程。</strong></p>
+<p>如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">m1</span><span class="params">()</span></span>&#123;</span><br><span class="line">       System.out.println(<span class="string">"m1..begin"</span>);</span><br><span class="line">       m2();</span><br><span class="line">       System.out.println(<span class="string">"m1..end"</span>);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">m2</span><span class="params">()</span></span>&#123;</span><br><span class="line">       System.out.println(<span class="string">"m2"</span>);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">       System.out.println(<span class="string">"main...begin"</span>);</span><br><span class="line">       m1();</span><br><span class="line">       System.out.println(<span class="string">"main...end"</span>);</span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>对应的栈模型如下：</p>
+<p>|                            |</p>
+<p>|        m2()           |</p>
+<p>|        m1()           |</p>
+<p>|         main()      |</p>
+<p>3.<strong>栈帧用于存储局部变量表、操作数栈、动态连接和方法出口等信息。</strong></p>
+<p>栈（或者说是局部变量表部分）保存的信息如下：</p>
+<p><strong>8种基本类型变量</strong>+<strong>对象引用变量</strong>+<strong>实例方法</strong></p>
+<p><strong>局部变量表</strong>：存储方法中的局部变量（方法中声明的非静态变量，入参和出参等）。8种基本类型变量直接存储对应的值，而对象引用变量存储指向对象起始地址的引用指针，或是指向一个代表对象的句柄或其他与对象相关的位置)</p>
+<p><strong>指向运行时常量池的引用</strong>：当我们在方法中用到类中的常量时，就需要一个指向运行时常量池的引用。</p>
+<p><strong>操作数栈</strong>：记录方法中所有计算相关的出栈、入栈的操作</p>
+<p><strong>方法出口</strong>：即方法结束后，我们需要知道之前调用它的地方，因此需要保存一个方法返回的地址。</p>
+<h4 id="栈的相关异常"><a href="#栈的相关异常" class="headerlink" title="栈的相关异常"></a>栈的相关异常</h4><p>1.线程请求的栈的大小大于虚拟机允许的大小，会出现StackOverflowError错误。</p>
+<p>2.栈申请动态扩展无法获取到足够内存时会出现OOM异常。（目前的HotSpot虚拟机不可以进行动态扩展，因此线程申请栈空间成功后就一定不会出现OOM异常，但申请失败仍会出现OOM）。</p>
+<h5 id="栈异常测试："><a href="#栈异常测试：" class="headerlink" title="栈异常测试："></a>栈异常测试：</h5><p>针对情况一，可以将栈的大小调小：</p>
+<p>出现StackOverflowError</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">VMStackSOF</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> stackLength = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//-Xss150k 减少栈内存容量 StackOverFlow</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">stackLeak</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        stackLength++;</span><br><span class="line">        stackLeak();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        VMStackSOF oom=<span class="keyword">new</span> VMStackSOF();</span><br><span class="line">       <span class="keyword">try</span> &#123;</span><br><span class="line">            oom.stackLeak();</span><br><span class="line">        &#125;<span class="keyword">catch</span> (Throwable e)&#123;</span><br><span class="line">            System.out.println(<span class="string">"栈长度:"</span>+oom.stackLength);</span><br><span class="line">            <span class="keyword">throw</span> e;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>或是将方法帧的本地变量表变地超大：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">VMStackSOF</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> stackLength = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//增大方法帧中本地变量表的长度 StackOverFlowError</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> a1,.......a100;<span class="comment">//100个局部变量</span></span><br><span class="line">        stackLength++;</span><br><span class="line">        test();</span><br><span class="line">        a1 =a2=.....a100;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        VMStackSOF oom=<span class="keyword">new</span> VMStackSOF();</span><br><span class="line"> </span><br><span class="line">       <span class="keyword">try</span> &#123;</span><br><span class="line">           test();</span><br><span class="line">       &#125;<span class="keyword">catch</span> (Error a)&#123;</span><br><span class="line">           System.out.println(<span class="string">"长度"</span>+stackLength);</span><br><span class="line">            <span class="keyword">throw</span> a;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="三、堆"><a href="#三、堆" class="headerlink" title="三、堆"></a>三、堆</h3><p><strong>1.为线程间共享，虚拟机启动时创建</strong></p>
+<p><strong>2.用于存放对象实例以及数组</strong></p>
+<p><strong>3.是垃圾收集器管理的内存区域，也称为“GC堆”。</strong></p>
+<p>但需要注意的是，随着即使编译技术的进步，尤其是逃逸分析技术的日渐强大，也可以进行栈上分配以及TLAB。</p>
+<p>这里可以扩展下：</p>
+<p>关于<strong>栈上分配：</strong></p>
+<p>有很多对象的作用于并不会逃逸出方法外，而如果在堆上创建，则当方法的调用结束后，对象的生命周期也随之结束，则相应地指向堆中该对象的引用也就没有了，GC就会去回收该对象，若这种对象非常多，就会增加GC的压力。</p>
+<p>此时我们就可以将这类对象属性打散后分配在栈中，这样方法调用结束后，栈空间的回收就会将打散后的对象回收掉。这样就避免了给GC增加压力，提高性能。</p>
+<p>关于<strong>TLAB:</strong></p>
+<p>由于堆是全局共享的内存区域，而创建对象又是非常频繁的行为，因此多个线程并发给对象分配内存时就需要进行同步（jvm采用的是CAS失败重试的方式保证原子性的），而这个开销在某些情况是非常大的。</p>
+<p>而TLAB(Thread Local Allocation Buffer)就是在堆中划分出多个线程私有的分配缓冲区，就可以让线程分配堆空间时先分配到自己所属的缓冲区，避免同步带来的开销，以提高对象分配的效率。（jvm默认开启，也可以使用<code>-XX: +UseTLAB</code> 显示开启），但当对象过大时仍然直接在堆上分配空间。</p>
+<p>使用<code>-XX:+PrintTLAB</code> 参数打开跟踪TLAB的使用情况，</p>
+<p>使用<code>-XX:TLABSize</code> 通过该参数指定分配给每一个线程的TLAB空间的大小</p>
+<h4 id="堆空间的构成"><a href="#堆空间的构成" class="headerlink" title="堆空间的构成"></a>堆空间的构成</h4><p>堆由老年代和年轻代构成，而年轻代又分为eden区和两个survivor区（from Space and To Space)。</p>
+<p>对象首先配分配到年轻代的eden区，但如果对象大于eden区小于老年区，则直接丢在老年区，如果比老年代还大，则抛出OOM异常。</p>
+<p>在survivor区经过多次GC仍然存活的对象，被转移到老年区。</p>
+<h4 id="堆的大小设定"><a href="#堆的大小设定" class="headerlink" title="堆的大小设定"></a>堆的大小设定</h4><p>通过 -Xms 最小值  和 -Xmx最大值控制堆的大小。</p>
+<p>当 -Xms和-Xmx相同时，堆是固定大小不可自动扩展的，否则是能够自动扩展的</p>
+<h4 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h4><p>当堆中内存不足以分配对象空间且堆也无法扩展时，会抛出OOM异常。</p>
+<h4 id="异常测试"><a href="#异常测试" class="headerlink" title="异常测试"></a>异常测试</h4><p>通过以上两个参数将堆大小控制在10MB，再加上-<code>XX:+HeapDumpOnOutOfMemoryError</code>参数使得在出现OOM时，dump出当前的内存堆转储快照。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HeapOOM</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">OOM</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * -Xms10m -Xmx10m -XX:+HeapDumpOnOutOfMemoryError</span></span><br><span class="line"><span class="comment">     * -XX:+HeapDumpOnOutOfMemoryError 让虚拟机在出现内存溢出异常时Dump出当前的内存堆转储快照</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> args</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">            java.lang.OutOfMemoryError: Java heap space</span></span><br><span class="line"><span class="comment">            Dumping heap to java_pid9368.hprof ...</span></span><br><span class="line"><span class="comment">            Heap dump file created [28275886 bytes in 0.140 secs]</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        List&lt;OOM&gt; list=<span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>)&#123;</span><br><span class="line">            list.add(<span class="keyword">new</span> OOM());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们使用IDEA集成的插件jprofiler运行，打开得到的堆转储快照，可以迅速找出异常位置。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200315193008160.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzY5NjUyOQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="四、程序计数器"><a href="#四、程序计数器" class="headerlink" title="四、程序计数器"></a>四、程序计数器</h3><p>可以看做是当前线程锁执行的字节码的<strong>行号指示器</strong>，字节码解释器工作时就是通过改变这个计数器的值来选取下一个需要执行的字节码指令。</p>
+<p>由于在java虚拟机的多线程是通过线程轮流切换、分配处理器执行时间的方式来实现的，在任何时刻一个处理器都只会执行一个线程中的指令。</p>
+<p>因此为了<strong>切换线程后能恢复到切换前的执行位置</strong>，每条线程都需要有一个独立的程序计数器，互不干扰，独立存储。</p>
+<p>因此程序计数器是<strong>线程私有的。</strong></p>
+<p>如果执行的是一个java方法，则记录的是正在执行的虚拟机字节码的指令地址。</p>
+<p>如果执行的是本地native方法，则计数器值为undefined。</p>
+<p><strong>不会发生OOM异常</strong></p>
+<h3 id="五、本地方法栈"><a href="#五、本地方法栈" class="headerlink" title="五、本地方法栈"></a>五、本地方法栈</h3><p>同java栈作用基本一样，但是本地方法栈是为了支持本地native方法，而栈是为java方法服务。</p>
+<p>异常出现情况同栈相同。</p>
+<h3 id="六、对象的创建"><a href="#六、对象的创建" class="headerlink" title="六、对象的创建"></a>六、对象的创建</h3><p>这里只讨论普通java对象，不包括数组和Class对象。</p>
+<p>当虚拟机遇到一条new指令时：</p>
+<h4 id="1-new指令"><a href="#1-new指令" class="headerlink" title="1.new指令"></a>1.new指令</h4><p>检查这个指令的参数是否能在<strong>常量池</strong>中定位到一个类的<strong>符号引用</strong>，并且检查这个符号引用代表的类是否已被加载、解析和初始化过。如果没有，那么须先<strong>执行相应的类加载过程。</strong></p>
+<h4 id="2-分配内存"><a href="#2-分配内存" class="headerlink" title="2.分配内存"></a>2.<strong>分配内存</strong></h4><p>对象所需内存大小在类初始化完成后可以完全确定。</p>
+<p>分配内存的方式有两种：</p>
+<p>a.<strong>指针碰撞</strong>（Bump The Pointer）</p>
+<p>堆内存是规整的时候，一边是使用过的内存，一边是空闲的内存，中间使用一个指针作为指示器，分配内配就是将指针向空闲的一边移动和对象大小相同的距离。</p>
+<p>b.<strong>空闲列表</strong>（Free List）</p>
+<p>堆内存不是规整的时候，虚拟机维护一张列表，记录了哪些内存块是可用的，分配内存就是从列表中找到一块足够大的空间划分给对象实例，并更新列表内容。</p>
+<p>分配方式由堆是否规整决定，堆是否规整由垃圾收集器是否能够进行空间压缩整理决定。</p>
+<h4 id="3-初始化"><a href="#3-初始化" class="headerlink" title="3.初始化"></a>3.初始化</h4><p>将分配到的内存空间（不包括对象头）初始化为零值。（TLAB方式可提前至TLAB分配时进行）保证对象实例字段不赋初始值就可以直接使用。</p>
+<h4 id="4-对象的初始设置"><a href="#4-对象的初始设置" class="headerlink" title="4.对象的初始设置"></a>4.对象的初始设置</h4><p>如：对象是哪个<strong>实例</strong>、如何找到类的<strong>元数据信息</strong>、对象的<strong>哈希码</strong>、<strong>GC分代年龄等。</strong></p>
+<p>以上信息存放在<strong>对象头</strong>（Object Header）中。根据虚拟机当前的运行状态的不同，如对否启用偏向锁等，对象头会有不同的设置方式。</p>
+<h4 id="5-lt-init-gt-方法"><a href="#5-lt-init-gt-方法" class="headerlink" title="5. &lt;init&gt;()方法"></a>5. &lt;init&gt;()方法</h4><p>new指令会接着执行Class文件的init方法，即构造函数，来将对象的其他资源和状态信息构造好。此时才算是构造一个真正可用的对象。</p>
+<h4 id="七、对象的内存布局"><a href="#七、对象的内存布局" class="headerlink" title="七、对象的内存布局"></a>七、对象的内存布局</h4><p>在HotSpot中，对象在堆内存中的存储布局可划分为三个部分：</p>
+<p><strong>对象头（Header）、实例数据（Instance Data）和对齐填充（Padding）</strong></p>
+<h4 id="7-1-对象头"><a href="#7-1-对象头" class="headerlink" title="7.1 对象头"></a>7.1 对象头</h4><p>主要分为两类信息：</p>
+<ol>
+<li><p>用于存储对象自身的<strong>运行时数据</strong></p>
+<p>哈希码、GC分代年龄、锁状态标志、线程持有的锁、偏向线程ID、偏向时间戳。</p>
+</li>
+<li><p><strong>类型指针</strong></p>
+<p>对象指向它的类型元数据的指针，该指针确定对象时哪个类的实例。（但查找对象的元数据信息并非一定要经过对象本身）。</p>
+<p>如果对象是一个java数组，则对象头还需要有一块记录<strong>数组的长度。</strong></p>
+</li>
+</ol>
+<h4 id="7-2-实例数据"><a href="#7-2-实例数据" class="headerlink" title="7.2 实例数据"></a>7.2 实例数据</h4><p>存储了对象的有效信息。即在代码中定义的各种类型的字段内容（父类继承下来的和子类的都会记录下来）。</p>
+<p> 存储顺序受虚拟机分配策略参数 -XX:FieldsAllocationStyle 和字段定义顺序影响。</p>
+<p>默认的分配顺序为：</p>
+<p>longs/doubles、ints、shorts/charts、bytes/booleans、oops(Ordinary Object Pointers)，可以看到相同宽度的字段总是被分配到一起存放。</p>
+<h4 id="7-3-对齐填充"><a href="#7-3-对齐填充" class="headerlink" title="7.3 对齐填充"></a>7.3 对齐填充</h4><p>虚拟机的自动内存管理系统要求对象起始地址必须是8字节的整数倍，即对象的大小必须为8字节整数倍，如果实例数据没有对齐的话，需要通过对齐填充来作为占位符补全。</p>
+<h3 id="八、对象的访问定位"><a href="#八、对象的访问定位" class="headerlink" title="八、对象的访问定位"></a>八、对象的访问定位</h3><p>java通过栈上的reference操作堆中的具体对象。</p>
+<p>方式主要有两种：<strong>句柄和直接指针</strong></p>
+<h4 id="8-1句柄访问"><a href="#8-1句柄访问" class="headerlink" title="8.1句柄访问"></a>8.1句柄访问</h4><p>在堆中划分出一块内存作为句柄池， reference存储<strong>句柄地址。</strong></p>
+<p>句柄包含了对象的<strong>实例数据</strong>和<strong>类型数据</strong>各自的<strong>地址信息。</strong></p>
+<h4 id="8-2-直接指针"><a href="#8-2-直接指针" class="headerlink" title="8.2 直接指针"></a>8.2 直接指针</h4><p>reference直接存储<strong>对象地址</strong>。如果只访问对象本身，则避免了一次简介访问的开销。</p>
+<h4 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h4><p><strong>句柄</strong>: reference中存储的是稳定句柄地址，对象被移动时，智慧该病句柄中的实例数据指针。</p>
+<p><strong>直接指针</strong>：速度更快，节省了一次指针定位的时间开销。在频繁的java对象访问中，这种开销非常可观。</p>
+<p><strong>HotSpot主要采用直接指针进行对象访问。</strong></p>
+<p>======================================================================</p>
+<p><strong>其他相关笔记：</strong></p>
+<h2 id="JVM笔记（二）对象的生死与java的四大引用"><a href="#JVM笔记（二）对象的生死与java的四大引用" class="headerlink" title="JVM笔记（二）对象的生死与java的四大引用"></a><a href="https://blog.csdn.net/weixin_43696529/article/details/104884444">JVM笔记（二）对象的生死与java的四大引用</a></h2><h2 id="JVM笔记（三）垃圾收集算法以及HotSpot的算法实现-安全点、记忆集与卡表、写屏障、三色标记等"><a href="#JVM笔记（三）垃圾收集算法以及HotSpot的算法实现-安全点、记忆集与卡表、写屏障、三色标记等" class="headerlink" title="JVM笔记（三）垃圾收集算法以及HotSpot的算法实现(安全点、记忆集与卡表、写屏障、三色标记等)"></a><a href="https://blog.csdn.net/weixin_43696529/article/details/104884514">JVM笔记（三）垃圾收集算法以及HotSpot的算法实现(安全点、记忆集与卡表、写屏障、三色标记等)</a></h2><h2 id="JVM笔记《四》七个常见的垃圾收集器"><a href="#JVM笔记《四》七个常见的垃圾收集器" class="headerlink" title="JVM笔记《四》七个常见的垃圾收集器"></a><a href="https://blog.csdn.net/weixin_43696529/article/details/104884777">JVM笔记《四》七个常见的垃圾收集器</a></h2><p>================================================================</p>
+<p><strong>参考：<br>《深入理解java虚拟机第三版》</strong></p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/JVM/" rel="tag">JVM</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/alipay.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/wechatpay.png" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/posts/20200316-JVM-obj-reference.html">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">JVM笔记（二）对象的生死与java的四大引用</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/posts/20200310-sp-dijkstra.html">
+                <span class="level-item">《算法4》最短路径问题笔记</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="valine-thread" class="content"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: false,
+        verify: true,
+        app_id: 'SVCDAnf08SY2EwoCRCSASyoS-gzGzoHsz',
+        app_key: '9NEI7yw8OtqwvHIiA5FkbhP4',
+        placeholder: '快来发表你的评论吧~'
+    });
+</script>
+
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-3-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="" src="/images/avatar.jpeg" alt="一颗小陨石">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        一颗小陨石
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Student
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>中国,江苏</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            36
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            18
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            66
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://blog.csdn.net/weixin_43696529" target="_blank" rel="noopener">
+                关注我</a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Github" href="https://github.com/804434940/804434940.github.io">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="CSDN" href="https://blog.csdn.net/weixin_43696529">
+                
+                <i class="fab fa-telegram"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="QQ" href="tencent://message/?uin=804434940&amp;Site=&amp;Menu=yes">
+                
+                <i class="fab fa-qq"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://blog.csdn.net/weixin_43696529" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">CSDN</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">blog.csdn.net</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/JVM/">
+            <span class="level-start">
+                <span class="level-item">JVM</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/docker/">
+            <span class="level-start">
+                <span class="level-item">docker</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/linux/">
+            <span class="level-start">
+                <span class="level-item">linux</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/springboot/">
+            <span class="level-start">
+                <span class="level-item">springboot</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E5%B7%A5%E5%85%B7/">
+            <span class="level-start">
+                <span class="level-item">工具</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">
+            <span class="level-start">
+                <span class="level-item">并发编程</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9CCAS/">
+            <span class="level-start">
+                <span class="level-item">原子操作CAS</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E5%B9%B6%E5%8F%91%E5%B7%A5%E5%85%B7%E7%B1%BB/">
+            <span class="level-start">
+                <span class="level-item">并发工具类</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E6%98%BE%E7%A4%BA%E9%94%81%E5%92%8CAQS/">
+            <span class="level-start">
+                <span class="level-item">显示锁和AQS</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+            <span class="level-start">
+                <span class="level-item">操作系统</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+            <span class="level-start">
+                <span class="level-item">数据结构</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">19</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E5%8F%89%E6%A0%91/">
+            <span class="level-start">
+                <span class="level-item">二叉树</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/">
+            <span class="level-start">
+                <span class="level-item">优先队列</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%9B%BE/">
+            <span class="level-start">
+                <span class="level-item">图</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B9%B6%E6%9F%A5%E9%9B%86/">
+            <span class="level-start">
+                <span class="level-item">并查集</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/">
+            <span class="level-start">
+                <span class="level-item">排序</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">7</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%95%A3%E5%88%97%E8%A1%A8/">
+            <span class="level-start">
+                <span class="level-item">散列表</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%9F%A5%E6%89%BE/">
+            <span class="level-start">
+                <span class="level-item">查找</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li></ul></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+			
+        </h3>
+        <a href="/tags/AQS/" style="font-size: 10px;">AQS</a> <a href="/tags/AVL/" style="font-size: 12.5px;">AVL</a> <a href="/tags/AtomicXXX/" style="font-size: 10px;">AtomicXXX</a> <a href="/tags/BST/" style="font-size: 10px;">BST</a> <a href="/tags/CAS/" style="font-size: 10px;">CAS</a> <a href="/tags/Callable/" style="font-size: 10px;">Callable</a> <a href="/tags/CountDownLatch/" style="font-size: 10px;">CountDownLatch</a> <a href="/tags/CyclicBarrier/" style="font-size: 10px;">CyclicBarrier</a> <a href="/tags/Dijkstra/" style="font-size: 10px;">Dijkstra</a> <a href="/tags/Future/" style="font-size: 10px;">Future</a> <a href="/tags/FutureTask/" style="font-size: 10px;">FutureTask</a> <a href="/tags/GC/" style="font-size: 10px;">GC</a> <a href="/tags/IndexPQ/" style="font-size: 10px;">IndexPQ</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/LockSupport/" style="font-size: 10px;">LockSupport</a> <a href="/tags/PriorityQueue/" style="font-size: 10px;">PriorityQueue</a> <a href="/tags/ReentrantLock/" style="font-size: 10px;">ReentrantLock</a> <a href="/tags/ReentrantReadWriteLock/" style="font-size: 10px;">ReentrantReadWriteLock</a> <a href="/tags/Runnable/" style="font-size: 10px;">Runnable</a> <a href="/tags/Semaphore/" style="font-size: 10px;">Semaphore</a> <a href="/tags/bfs/" style="font-size: 10px;">bfs</a> <a href="/tags/centos7/" style="font-size: 10px;">centos7</a> <a href="/tags/dfs/" style="font-size: 10px;">dfs</a> <a href="/tags/docker/" style="font-size: 12.5px;">docker</a> <a href="/tags/elasticsearch/" style="font-size: 10px;">elasticsearch</a> <a href="/tags/fdfs/" style="font-size: 10px;">fdfs</a> <a href="/tags/firewall/" style="font-size: 10px;">firewall</a> <a href="/tags/fork-join/" style="font-size: 10px;">fork/join</a> <a href="/tags/gulp-%E5%8E%8B%E7%BC%A9%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90/" style="font-size: 10px;">gulp,压缩静态资源</a> <a href="/tags/jib/" style="font-size: 10px;">jib</a> <a href="/tags/kruskal/" style="font-size: 10px;">kruskal</a> <a href="/tags/linux/" style="font-size: 12.5px;">linux</a> <a href="/tags/prim/" style="font-size: 10px;">prim</a> <a href="/tags/union-find/" style="font-size: 10px;">union-find</a> <a href="/tags/%E4%B8%89%E8%89%B2%E6%A0%87%E8%AE%B0/" style="font-size: 10px;">三色标记</a> <a href="/tags/%E4%BA%8C%E5%88%86%E5%9B%BE/" style="font-size: 10px;">二分图</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91/" style="font-size: 10px;">二叉查找树</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" style="font-size: 10px;">二叉树</a> <a href="/tags/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/" style="font-size: 12.5px;">优先队列</a> <a href="/tags/%E5%88%86%E6%B2%BB/" style="font-size: 10px;">分治</a> <a href="/tags/%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C%E7%B1%BB/" style="font-size: 10px;">原子操作类</a> <a href="/tags/%E5%9B%9B%E5%A4%A7%E5%BC%95%E7%94%A8/" style="font-size: 10px;">四大引用</a> <a href="/tags/%E5%9B%BE/" style="font-size: 10px;">图</a> <a href="/tags/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" style="font-size: 10px;">垃圾收集器</a> <a href="/tags/%E5%A0%86/" style="font-size: 10px;">堆</a> <a href="/tags/%E5%A0%86%E6%8E%92%E5%BA%8F/" style="font-size: 10px;">堆排序</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 15px;">多线程</a> <a href="/tags/%E5%B9%B3%E8%A1%A1%E6%A0%91/" style="font-size: 12.5px;">平衡树</a> <a href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" style="font-size: 17.5px;">并发编程</a> <a href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" style="font-size: 10px;">并查集</a> <a href="/tags/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/" style="font-size: 10px;">拓扑排序</a> <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 20px;">排序</a> <a href="/tags/%E6%95%A3%E5%88%97%E8%A1%A8/" style="font-size: 10px;">散列表</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 10px;">数据结构与算法</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 10px;">文件上传</a> <a href="/tags/%E6%98%BE%E7%A4%BA%E9%94%81Lock/" style="font-size: 10px;">显示锁Lock</a> <a href="/tags/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/" style="font-size: 10px;">最小生成树</a> <a href="/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84/" style="font-size: 10px;">最短路径</a> <a href="/tags/%E6%9F%A5%E6%89%BE/" style="font-size: 15px;">查找</a> <a href="/tags/%E7%B4%A2%E5%BC%95%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/" style="font-size: 10px;">索引优先队列</a> <a href="/tags/%E7%BA%A2%E9%BB%91%E6%A0%91/" style="font-size: 10px;">红黑树</a> <a href="/tags/%E8%AF%BB%E5%86%99%E9%94%81/" style="font-size: 10px;">读写锁</a> <a href="/tags/%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/" style="font-size: 10px;">调度算法</a> <a href="/tags/%E8%B7%AF%E5%BE%84%E5%8E%8B%E7%BC%A9/" style="font-size: 10px;">路径压缩</a> <a href="/tags/%E8%BF%9E%E9%80%9A%E6%80%A7/" style="font-size: 10px;">连通性</a>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/posts/20200316-jvm-garbage-collector.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnail/07.jpeg" alt="JVM笔记《四》常见的垃圾收集器">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-16T12:49:55.000Z">2020-03-16</time></div>
+                    <a href="/posts/20200316-jvm-garbage-collector.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">JVM笔记《四》常见的垃圾收集器</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JVM/">JVM</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/posts/20200316-jvm-gc.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnail/08.jpeg" alt="JVM笔记（三）垃圾收集算法以及HotSpot的算法实现(安全点、记忆集与卡表、写屏障、三色标记等)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-16T12:47:01.000Z">2020-03-16</time></div>
+                    <a href="/posts/20200316-jvm-gc.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">JVM笔记（三）垃圾收集算法以及HotSpot的算法实现(安全点、记忆集与卡表、写屏障、三色标记等)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JVM/">JVM</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/posts/20200316-JVM-obj-reference.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnail/09.jpeg" alt="JVM笔记（二）对象的生死与java的四大引用">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-16T12:43:40.000Z">2020-03-16</time></div>
+                    <a href="/posts/20200316-JVM-obj-reference.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">JVM笔记（二）对象的生死与java的四大引用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JVM/">JVM</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/posts/20200316-jvm-memory.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnail/10.jpeg" alt="JVM笔记（一）java内存区域与内存溢出以及对象的创建、布局和定位">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-16T12:39:45.000Z">2020-03-16</time></div>
+                    <a href="/posts/20200316-jvm-memory.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">JVM笔记（一）java内存区域与内存溢出以及对象的创建、布局和定位</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JVM/">JVM</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/posts/20200310-sp-dijkstra.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnail/01.jpeg" alt="《算法4》最短路径问题笔记">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-10T02:23:53.000Z">2020-03-10</time></div>
+                    <a href="/posts/20200310-sp-dijkstra.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">《算法4》最短路径问题笔记</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%9B%BE/">图</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">15</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">19</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AQS/">
+                        <span class="tag">AQS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AVL/">
+                        <span class="tag">AVL</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AtomicXXX/">
+                        <span class="tag">AtomicXXX</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/BST/">
+                        <span class="tag">BST</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CAS/">
+                        <span class="tag">CAS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Callable/">
+                        <span class="tag">Callable</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CountDownLatch/">
+                        <span class="tag">CountDownLatch</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CyclicBarrier/">
+                        <span class="tag">CyclicBarrier</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Dijkstra/">
+                        <span class="tag">Dijkstra</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Future/">
+                        <span class="tag">Future</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/FutureTask/">
+                        <span class="tag">FutureTask</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GC/">
+                        <span class="tag">GC</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/IndexPQ/">
+                        <span class="tag">IndexPQ</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JVM/">
+                        <span class="tag">JVM</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LockSupport/">
+                        <span class="tag">LockSupport</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/PriorityQueue/">
+                        <span class="tag">PriorityQueue</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ReentrantLock/">
+                        <span class="tag">ReentrantLock</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ReentrantReadWriteLock/">
+                        <span class="tag">ReentrantReadWriteLock</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Runnable/">
+                        <span class="tag">Runnable</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Semaphore/">
+                        <span class="tag">Semaphore</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/bfs/">
+                        <span class="tag">bfs</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/centos7/">
+                        <span class="tag">centos7</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/dfs/">
+                        <span class="tag">dfs</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/docker/">
+                        <span class="tag">docker</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/elasticsearch/">
+                        <span class="tag">elasticsearch</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/fdfs/">
+                        <span class="tag">fdfs</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/firewall/">
+                        <span class="tag">firewall</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/fork-join/">
+                        <span class="tag">fork/join</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/gulp-%E5%8E%8B%E7%BC%A9%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90/">
+                        <span class="tag">gulp,压缩静态资源</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/jib/">
+                        <span class="tag">jib</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/kruskal/">
+                        <span class="tag">kruskal</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/linux/">
+                        <span class="tag">linux</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/prim/">
+                        <span class="tag">prim</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/union-find/">
+                        <span class="tag">union-find</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E4%B8%89%E8%89%B2%E6%A0%87%E8%AE%B0/">
+                        <span class="tag">三色标记</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E4%BA%8C%E5%88%86%E5%9B%BE/">
+                        <span class="tag">二分图</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91/">
+                        <span class="tag">二叉查找树</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/">
+                        <span class="tag">二叉树</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/">
+                        <span class="tag">优先队列</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%88%86%E6%B2%BB/">
+                        <span class="tag">分治</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C%E7%B1%BB/">
+                        <span class="tag">原子操作类</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%9B%9B%E5%A4%A7%E5%BC%95%E7%94%A8/">
+                        <span class="tag">四大引用</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%9B%BE/">
+                        <span class="tag">图</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/">
+                        <span class="tag">垃圾收集器</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%A0%86/">
+                        <span class="tag">堆</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%A0%86%E6%8E%92%E5%BA%8F/">
+                        <span class="tag">堆排序</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
+                        <span class="tag">多线程</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%B9%B3%E8%A1%A1%E6%A0%91/">
+                        <span class="tag">平衡树</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">
+                        <span class="tag">并发编程</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/">
+                        <span class="tag">并查集</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/">
+                        <span class="tag">拓扑排序</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%8E%92%E5%BA%8F/">
+                        <span class="tag">排序</span>
+                        <span class="tag is-grey">7</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%95%A3%E5%88%97%E8%A1%A8/">
+                        <span class="tag">散列表</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                        <span class="tag">数据结构</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">
+                        <span class="tag">数据结构与算法</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">
+                        <span class="tag">文件上传</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%98%BE%E7%A4%BA%E9%94%81Lock/">
+                        <span class="tag">显示锁Lock</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/">
+                        <span class="tag">最小生成树</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84/">
+                        <span class="tag">最短路径</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%9F%A5%E6%89%BE/">
+                        <span class="tag">查找</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E7%B4%A2%E5%BC%95%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/">
+                        <span class="tag">索引优先队列</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E7%BA%A2%E9%BB%91%E6%A0%91/">
+                        <span class="tag">红黑树</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%AF%BB%E5%86%99%E9%94%81/">
+                        <span class="tag">读写锁</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/">
+                        <span class="tag">调度算法</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%B7%AF%E5%BE%84%E5%8E%8B%E7%BC%A9/">
+                        <span class="tag">路径压缩</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%BF%9E%E9%80%9A%E6%80%A7/">
+                        <span class="tag">连通性</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+        </div>
+    
+</div>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container" >
+      <div id="foot-new">
+		  <div class="level" style="text-align:center">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.png" alt="JVM笔记（一）java内存区域与内存溢出以及对象的创建、布局和定位" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 MaoLin Wang&nbsp;
+                <a href="http://beian.miit.gov.cn/">苏ICP备19070231号-1 </a>
+                
+                <br>
+                <span id="busuanzi_container_site_uv">
+                共<span id="busuanzi_value_site_uv">0</span>个访客
+                </span>
+                
+                </p>
+            </div>
+			
+
+            <div class="level-end">
+            
+            </div>
+			
+	  </div>
+
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'https://wbml.top',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+	
+
+	
+	<!--3D飘雪花特效 整理by yaxi.net-->
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/js/src/snow.js"></script>
+	<style type="text/css">
+	.snow-container{
+	position:fixed;
+	top:0;left:0;
+	width:100%;
+	height:100%;
+	pointer-events:none;
+	z-index:100001;
+	}
+	</style>
+	<div class="snow-container"></div>
+
+
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"live2d-widget-model-z16"},"display":{"position":"right","width":85,"height":85},"mobile":{"show":true}});</script></body>
+</html>
