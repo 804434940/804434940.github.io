@@ -151,6 +151,128 @@
 <div class="card">
     
     <div class="card-image">
+        <a href="/posts/20200310-HeapPQ.html" class="image is-7by1">
+            <img class="thumbnail" src="/gallery/thumbnail/09.jpeg" alt="优先队列（堆）以及堆排序-------java实现">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-10T01:52:23.000Z">2020-03-10</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/">优先队列</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    16 分钟 读完 (大约 2331 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/posts/20200310-HeapPQ.html">优先队列（堆）以及堆排序-------java实现</a>
+            
+        </h1>
+        <div class="content">
+            <p>实现优先队列的基本数据结构是使用<strong>二叉堆</strong></p>
+<h3 id="一、二叉堆"><a href="#一、二叉堆" class="headerlink" title="一、二叉堆"></a>一、二叉堆</h3><p>二叉堆即用一颗完全二叉树（底层元素从左向右填入）。<br><img src="https://img-blog.csdnimg.cn/20200305130112403.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzY5NjUyOQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>如果所示，因此我们可以使用一个数组来表示二叉堆，而不使用链表:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span>   <span class="number">1</span>    <span class="number">2</span>    <span class="number">3</span>    <span class="number">4</span>    <span class="number">5</span>    <span class="number">6</span>    <span class="number">7</span>     <span class="number">8</span>     <span class="number">9</span>   <span class="number">10</span></span><br><span class="line">    A    B    C    D    E    F    G     H     I</span><br></pre></td></tr></table></figure>
+<p>可以发现，对于任意节点 <strong>i</strong>，其 左二子在 <strong>2i</strong> 位置，右儿子在 <strong>2i+1</strong>位置</p>
+<p>关于优先队列，我们可以规定最大元优先或最小元优先，对应的堆就是大顶堆和小顶堆。<br><strong>大顶堆： 即树上每个节点都小于等于其父亲节点，除了根节点，因为根节点没有父亲<br>小顶堆：即树上每个节点都大于等于其父亲节点。同上</strong></p>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/posts/20200310-HeapPQ.html#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/posts/20200310-union-find.html" class="image is-7by1">
+            <img class="thumbnail" src="/gallery/thumbnail/10.jpeg" alt="《算法4》union-find并查集解析">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-10T01:45:11.000Z">2020-03-10</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B9%B6%E6%9F%A5%E9%9B%86/">并查集</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    13 分钟 读完 (大约 2008 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/posts/20200310-union-find.html">《算法4》union-find并查集解析</a>
+            
+        </h1>
+        <div class="content">
+            <p><strong>union-find主要用于解决动态连通性的问题，</strong><br>如下图：<br><img src="https://img-blog.csdnimg.cn/20200304130335492.png" alt="在这里插入图片描述"><br>对于输入的一系列整数对p,q，表示p和q是相连的，在将整数对输入完毕后，我们就可以从该图中获取该图的连通性，如任意两个节点是否相连，共有几个连通分量。如上图可看出共有两个连通分量：0-5-6-1-2-7，8-3-4-9</p>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/posts/20200310-union-find.html#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
         <a href="/posts/20200207-reentrant_read_write_lock.html" class="image is-7by1">
             <img class="thumbnail" src="/gallery/thumbnail/05.jpeg" alt="java并发编程之ReentrantLock和读写锁ReentrantReadWriteLock">
         </a>
@@ -326,128 +448,6 @@
 
 
 
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/posts/20200127-runcalfutask.html" class="image is-7by1">
-            <img class="thumbnail" src="/gallery/thumbnail/09.jpeg" alt="java多线程之Callable+Future+FutureTask原理详解和简单使用">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-01-27T15:42:22.000Z">2020-01-27</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">并发编程</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E5%B9%B6%E5%8F%91%E5%B7%A5%E5%85%B7%E7%B1%BB/">并发工具类</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    25 分钟 读完 (大约 3747 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/posts/20200127-runcalfutask.html">java多线程之Callable+Future+FutureTask原理详解和简单使用</a>
-            
-        </h1>
-        <div class="content">
-            <h3 id="一、Runnable和Callable"><a href="#一、Runnable和Callable" class="headerlink" title="一、Runnable和Callable"></a>一、Runnable和Callable</h3><p><code>Runnable</code>是一个接口，只声明了一个<code>run()</code>方法，此方法为void类型，所以只能执行无返回值的任务。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Callable是java.util.concurrent包下的一个接口，提供了一个call()方法:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Callable</span>&lt;<span class="title">V</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Computes a result, or throws an exception if unable to do so.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> computed result</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Exception if unable to compute a result</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function">V <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>该方法返回的数据类型就是传进来的泛型类型，主要用于计算产生结果。如果没有计算出结果，则会抛出异常。</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/posts/20200127-runcalfutask.html#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/posts/20200124-cdlcbs.html" class="image is-7by1">
-            <img class="thumbnail" src="/gallery/thumbnail/07.jpeg" alt="java并发编程之CountDownLatch,CyclicBarrier和Semaphore">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-01-24T08:55:24.000Z">2020-01-24</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">并发编程</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E5%B9%B6%E5%8F%91%E5%B7%A5%E5%85%B7%E7%B1%BB/">并发工具类</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    21 分钟 读完 (大约 3118 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/posts/20200124-cdlcbs.html">java并发编程之CountDownLatch,CyclicBarrier和Semaphore</a>
-            
-        </h1>
-        <div class="content">
-            <h3 id="一、CountDownLatch"><a href="#一、CountDownLatch" class="headerlink" title="一、CountDownLatch"></a>一、CountDownLatch</h3><p>   CountDownLatch能够让一个线程在等待其他线程全部完成各自任务后再执行。而CountDownLatch是通过计数器来实现的，计数器的初始值即为任务的总数。<br>    举个例子，如，同学聚会结束回家，每个人都要回各自的家，此时计数器的初始值为参加聚会的总人数，而每个人都是一个线程，每个同学到家后，都需要调用countDown方法，对计数器减一，表示完成回家的任务，当所有同学都到家后，主线程才可以执行通知班长全部到家的任务。再比如，所编写的应用程序，希望等待启动框架的线程启动完毕后再执行。</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/posts/20200124-cdlcbs.html#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -523,7 +523,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            36
+                            38
                         </p>
                     </a>
                 </div>
@@ -535,7 +535,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            18
+                            19
                         </p>
                     </a>
                 </div>
@@ -547,7 +547,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            66
+                            68
                         </p>
                     </a>
                 </div>
@@ -631,6 +631,14 @@
             </span>
             <span class="level-end">
                 <span class="level-item tag">4</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Spring/">
+            <span class="level-start">
+                <span class="level-item">Spring</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/docker/">
@@ -780,7 +788,7 @@
             标签云
 			
         </h3>
-        <a href="/tags/AQS/" style="font-size: 10px;">AQS</a> <a href="/tags/AVL/" style="font-size: 12.5px;">AVL</a> <a href="/tags/AtomicXXX/" style="font-size: 10px;">AtomicXXX</a> <a href="/tags/BST/" style="font-size: 10px;">BST</a> <a href="/tags/CAS/" style="font-size: 10px;">CAS</a> <a href="/tags/Callable/" style="font-size: 10px;">Callable</a> <a href="/tags/CountDownLatch/" style="font-size: 10px;">CountDownLatch</a> <a href="/tags/CyclicBarrier/" style="font-size: 10px;">CyclicBarrier</a> <a href="/tags/Dijkstra/" style="font-size: 10px;">Dijkstra</a> <a href="/tags/Future/" style="font-size: 10px;">Future</a> <a href="/tags/FutureTask/" style="font-size: 10px;">FutureTask</a> <a href="/tags/GC/" style="font-size: 10px;">GC</a> <a href="/tags/IndexPQ/" style="font-size: 10px;">IndexPQ</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/LockSupport/" style="font-size: 10px;">LockSupport</a> <a href="/tags/PriorityQueue/" style="font-size: 10px;">PriorityQueue</a> <a href="/tags/ReentrantLock/" style="font-size: 10px;">ReentrantLock</a> <a href="/tags/ReentrantReadWriteLock/" style="font-size: 10px;">ReentrantReadWriteLock</a> <a href="/tags/Runnable/" style="font-size: 10px;">Runnable</a> <a href="/tags/Semaphore/" style="font-size: 10px;">Semaphore</a> <a href="/tags/bfs/" style="font-size: 10px;">bfs</a> <a href="/tags/centos7/" style="font-size: 10px;">centos7</a> <a href="/tags/dfs/" style="font-size: 10px;">dfs</a> <a href="/tags/docker/" style="font-size: 12.5px;">docker</a> <a href="/tags/elasticsearch/" style="font-size: 10px;">elasticsearch</a> <a href="/tags/fdfs/" style="font-size: 10px;">fdfs</a> <a href="/tags/firewall/" style="font-size: 10px;">firewall</a> <a href="/tags/fork-join/" style="font-size: 10px;">fork/join</a> <a href="/tags/gulp-%E5%8E%8B%E7%BC%A9%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90/" style="font-size: 10px;">gulp,压缩静态资源</a> <a href="/tags/jib/" style="font-size: 10px;">jib</a> <a href="/tags/kruskal/" style="font-size: 10px;">kruskal</a> <a href="/tags/linux/" style="font-size: 12.5px;">linux</a> <a href="/tags/prim/" style="font-size: 10px;">prim</a> <a href="/tags/union-find/" style="font-size: 10px;">union-find</a> <a href="/tags/%E4%B8%89%E8%89%B2%E6%A0%87%E8%AE%B0/" style="font-size: 10px;">三色标记</a> <a href="/tags/%E4%BA%8C%E5%88%86%E5%9B%BE/" style="font-size: 10px;">二分图</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91/" style="font-size: 10px;">二叉查找树</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" style="font-size: 10px;">二叉树</a> <a href="/tags/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/" style="font-size: 12.5px;">优先队列</a> <a href="/tags/%E5%88%86%E6%B2%BB/" style="font-size: 10px;">分治</a> <a href="/tags/%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C%E7%B1%BB/" style="font-size: 10px;">原子操作类</a> <a href="/tags/%E5%9B%9B%E5%A4%A7%E5%BC%95%E7%94%A8/" style="font-size: 10px;">四大引用</a> <a href="/tags/%E5%9B%BE/" style="font-size: 10px;">图</a> <a href="/tags/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" style="font-size: 10px;">垃圾收集器</a> <a href="/tags/%E5%A0%86/" style="font-size: 10px;">堆</a> <a href="/tags/%E5%A0%86%E6%8E%92%E5%BA%8F/" style="font-size: 10px;">堆排序</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 15px;">多线程</a> <a href="/tags/%E5%B9%B3%E8%A1%A1%E6%A0%91/" style="font-size: 12.5px;">平衡树</a> <a href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" style="font-size: 17.5px;">并发编程</a> <a href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" style="font-size: 10px;">并查集</a> <a href="/tags/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/" style="font-size: 10px;">拓扑排序</a> <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 20px;">排序</a> <a href="/tags/%E6%95%A3%E5%88%97%E8%A1%A8/" style="font-size: 10px;">散列表</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 10px;">数据结构与算法</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 10px;">文件上传</a> <a href="/tags/%E6%98%BE%E7%A4%BA%E9%94%81Lock/" style="font-size: 10px;">显示锁Lock</a> <a href="/tags/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/" style="font-size: 10px;">最小生成树</a> <a href="/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84/" style="font-size: 10px;">最短路径</a> <a href="/tags/%E6%9F%A5%E6%89%BE/" style="font-size: 15px;">查找</a> <a href="/tags/%E7%B4%A2%E5%BC%95%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/" style="font-size: 10px;">索引优先队列</a> <a href="/tags/%E7%BA%A2%E9%BB%91%E6%A0%91/" style="font-size: 10px;">红黑树</a> <a href="/tags/%E8%AF%BB%E5%86%99%E9%94%81/" style="font-size: 10px;">读写锁</a> <a href="/tags/%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/" style="font-size: 10px;">调度算法</a> <a href="/tags/%E8%B7%AF%E5%BE%84%E5%8E%8B%E7%BC%A9/" style="font-size: 10px;">路径压缩</a> <a href="/tags/%E8%BF%9E%E9%80%9A%E6%80%A7/" style="font-size: 10px;">连通性</a>
+        <a href="/tags/AQS/" style="font-size: 10px;">AQS</a> <a href="/tags/AVL/" style="font-size: 12.5px;">AVL</a> <a href="/tags/AtomicXXX/" style="font-size: 10px;">AtomicXXX</a> <a href="/tags/BST/" style="font-size: 10px;">BST</a> <a href="/tags/CAS/" style="font-size: 10px;">CAS</a> <a href="/tags/Callable/" style="font-size: 10px;">Callable</a> <a href="/tags/CountDownLatch/" style="font-size: 10px;">CountDownLatch</a> <a href="/tags/CyclicBarrier/" style="font-size: 10px;">CyclicBarrier</a> <a href="/tags/Dijkstra/" style="font-size: 10px;">Dijkstra</a> <a href="/tags/Future/" style="font-size: 10px;">Future</a> <a href="/tags/FutureTask/" style="font-size: 10px;">FutureTask</a> <a href="/tags/GC/" style="font-size: 10px;">GC</a> <a href="/tags/IOC/" style="font-size: 10px;">IOC</a> <a href="/tags/IndexPQ/" style="font-size: 10px;">IndexPQ</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/LockSupport/" style="font-size: 10px;">LockSupport</a> <a href="/tags/PriorityQueue/" style="font-size: 10px;">PriorityQueue</a> <a href="/tags/ReentrantLock/" style="font-size: 10px;">ReentrantLock</a> <a href="/tags/ReentrantReadWriteLock/" style="font-size: 10px;">ReentrantReadWriteLock</a> <a href="/tags/Runnable/" style="font-size: 10px;">Runnable</a> <a href="/tags/Semaphore/" style="font-size: 10px;">Semaphore</a> <a href="/tags/bfs/" style="font-size: 10px;">bfs</a> <a href="/tags/centos7/" style="font-size: 10px;">centos7</a> <a href="/tags/dfs/" style="font-size: 10px;">dfs</a> <a href="/tags/docker/" style="font-size: 12.5px;">docker</a> <a href="/tags/elasticsearch/" style="font-size: 10px;">elasticsearch</a> <a href="/tags/fdfs/" style="font-size: 10px;">fdfs</a> <a href="/tags/firewall/" style="font-size: 10px;">firewall</a> <a href="/tags/fork-join/" style="font-size: 10px;">fork/join</a> <a href="/tags/gulp-%E5%8E%8B%E7%BC%A9%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90/" style="font-size: 10px;">gulp,压缩静态资源</a> <a href="/tags/jib/" style="font-size: 10px;">jib</a> <a href="/tags/kruskal/" style="font-size: 10px;">kruskal</a> <a href="/tags/linux/" style="font-size: 12.5px;">linux</a> <a href="/tags/prim/" style="font-size: 10px;">prim</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/union-find/" style="font-size: 10px;">union-find</a> <a href="/tags/%E4%B8%89%E8%89%B2%E6%A0%87%E8%AE%B0/" style="font-size: 10px;">三色标记</a> <a href="/tags/%E4%BA%8C%E5%88%86%E5%9B%BE/" style="font-size: 10px;">二分图</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91/" style="font-size: 10px;">二叉查找树</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" style="font-size: 10px;">二叉树</a> <a href="/tags/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/" style="font-size: 12.5px;">优先队列</a> <a href="/tags/%E5%88%86%E6%B2%BB/" style="font-size: 10px;">分治</a> <a href="/tags/%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C%E7%B1%BB/" style="font-size: 10px;">原子操作类</a> <a href="/tags/%E5%9B%9B%E5%A4%A7%E5%BC%95%E7%94%A8/" style="font-size: 10px;">四大引用</a> <a href="/tags/%E5%9B%BE/" style="font-size: 10px;">图</a> <a href="/tags/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8/" style="font-size: 10px;">垃圾收集器</a> <a href="/tags/%E5%A0%86/" style="font-size: 10px;">堆</a> <a href="/tags/%E5%A0%86%E6%8E%92%E5%BA%8F/" style="font-size: 10px;">堆排序</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 15px;">多线程</a> <a href="/tags/%E5%B9%B3%E8%A1%A1%E6%A0%91/" style="font-size: 12.5px;">平衡树</a> <a href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" style="font-size: 17.5px;">并发编程</a> <a href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" style="font-size: 10px;">并查集</a> <a href="/tags/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/" style="font-size: 10px;">拓扑排序</a> <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 20px;">排序</a> <a href="/tags/%E6%95%A3%E5%88%97%E8%A1%A8/" style="font-size: 10px;">散列表</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 10px;">数据结构与算法</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 10px;">文件上传</a> <a href="/tags/%E6%98%BE%E7%A4%BA%E9%94%81Lock/" style="font-size: 10px;">显示锁Lock</a> <a href="/tags/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/" style="font-size: 10px;">最小生成树</a> <a href="/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84/" style="font-size: 10px;">最短路径</a> <a href="/tags/%E6%9F%A5%E6%89%BE/" style="font-size: 15px;">查找</a> <a href="/tags/%E7%B4%A2%E5%BC%95%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/" style="font-size: 10px;">索引优先队列</a> <a href="/tags/%E7%BA%A2%E9%BB%91%E6%A0%91/" style="font-size: 10px;">红黑树</a> <a href="/tags/%E8%AF%BB%E5%86%99%E9%94%81/" style="font-size: 10px;">读写锁</a> <a href="/tags/%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/" style="font-size: 10px;">调度算法</a> <a href="/tags/%E8%B7%AF%E5%BE%84%E5%8E%8B%E7%BC%A9/" style="font-size: 10px;">路径压缩</a> <a href="/tags/%E8%BF%9E%E9%80%9A%E6%80%A7/" style="font-size: 10px;">连通性</a>
     </div>
 </div>
     
@@ -789,6 +797,44 @@
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/posts/20200409-spring-container-process.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnail/08.jpeg" alt="一文搞懂Spring容器初始化机制">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-09T10:21:59.000Z">2020-04-09</time></div>
+                    <a href="/posts/20200409-spring-container-process.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">一文搞懂Spring容器初始化机制</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/posts/20200318-null.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="JVM笔记《五》Class文件结构">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-18T12:02:37.000Z">2020-03-18</time></div>
+                    <a href="/posts/20200318-null.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">JVM笔记《五》Class文件结构</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -847,44 +893,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/posts/20200316-jvm-memory.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/gallery/thumbnail/10.jpeg" alt="JVM笔记（一）java内存区域与内存溢出以及对象的创建、布局和定位">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-16T12:39:45.000Z">2020-03-16</time></div>
-                    <a href="/posts/20200316-jvm-memory.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">JVM笔记（一）java内存区域与内存溢出以及对象的创建、布局和定位</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/JVM/">JVM</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/posts/20200310-sp-dijkstra.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/gallery/thumbnail/01.jpeg" alt="《算法4》最短路径问题笔记">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-10T02:23:53.000Z">2020-03-10</time></div>
-                    <a href="/posts/20200310-sp-dijkstra.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">《算法4》最短路径问题笔记</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="has-link-grey -link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%9B%BE/">图</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -897,12 +905,23 @@
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2020/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2020/03/">
                 <span class="level-start">
                     <span class="level-item">三月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">15</span>
+                    <span class="level-item tag">16</span>
                 </span>
             </a>
         </li>
@@ -1022,6 +1041,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/GC/">
                         <span class="tag">GC</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/IOC/">
+                        <span class="tag">IOC</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1169,6 +1195,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/prim/">
                         <span class="tag">prim</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/spring/">
+                        <span class="tag">spring</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
