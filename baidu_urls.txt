@@ -1,3 +1,4 @@
+https://wbml.top/posts/20200409-spring-bean-create-DI.html
 https://wbml.top/posts/20200409-spring-container-process.html
 https://wbml.top/posts/20200318-null.html
 https://wbml.top/posts/20200316-jvm-garbage-collector.html
@@ -7,4 +8,3 @@ https://wbml.top/posts/20200316-jvm-memory.html
 https://wbml.top/posts/20200310-sp-dijkstra.html
 https://wbml.top/posts/20200310-prim-kruskal.html
 https://wbml.top/posts/20200310-graphDetails.html
-https://wbml.top/posts/20200310-seq-linear-hash.html
