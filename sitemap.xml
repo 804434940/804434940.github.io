@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://wbml.top/posts/20200318-jvm-class-file.html</loc>
+    
+    <lastmod>2020-04-17T12:20:00.212Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://wbml.top/posts/20200409-spring-bean-create-DI.html</loc>
     
     <lastmod>2020-04-09T11:04:42.669Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>https://wbml.top/posts/20200409-spring-container-process.html</loc>
     
     <lastmod>2020-04-09T10:27:38.797Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wbml.top/posts/20200318-null.html</loc>
-    
-    <lastmod>2020-03-18T12:03:18.659Z</lastmod>
     
   </url>
   

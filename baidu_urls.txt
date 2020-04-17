@@ -1,6 +1,6 @@
 https://wbml.top/posts/20200409-spring-bean-create-DI.html
 https://wbml.top/posts/20200409-spring-container-process.html
-https://wbml.top/posts/20200318-null.html
+https://wbml.top/posts/20200318-jvm-class-file.html
 https://wbml.top/posts/20200316-jvm-garbage-collector.html
 https://wbml.top/posts/20200316-jvm-gc.html
 https://wbml.top/posts/20200316-JVM-obj-reference.html
